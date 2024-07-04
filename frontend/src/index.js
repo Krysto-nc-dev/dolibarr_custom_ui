@@ -1,23 +1,48 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from './store'
+import App from './App'
+import NotFound from './screens/NotFound'
+import PrivateRoute from './components/utils/PrivateRoute'
+import AdminRoute from './components/utils/AdminRoute'
+import UserRoute from './components/utils/UserRoutes'
+import HomeScreen from './screens/HomeScreen'
+import LoginScreen from './screens/LoginScreen'
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      {/* Public Routes */}
+      <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
 
+      {/* Registered users */}
+      <Route path="" element={<PrivateRoute />}></Route>
+
+      {/* Admin users */}
+      <Route path="" element={<AdminRoute />}></Route>
+
+      {/* Users */}
+      <Route path="" element={<UserRoute />}></Route>
+
+      {/* Route générique pour gérer toutes les autres routes non définies */}
+      <Route path="*" element={<NotFound />} />
+    </Route>,
+  ),
+)
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  </React.StrictMode>,
+)
