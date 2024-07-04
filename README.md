@@ -64,11 +64,15 @@ Bienvenue dans **Dolibarr Custom UI** ! Cette application vise à fournir une in
 3. **Configurez les variables d'environnement :**
    Créez un fichier `.env` à la racine du projet et ajoutez vos configurations.
    ```env
-   REACT_APP_API_URL=https://votre-api-dolibarr.com
-   MONGODB_URI=mongodb://localhost:27017/dolibarr
+  NODE_ENV=development
+PORT=[YOUR_PORT]
+MONGO_URI=[YOUR_MONGO_URI]
+DOLI_BASE_URL=[YOUR_DOLIBARR_BASE_URL]
+JWT_SECRET=[YOUR_JWT_SECRET]
+DOLAPIKEY=[YOUR_DOLAPIKEY]
    ```
 
-4. **Lancez l'application :**
+1. **Lancez l'application :**
    ```bash
    npm start
    ```
