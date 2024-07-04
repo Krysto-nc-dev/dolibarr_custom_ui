@@ -14,20 +14,27 @@ import PrivateRoute from './components/utils/PrivateRoute'
 import AdminRoute from './components/utils/AdminRoute'
 import UserRoute from './components/utils/UserRoutes'
 import HomeScreen from './screens/HomeScreen'
-import LoginScreen from './screens/LoginScreen'
+
+import UserDashboardScreen from './screens/private/UserDashboardScreen'
+import AdminDashboardScreen from './screens/admin/AdminDashboardScreen'
+import UserProductScreen from './screens/private/UserProductScreen'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       {/* Public Routes */}
       <Route index={true} path="/" element={<HomeScreen />} />
-      <Route path="/login" element={<LoginScreen />} />
 
       {/* Registered users */}
-      <Route path="" element={<PrivateRoute />}></Route>
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/user-dashboard" element={<UserDashboardScreen />} />
+        <Route path="/user-products" element={<UserProductScreen />} />
+      </Route>
 
       {/* Admin users */}
-      <Route path="" element={<AdminRoute />}></Route>
+      <Route path="" element={<AdminRoute />}>
+        <Route path="/admin-dashboard" element={<AdminDashboardScreen />} />
+      </Route>
 
       {/* Users */}
       <Route path="" element={<UserRoute />}></Route>

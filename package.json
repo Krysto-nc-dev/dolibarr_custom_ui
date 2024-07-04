@@ -2,9 +2,10 @@
   "name": "dolibarr_custom_ui",
   "version": "1.0.0",
   "description": "Application whith custom ui based on dolibarr CRM",
+  "type": "module",
   "main": "server.js",
   "scripts": {
-   "start": "node backend/server.js",
+    "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -28,8 +29,13 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.4.4"
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.4.4",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.14",
+    "npm": "^10.8.1"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
