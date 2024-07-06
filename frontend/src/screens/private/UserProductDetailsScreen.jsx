@@ -27,7 +27,11 @@ const UserProductDetailsScreen = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-start mb-6">
+        <div>
         <h1 className="text-xl font-bold">{data.label}</h1>
+        <p className='m-2'><strong>Valeur du stock:</strong> <span className='text-white font-bold bg-secondaryColor py-1 px-3 rounded-full'>{stockValue.toLocaleString()} XPF </span></p>
+
+        </div>
         <Barcode value={data.barcode} />
       </div>
       <div className="text-gray-600 mb-4" dangerouslySetInnerHTML={{ __html: data.description }} />
@@ -36,11 +40,11 @@ const UserProductDetailsScreen = () => {
           <h2 className="text-xl font-semibold mb-2">Détails du produit</h2>
           <p><strong>Référence:</strong> {data.ref}</p>
           <p><strong>Code-barres:</strong> {data.barcode}</p>
-          <p><strong>Prix:</strong> {parseFloat(data.price).toFixed(0)} XPF</p>
-          <p><strong>Prix minimum:</strong> {parseFloat(data.price_min).toFixed(0)} XPF</p>
-          <p><strong>Prix TTC:</strong> {parseFloat(data.price_ttc).toFixed(0)} XPF</p>
+          <p><strong>Prix:</strong> {parseFloat(data.price).toFixed(0).toLocaleString()} XPF</p>
+          <p><strong>Prix minimum:</strong> {parseFloat(data.price_min).toFixed(0).toLocaleString()} XPF</p>
+          <p><strong>Prix TTC:</strong> {parseFloat(data.price_ttc).toFixed(0).toLocaleString()} XPF</p>
           <p><strong>En stock:</strong> {data.stock_reel}</p>
-          <p><strong>Valeur du stock:</strong> {stockValue.toFixed(0)} XPF</p>
+     
         </div>
         <div className="bg-gray-100 p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">Informations supplémentaires</h2>

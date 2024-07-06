@@ -6,6 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { useGetEventsQuery } from '../../slices/eventSlice';
 import Loader from '../../components/shared/Loader';
+import { CirclePlus } from 'lucide-react';
 
 const UserCalendar = () => {
   const { data: events, error, isLoading } = useGetEventsQuery();
@@ -38,7 +39,8 @@ const UserCalendar = () => {
   }));
 
   return (
-    <div className="h-screen p-6 bg-backgroundColor text-textColor">
+    <div className="h-screen p-4 bg-backgroundColor text-textColor">
+        <Link to={'/add-event-form'} className="bg-primaryColor text-white font-semibold py-1 px-5 rounded-full mb-2 flex items-center w-[15rem]"> <CirclePlus className='mr-2' /> Ajouter un évènement</Link>
       <div className="flex justify-center items-center w-full">
         <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-7xl">
           <FullCalendar

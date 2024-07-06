@@ -34,6 +34,12 @@ import UserWarehousesScreen from './screens/private/UserWarehousesScreen.jsx'
 import UserBankAccountDetails from './screens/private/UserBankAccountDetails.jsx'
 import UserEventDetailsScreen from './screens/private/UserEventDetailsScreen.jsx'
 import UserWarehouseDetailsScreen from './screens/private/UserWarehouseDetailsScreen.jsx'
+import UserInvoiceDetails from './screens/private/UserInvoiceDetails.jsx'
+import UserPropalScreen from './screens/private/UserPropalScreen.jsx'
+import AddEventForm from './screens/private/AddEventForm.jsx'
+import UserMachinesAndMolds from './screens/private/UserMachinesAndMolds.jsx'
+import UserRecipesScreen from './screens/private/UserRecipesScreen.jsx'
+import UserCollectsScreen from './screens/private/UserCollectsScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,6 +57,7 @@ const router = createBrowserRouter(
             path="user-product-details/:id"
             element={<UserProductDetailsScreen />}
           />
+          <Route path="propal" element={<UserPropalScreen />} />
           <Route path="commerce" element={<UserCommerceScreen />} />
           <Route path="billing" element={<UserBillingsScreen />} />
           <Route path="banks" element={<UserBanksScreen />} />
@@ -58,8 +65,19 @@ const router = createBrowserRouter(
             path="bank-account-details/:id"
             element={<UserBankAccountDetails />}
           />
+          <Route
+            path="user-invoice-details/:id"
+            element={<UserInvoiceDetails />}
+          />
           <Route path="accounting" element={<UserAccountingsScreen />} />
           <Route path="calendar" element={<UserCalendar />} />
+          <Route path="add-event-form" element={<AddEventForm />} />
+          <Route
+            path="machines-and-moulds"
+            element={<UserMachinesAndMolds />}
+          />
+          <Route path="collectes" element={<UserCollectsScreen />} />
+          <Route path="recipes" element={<UserRecipesScreen />} />
           <Route path="event/:id" element={<UserEventDetailsScreen />} />
           <Route path="profile" element={<UserProfileScreen />} />
           <Route path="support" element={<UserSupportScreen />} />

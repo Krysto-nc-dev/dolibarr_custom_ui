@@ -17,11 +17,32 @@ export const dolliBankAccountApiSlice = apiSlice.injectEndpoints({
       },
       keepUnusedDataFor: 5,
     }),
+
+    getBankAccountsDetails: builder.query({
+      query: (id) => ({
+        url: `${DOLIBAR_URL}/bankaccounts/${id}`,
+        headers: {
+          DOLAPIKEY: DOLIBARR_API_KEY,
+        },
+      }),
+      keepUnusedDataFor: 5,
+    }),
+    getBankAccountLines: builder.query({
+      query: (id) => ({
+        url: `${DOLIBAR_URL}/bankaccounts/${id}/lines`,
+        headers: {
+          DOLAPIKEY: DOLIBARR_API_KEY,
+        },
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 })
 
 export const {
   useGetBankAccountsQuery,
+  useGetBankAccountsDetailsQuery,
+  useGetBankAccountLinesQuery,
 
   // Ajoutez d'autres exports ici pour les autres queries, mutations, etc.
 } = dolliBankAccountApiSlice

@@ -1,4 +1,4 @@
-import { LayoutDashboard, Settings, LogOut, Box, Users, Calendar, CreditCard, ShoppingCart, Book, DollarSign, MessageCircleQuestion, Warehouse } from 'lucide-react';
+import { LayoutDashboard, Box, Users, Calendar, CreditCard,  Book, DollarSign,  Warehouse, FilePen, Recycle, CookingPot, Factory } from 'lucide-react';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -28,10 +28,10 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     href: '/entrepots',
   },
   {
-    key: 'commerce',
-    label: 'Commerce',
-    icon: <ShoppingCart />,
-    href: '/commerce',
+    key: 'propal',
+    label: 'Devis',
+    icon: <FilePen />,
+    href: '/propal',
   },
   {
     key: 'facturation & paiement',
@@ -50,6 +50,24 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     label: 'Comptabilité',
     icon: <Book />,
     href: '/accounting',
+  },
+  {
+    key:'machineAndMoulds',
+    label: 'Machines & Moules',
+    icon: <Factory />,
+    href: '/machines-and-moulds',
+  },
+  {
+    key:'collecte',
+    label: 'Collectes',
+    icon: <Recycle />,
+    href: '/collectes',
+  },
+  {
+    key:'recipes',
+    label: 'Recettes',
+    icon: <CookingPot />,
+    href: '/recipes',
   },
   {
     key:'agenda',

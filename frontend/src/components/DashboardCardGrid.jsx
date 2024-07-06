@@ -1,18 +1,26 @@
-import { BadgeSwissFranc, Handshake, PieChart, UsersRound } from 'lucide-react'
+import {  Banknote, Handshake, PieChart, UsersRound } from 'lucide-react'
 import React from 'react'
+import { AccountBalanceProvider } from './utils/AccountBalanceProvider';
+import AccountBalanceDisplay from './utils/AccountBalanceDisplay';
 
 const DashboardCardGrid = () => {
+
+    const accountId = 1;
   return (
     <section className='flex gap-4 w-full' >
       <BoxWrapper>
         <div className='rounded-full h-12 w-12 flex items-center justify-center bg-yellow-500'>
-        <BadgeSwissFranc className='text-2xl text-white' />
+        <Banknote className='text-2xl text-white' />
         </div>
         <div className='pl-4'>
-            <span className='text-sm text-textColor font-light'>Total des ventes</span>
+            <span className='text-sm text-textColor font-light'>Argent en banque</span>
             <div className='flex items-center'>
-                <strong className='text-xl text-textColor font-semibold'> 689 098 XPF</strong>
-                <span className='text-sm text-green-500 pl-2'>+ 5987</span>
+                <strong className='text-xl text-textColor font-semibold'> 
+                    <AccountBalanceProvider accountId={accountId} >
+                        <AccountBalanceDisplay />
+                    </AccountBalanceProvider>
+                </strong>
+               
             </div>
         </div>
        
@@ -22,10 +30,10 @@ const DashboardCardGrid = () => {
         <PieChart className='text-2xl text-white' />
         </div>
         <div className='pl-4'>
-            <span className='text-sm text-textColor font-light'>Total des ventes</span>
+            <span className='text-sm text-textColor font-light'>Valeur du Stock</span>
             <div className='flex items-center'>
-                <strong className='text-xl text-textColor font-semibold'> 689 098 XPF</strong>
-                <span className='text-sm text-green-500 pl-2'>+ 5987</span>
+                <strong className='text-xl text-textColor font-semibold'> 691 100 <span className='text-mutedColor text-[10px]'>XPF</span> </strong>
+                {/* <span className='text-sm text-green-500 pl-2'>+ 5987</span> */}
             </div>
         </div>
       </BoxWrapper>

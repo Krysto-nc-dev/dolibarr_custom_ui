@@ -7,6 +7,7 @@ import RecentOrders from '../../components/RecentOrders'
 import PopularProducts from '../../components/PopularProducts'
 
 const UserDashboardScreen = () => {
+  
   return <div className='flex gap-4 flex-col'>
     <DashboardCardGrid/>
     <div className='flex flex-row gap-4 w-full'>

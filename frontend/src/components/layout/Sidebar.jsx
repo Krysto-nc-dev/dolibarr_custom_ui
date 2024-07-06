@@ -12,7 +12,7 @@ const Sidebar = () => {
         <Factory className="text-secondaryColor" size="32" />
         <span className="text-secondaryColor text-lg font-bold">MY CRM</span>
       </div>
-      <div className="flex-1 mt-4">
+      <div className="flex-1 mt-1">
         {DASHBOARD_SIDEBAR_LINKS.map((link) => (
           <Link
             to={link.href}
