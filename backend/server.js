@@ -8,6 +8,7 @@ import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import userRoutes from './routes/userRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
+import eventRoutes from './routes/eventRoutes.js'
 
 const port = process.env.PORT || 5000
 
@@ -26,6 +27,7 @@ app.use(cookieParser())
 // Define routes
 app.use('/dolibarr-ui/api/users', userRoutes)
 app.use('/dolibarr-ui/api/upload', uploadRoutes)
+app.use('/dolibarr-ui/api/events', eventRoutes)
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))

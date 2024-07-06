@@ -33,6 +33,7 @@ import UserProductDetailsScreen from './screens/private/UserProductDetailsScreen
 import UserWarehousesScreen from './screens/private/UserWarehousesScreen.jsx'
 import UserBankAccountDetails from './screens/private/UserBankAccountDetails.jsx'
 import UserEventDetailsScreen from './screens/private/UserEventDetailsScreen.jsx'
+import UserWarehouseDetailsScreen from './screens/private/UserWarehouseDetailsScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -64,6 +65,10 @@ const router = createBrowserRouter(
           <Route path="support" element={<UserSupportScreen />} />
           <Route path="messages" element={<UserMessagesScreen />} />
           <Route path="entrepots" element={<UserWarehousesScreen />} />
+          <Route
+            path="user-warehouse-details/:id"
+            element={<UserWarehouseDetailsScreen />}
+          />
           <Route
             path="user-thirdparties"
             element={<UserThirdPartiesScreen />}

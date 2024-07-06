@@ -7,7 +7,7 @@ const doliBaseQuery = fetchBaseQuery({ baseUrl: DOLIBAR_URL })
 
 export const apiSlice = createApi({
   baseQuery,
-  tagTypes: [],
+  tagTypes: [Event],
   endpoints: (builder) => ({}),
 })
 

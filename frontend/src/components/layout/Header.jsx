@@ -1,9 +1,27 @@
-import { Bell, MessageCircle, Search } from "lucide-react";
+import { Bell, CircleUser, LogOut, MessageCircle, MessageCircleQuestion, PowerOffIcon, Search, Settings } from "lucide-react";
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { logout } from "../../slices/authSlice";
+import { useDispatch } from "react-redux";
+import { useLogoutMutation } from "../../slices/userApiSlice";
 
 const Header = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [logoutApiCall] = useLogoutMutation()
+
+    const logoutHandler = async () => {
+        try {
+          await logoutApiCall().unwrap()
+          dispatch(logout())
+          console.log('logout')
+          navigate('/')
+        } catch (err) {
+          console.error(err)
+        }
+      }
   return (
     <header className="h-16 px-4 flex justify-between items-center border-b border-gray-200 bg-primaryColor">
       <div className="relative">
@@ -80,9 +98,10 @@ const Header = () => {
               >
                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 w-48">
                   <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5">
-                    <Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</Link>
-                    <Link to="/settings" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</Link>
-                    <Link to="/logout" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</Link>
+                    <Link to="/profile" className=" px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"> <CircleUser  className='mr-2'/>  Mon profile</Link>
+                    <Link to="/settings" className="px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"><Settings className="mr-2"/> Paramètres</Link>
+                    <Link to="/support" className="px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"><MessageCircleQuestion className="mr-2"/> Aide & supports</Link>
+                    <Link onClick={logoutHandler} className=" px-4 py-2 text-dangerColor hover:bg-gray-100 flex items-center hover:no-underline "> <LogOut className="mr-2"/> Déconnexion</Link>
                   </div>
                 </Popover.Panel>
               </Transition>

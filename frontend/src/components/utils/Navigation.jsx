@@ -60,26 +60,3 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   
   // Ajoutez d'autres liens ici pour les autres menus du sidebar
 ];
-
-
-export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [ 
-
-    {
-        key: 'parametres',
-        label: 'Paramètres',
-        icon: <Settings />,
-        href: '/settings',
-      },
-    {
-        key: 'support',
-        label: 'Aide & supports',
-        icon:  <MessageCircleQuestion/>,
-        href: '/support',
-      },
-      {
-        key:'deconnexion',
-        label: 'Déconnexion',
-        icon: <LogOut />,
-        href: '/logout',
-      },
-]

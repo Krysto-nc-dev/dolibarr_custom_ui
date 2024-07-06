@@ -2,8 +2,10 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import users from './data/users.js'
+import events from './data/events.js'
 
 import User from './models/userModel.js'
+import Event from './models/eventModel.js'
 
 import connectDB from './config/db.js'
 
@@ -13,12 +15,13 @@ connectDB()
 
 const importData = async () => {
   try {
-    await User.deleteMany()
+    // await User.deleteMany()
+    await Event.deleteMany()
 
-    const createdUsers = await User.insertMany(users)
+    // const createdUsers = await User.insertMany(users)
 
-    const adminUser = createdUsers[0]._id
-
+    // const adminUser = createdUsers[0]._id
+    await Event.insertMany(events)
     console.log('Data Imported!'.green.inverse)
     process.exit()
   } catch (error) {
@@ -29,7 +32,8 @@ const importData = async () => {
 
 const destroyData = async () => {
   try {
-    await User.deleteMany()
+    // await User.deleteMany()
+    await Event.deleteMany()
     await console.log('Data Destroyed!'.red.inverse)
     process.exit()
   } catch (error) {

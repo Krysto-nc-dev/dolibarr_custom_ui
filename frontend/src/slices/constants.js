@@ -2,6 +2,7 @@
 export const BASE_URL = ``
 
 export const USERS_URL = `/dolibarr-ui/api/users`
+export const EVENTS_URL = `/dolibarr-ui/api/events`
 
 // DOLIBARR
 

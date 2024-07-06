@@ -28,7 +28,7 @@ const LoginScreen = () => {
         navigate('/admin-dashboard');
       } else if (userInfo.role === 'User') {
         // Redirect to the user dashboard if the user is not an admin
-        navigate('/user-dashboard');
+        navigate('/dashboard');
       } else {
         // Redirect to the original destination if the user is not an admin
         navigate(redirect);

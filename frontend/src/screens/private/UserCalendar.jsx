@@ -1,16 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { useGetEventsQuery } from '../../slices/eventSlice';
+import Loader from '../../components/shared/Loader';
 
 const UserCalendar = () => {
-  const [events, setEvents] = useState([
-    { id: '1', title: 'Réunion d\'équipe', date: '2024-07-15' },
-    { id: '2', title: 'Présentation client', date: '2024-07-20' },
-    { id: '3', title: 'Déjeuner d\'affaires', date: '2024-07-25' },
-  ]);
+  const { data: events, error, isLoading } = useGetEventsQuery();
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return (
+      <p className="text-red-500">
+        {typeof error.data.message === 'string'
+          ? error.data.message
+          : 'Une erreur est survenue'}
+      </p>
+    );
+  }
+
+  const formattedEvents = events.map(event => ({
+    title: event.title,
+    start: event.date,
+    url: `/event/${event._id}`, // Assurez-vous que _id est correct selon votre modèle
+    extendedProps: {
+      description: event.description,
+      location: event.location,
+      status: event.status,
+      priority: event.priority,
+      meetingUrl: event.meetingUrl,
+    },
+  }));
 
   return (
     <div className="h-screen p-6 bg-backgroundColor text-textColor">
@@ -19,32 +44,35 @@ const UserCalendar = () => {
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
-            events={events.map(event => ({
-              ...event,
-              url: `/event/${event.id}`,
-            }))}
+            events={formattedEvents}
             headerToolbar={{
               left: 'prev,next today',
               center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+              right: 'dayGridMonth,timeGridWeek,timeGridDay',
             }}
-            locale="fr" // Pour mettre le calendrier en français
+            locale="fr"
             buttonText={{
               today: 'Aujourd\'hui',
               month: 'Mois',
               week: 'Semaine',
-              day: 'Jour'
+              day: 'Jour',
             }}
             height="auto"
             editable={true}
             selectable={true}
             selectMirror={true}
             dayMaxEvents={true}
+            eventClick={(info) => {
+              info.jsEvent.preventDefault();
+              if (info.event.url) {
+                window.open(info.event.url, "_self");
+              }
+            }}
           />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default UserCalendar;
