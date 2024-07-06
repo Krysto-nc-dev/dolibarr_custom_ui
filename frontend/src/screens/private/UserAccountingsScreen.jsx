@@ -2,7 +2,9 @@ import React from 'react'
 
 const UserAccountingsScreen = () => {
   return (
-    <div>UserAccountingsScreen</div>
+    <div>
+        <h1>Comptabilité</h1>
+    </div>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGetThirdPartiesQuery } from '../../slices/dolibarr/dolliThirdPartyApiSlice';
+import { Link } from 'react-router-dom';
 
 const UserThirdPartiesScreen = () => {
   const {
@@ -12,8 +13,8 @@ const UserThirdPartiesScreen = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Gestion des tiers</h1>
-      {/* {isLoading ? (
+      <h1 className="text-2xl font-bold mb-4">Tiers</h1>
+      {isLoading ? (
         <p>Chargement...</p>
       ) : error ? (
         <p>Erreur : {error.message}</p>
@@ -21,7 +22,7 @@ const UserThirdPartiesScreen = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-primaryColor text-textColor">
                 <th className="px-4 py-2 border-b">Nom</th>
                 <th className="px-4 py-2 border-b">Email</th>
                 <th className="px-4 py-2 border-b">Adresse</th>
@@ -30,7 +31,11 @@ const UserThirdPartiesScreen = () => {
             <tbody>
               {tiers && tiers.map((tier) => (
                 <tr key={tier.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-2 border-b">{tier.name}</td>
+                  <td className="px-4 py-2 border-b">
+                    <Link to={`/user-third-party-details/${tier.id}`}>
+                      {tier.name}
+                    </Link>
+                    </td>
                   <td className="px-4 py-2 border-b">{tier.email}</td>
                   <td className="px-4 py-2 border-b">{tier.address}</td>
                 </tr>
@@ -38,7 +43,7 @@ const UserThirdPartiesScreen = () => {
             </tbody>
           </table>
         </div>
-      )} */}
+      )}
     </div>
   );
 }

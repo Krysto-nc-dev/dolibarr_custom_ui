@@ -40,6 +40,7 @@ import AddEventForm from './screens/private/AddEventForm.jsx'
 import UserMachinesAndMolds from './screens/private/UserMachinesAndMolds.jsx'
 import UserRecipesScreen from './screens/private/UserRecipesScreen.jsx'
 import UserCollectsScreen from './screens/private/UserCollectsScreen.jsx'
+import UserThirdpartieDetails from './screens/private/UserThirdpartieDetails.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -90,6 +91,10 @@ const router = createBrowserRouter(
           <Route
             path="user-thirdparties"
             element={<UserThirdPartiesScreen />}
+          />
+          <Route
+            path="user-third-party-details/:id"
+            element={<UserThirdpartieDetails />}
           />
           <Route path="settings" element={<UserSettingsScreen />} />
         </Route>

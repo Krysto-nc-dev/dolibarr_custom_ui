@@ -2,7 +2,9 @@ import React from 'react'
 
 const UserRecipesScreen = () => {
   return (
-    <div>UserRecipesScreen</div>
+    <div>
+        <h1>Recettes de couleurs</h1>
+    </div>
   )
 }
 

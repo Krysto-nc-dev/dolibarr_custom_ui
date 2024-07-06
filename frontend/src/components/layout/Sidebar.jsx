@@ -1,4 +1,4 @@
-import { Factory } from 'lucide-react';
+import { Factory, Gem } from 'lucide-react';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { DASHBOARD_SIDEBAR_LINKS } from '../utils/Navigation';
@@ -8,9 +8,9 @@ const Sidebar = () => {
 
   return (
     <aside className="bg-primaryColor p-4 flex flex-col w-64 text-textColor h-full">
-      <div className="flex items-center gap-2 px-2 py-4">
-        <Factory className="text-secondaryColor" size="32" />
-        <span className="text-secondaryColor text-lg font-bold">MY CRM</span>
+      <div className="flex items-center gap-2 px-1 mb-4">
+        <Gem className="text-secondaryColor" size="30" />
+        <span className="text-secondaryColor text-lg font-bold">MY Precious CRM</span>
       </div>
       <div className="flex-1 mt-1">
         {DASHBOARD_SIDEBAR_LINKS.map((link) => (

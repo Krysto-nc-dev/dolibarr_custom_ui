@@ -2,7 +2,9 @@ import React from 'react'
 
 const UserPropalScreen = () => {
   return (
-    <div>UserPropalScreen</div>
+    <div>
+        <h1>Devis</h1>
+    </div>
   )
 }
 

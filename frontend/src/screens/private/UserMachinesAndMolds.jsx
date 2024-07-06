@@ -2,7 +2,9 @@ import React from 'react'
 
 const UserMachinesAndMolds = () => {
   return (
-    <div>UserMachinesAndMolds</div>
+    <div>
+        <h1>Machines et moules de production</h1>
+    </div>
   )
 }
 
