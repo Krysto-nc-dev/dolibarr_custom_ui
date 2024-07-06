@@ -32,6 +32,7 @@ import UserMessagesScreen from './screens/private/UserMessagesScreen.jsx'
 import UserProductDetailsScreen from './screens/private/UserProductDetailsScreen.jsx'
 import UserWarehousesScreen from './screens/private/UserWarehousesScreen.jsx'
 import UserBankAccountDetails from './screens/private/UserBankAccountDetails.jsx'
+import UserEventDetailsScreen from './screens/private/UserEventDetailsScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -58,6 +59,7 @@ const router = createBrowserRouter(
           />
           <Route path="accounting" element={<UserAccountingsScreen />} />
           <Route path="calendar" element={<UserCalendar />} />
+          <Route path="event/:id" element={<UserEventDetailsScreen />} />
           <Route path="profile" element={<UserProfileScreen />} />
           <Route path="support" element={<UserSupportScreen />} />
           <Route path="messages" element={<UserMessagesScreen />} />

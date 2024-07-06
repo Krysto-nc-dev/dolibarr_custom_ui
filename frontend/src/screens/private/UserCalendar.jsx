@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-
 const UserCalendar = () => {
   const [events, setEvents] = useState([
-    { title: 'Réunion d\'équipe', date: '2024-07-15' },
-    { title: 'Présentation client', date: '2024-07-20' },
-    { title: 'Déjeuner d\'affaires', date: '2024-07-25' },
+    { id: '1', title: 'Réunion d\'équipe', date: '2024-07-15' },
+    { id: '2', title: 'Présentation client', date: '2024-07-20' },
+    { id: '3', title: 'Déjeuner d\'affaires', date: '2024-07-25' },
   ]);
 
   return (
@@ -19,7 +19,10 @@ const UserCalendar = () => {
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
-            events={events}
+            events={events.map(event => ({
+              ...event,
+              url: `/event/${event.id}`,
+            }))}
             headerToolbar={{
               left: 'prev,next today',
               center: 'title',
