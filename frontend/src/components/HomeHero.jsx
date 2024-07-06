@@ -23,7 +23,7 @@ const HomeHero = () => {
           <div className="flex items-center justify-center w-full space-x-4 lg:justify-start">
             <Link
               to={'/'}
-              className="p-4 text-sm font-semibold text-white bg-softBlue border-2 rounded shadow-md border-softBlue md:text-base hover:bg-white hover:text-softBlue"
+              className="p-4 text-sm font-semibold text-white bg-primaryColor border-2 rounded shadow-md border-softBlue md:text-base hover:bg-white hover:text-softBlue"
             >
               Commencer
             </Link>

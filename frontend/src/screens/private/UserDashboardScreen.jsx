@@ -1,15 +1,24 @@
 import React from 'react'
-import ColorPicker from '../../components/ColorPicker'
+import { Link } from 'react-router-dom'
+import DashboardCardGrid from '../../components/DashboardCardGrid'
+import TransactionChart from '../../components/TransactionChart'
+import BuyerProfileChart from '../../components/BuyerProfileChart'
+import RecentOrders from '../../components/RecentOrders'
+import PopularProducts from '../../components/PopularProducts'
 
 const UserDashboardScreen = () => {
-  return (
-    <div>
-    <h1 className="text-3xl font-bold underline">Tableau de Bord</h1>
-    <p>Bienvenue sur le tableau de bord.</p>
+  return <div className='flex gap-4 flex-col'>
+    <DashboardCardGrid/>
+    <div className='flex flex-row gap-4 w-full'>
 
-    <ColorPicker/>
+    <TransactionChart/>
+    <BuyerProfileChart/>
+    </div>
+    <div className="flex flex-row gap-4 w-full">
+      <RecentOrders/>
+      <PopularProducts/>
+    </div>
   </div>
-  )
 }
 
 export default UserDashboardScreen

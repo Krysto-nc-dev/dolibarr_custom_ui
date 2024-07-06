@@ -14,10 +14,24 @@ import PrivateRoute from './components/utils/PrivateRoute'
 import AdminRoute from './components/utils/AdminRoute'
 import UserRoute from './components/utils/UserRoutes'
 import HomeScreen from './screens/HomeScreen'
-
-import UserDashboardScreen from './screens/private/UserDashboardScreen'
+import DashboardLayout from './components//layout/DashboardLayout.jsx'
 import AdminDashboardScreen from './screens/admin/AdminDashboardScreen'
+import UserDashboardScreen from './screens/private/UserDashboardScreen'
 import UserProductScreen from './screens/private/UserProductScreen'
+import UserThirdPartiesScreen from './screens/private/UserThirdPartiesScreen'
+import UserSettingsScreen from './screens/private/UserSettingsScreen'
+import UserContactsScreen from './screens/private/UserContactsScreen'
+import UserCommerceScreen from './screens/private/UserCommerceScreen.jsx'
+import UserBillingsScreen from './screens/private/UserBillingsScreen.jsx'
+import UserBanksScreen from './screens/private/UserBanksScreen.jsx'
+import UserAccountingsScreen from './screens/private/UserAccountingsScreen.jsx'
+import UserCalendar from './screens/private/UserCalendar.jsx'
+import UserProfileScreen from './screens/private/UserProfileScreen.jsx'
+import UserSupportScreen from './screens/private/UserSupportScreen.jsx'
+import UserMessagesScreen from './screens/private/UserMessagesScreen.jsx'
+import UserProductDetailsScreen from './screens/private/UserProductDetailsScreen.jsx'
+import UserWarehousesScreen from './screens/private/UserWarehousesScreen.jsx'
+import UserBankAccountDetails from './screens/private/UserBankAccountDetails.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,8 +41,33 @@ const router = createBrowserRouter(
 
       {/* Registered users */}
       <Route path="" element={<PrivateRoute />}>
-        <Route path="/user-dashboard" element={<UserDashboardScreen />} />
-        <Route path="/user-products" element={<UserProductScreen />} />
+        <Route path="/" element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<UserDashboardScreen />} />
+          <Route path="user-contacts" element={<UserContactsScreen />} />
+          <Route path="user-products" element={<UserProductScreen />} />
+          <Route
+            path="user-product-details/:id"
+            element={<UserProductDetailsScreen />}
+          />
+          <Route path="commerce" element={<UserCommerceScreen />} />
+          <Route path="billing" element={<UserBillingsScreen />} />
+          <Route path="banks" element={<UserBanksScreen />} />
+          <Route
+            path="bank-account-details/:id"
+            element={<UserBankAccountDetails />}
+          />
+          <Route path="accounting" element={<UserAccountingsScreen />} />
+          <Route path="calendar" element={<UserCalendar />} />
+          <Route path="profile" element={<UserProfileScreen />} />
+          <Route path="support" element={<UserSupportScreen />} />
+          <Route path="messages" element={<UserMessagesScreen />} />
+          <Route path="entrepots" element={<UserWarehousesScreen />} />
+          <Route
+            path="user-thirdparties"
+            element={<UserThirdPartiesScreen />}
+          />
+          <Route path="settings" element={<UserSettingsScreen />} />
+        </Route>
       </Route>
 
       {/* Admin users */}
