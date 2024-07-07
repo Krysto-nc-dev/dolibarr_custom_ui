@@ -1,3 +1,4 @@
+import { populate } from 'dotenv'
 import asyncHandler from '../middleware/asyncHandler.js'
 import PlasticColor from '../models/plasticColorModel.js'
 

@@ -7,6 +7,7 @@ export const PLASTIC_COLORS_URL = `/dolibarr-ui/api/plastic-colors`
 export const PLASTIC_TYPES_URL = `/dolibarr-ui/api/plastic-types`
 export const RECIPES_URL = `/dolibarr-ui/api/recipes`
 export const VEILLES_URL = `/dolibarr-ui/api/veilles`
+export const RECYCLABLE_PRODUCTS_URL = `/dolibarr-ui/api/recyclable-products`
 
 // DOLIBARR
 

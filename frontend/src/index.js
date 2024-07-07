@@ -44,6 +44,8 @@ import UserThirdpartieDetails from './screens/private/UserThirdpartieDetails.jsx
 import PlasticColorsScreen from './screens/private/PlasticColorsScreen.jsx'
 import UserPlasticsScreen from './screens/private/UserPlasticsScreen.jsx'
 import PlasticTypesScreen from './screens/private/PlasticTypesScreen.jsx'
+import UserVeillesScreen from './screens/private/UserVeillesScreen.jsx'
+import UserRecyclableProducts from './screens/private/UserRecyclableProducts.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -90,6 +92,11 @@ const router = createBrowserRouter(
           <Route path="plastics" element={<UserPlasticsScreen />} />
           <Route path="plastic-colors" element={<PlasticColorsScreen />} />
           <Route path="plastic-types" element={<PlasticTypesScreen />} />
+          <Route path="veilles" element={<UserVeillesScreen />} />
+          <Route
+            path="recyclable-products"
+            element={<UserRecyclableProducts />}
+          />
           <Route
             path="user-warehouse-details/:id"
             element={<UserWarehouseDetailsScreen />}

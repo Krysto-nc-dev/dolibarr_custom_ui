@@ -1,4 +1,4 @@
-import { LayoutDashboard, Box, Users, Calendar, CreditCard,  Book, DollarSign,  Warehouse, FilePen, Recycle, CookingPot, Factory } from 'lucide-react';
+import { LayoutDashboard, Box, Users, Calendar, CreditCard,  Book, DollarSign,  Warehouse, FilePen, Recycle, CookingPot, Factory, Eye, CloudDrizzle, RecycleIcon } from 'lucide-react';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -66,13 +66,13 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key:'recyclableProducts',
     label: 'produit recyclable',
-    icon: <Factory />,
+    icon: <RecycleIcon />,
     href: '/recyclable-products',
   },
   {
     key:'collecte',
     label: 'Collectes',
-    icon: <Recycle />,
+    icon: <CloudDrizzle />,
     href: '/collectes',
   },
   {
@@ -86,6 +86,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     label: 'Agenda',
     icon: <Calendar />,
     href: '/calendar',
+  },
+  {
+    key:'veilles',
+    label: 'Veilles',
+    icon: <Eye/>,
+    href: '/veilles',
   },
   
   // Ajoutez d'autres liens ici pour les autres menus du sidebar

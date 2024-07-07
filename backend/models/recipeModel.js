@@ -12,8 +12,9 @@ const recipeSchema = new mongoose.Schema(
     },
     colors: [
       {
-        color: {
-          type: String,
+        colorId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'PlasticColor', // Référence au modèle des couleurs de plastique
           required: true,
         },
         percentage: {

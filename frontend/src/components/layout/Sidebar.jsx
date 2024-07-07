@@ -17,7 +17,7 @@ const Sidebar = () => {
           <Link
             to={link.href}
             key={link.key}
-            className={`flex items-center gap-2 mb-1 px-3 py-2 rounded-lg text-[10px] ${
+            className={`flex items-center gap-2 mb-1 px-1 py-1 rounded-lg text-[10px] ${
               location.pathname === link.href ? 'bg-accentColor text-white' : 'text-textColor'
             } hover:bg-accentColor hover:text-white`}
           >

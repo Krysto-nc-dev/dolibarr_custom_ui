@@ -1,41 +1,26 @@
 import React from 'react';
 import { useGetPlasticColorsQuery } from '../../slices/plasticColorSlice';
-import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material';
+import Loader from '../../components/shared/Loader';
 
 const PlasticColorsScreen = () => {
   const { data: plasticColors, error, isLoading } = useGetPlasticColorsQuery();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader/>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div>
-      <Typography variant="h4" gutterBottom>
-        Couleurs de plastique
-      </Typography>
-      <Grid container spacing={4}>
+    <div className="p-6 bg-backgroundColor text-textColor">
+      <h1 className="text-xl font-bold mb-6 text-primaryColor text-center">Couleurs de plastique</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {plasticColors.map((color) => (
-          <Grid item key={color._id} xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                component="img"
-                alt={color.name}
-                height="140"
-                image={color.iconUrl}
-                title={color.name}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {color.name}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {color.description}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          <div key={color._id} className="bg-white p-4 rounded-lg shadow-lg">
+            <div className="mb-4">
+              <h2 className="text-md font-bold text-primaryColor">{color.name}</h2>
+            </div>
+         
+          </div>
         ))}
-      </Grid>
+      </div>
     </div>
   );
 }
