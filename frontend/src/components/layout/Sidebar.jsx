@@ -7,9 +7,9 @@ const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <aside className="bg-primaryColor p-4 flex flex-col w-64 text-textColor h-full">
-      <div className="flex items-center gap-2 px-1 mb-4">
-        <Gem className="text-secondaryColor" size="30" />
+    <aside className="bg-primaryColor p-3 flex flex-col w-64 text-textColor h-full">
+      <div className="flex items-center gap-2 px-1 mb-2">
+        <Gem className="text-secondaryColor" size="25" />
         <span className="text-secondaryColor text-lg font-bold">MY Precious CRM</span>
       </div>
       <div className="flex-1 mt-1">
@@ -17,7 +17,7 @@ const Sidebar = () => {
           <Link
             to={link.href}
             key={link.key}
-            className={`flex items-center gap-2 mb-2 px-4 py-2 rounded-lg text-xs ${
+            className={`flex items-center gap-2 mb-1 px-3 py-2 rounded-lg text-[10px] ${
               location.pathname === link.href ? 'bg-accentColor text-white' : 'text-textColor'
             } hover:bg-accentColor hover:text-white`}
           >

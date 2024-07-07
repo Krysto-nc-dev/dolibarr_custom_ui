@@ -1,13 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { BASE_URL } from '../constants'
-import { DOLIBAR_URL } from '../constants'
+import { BASE_URL, DOLIBAR_URL } from '../constants'
+
+// Si Event, PlasticColor, PlasticType, Recipes, Veilles sont des chaînes de caractères
+const tagTypes = ['Event', 'PlasticColor', 'PlasticType', 'Recipes', 'Veilles']
 
 const baseQuery = fetchBaseQuery({ baseUrl: BASE_URL })
 const doliBaseQuery = fetchBaseQuery({ baseUrl: DOLIBAR_URL })
 
 export const apiSlice = createApi({
   baseQuery,
-  tagTypes: [Event],
+  tagTypes,
   endpoints: (builder) => ({}),
 })
 

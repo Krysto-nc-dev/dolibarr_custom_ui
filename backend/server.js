@@ -9,6 +9,10 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import userRoutes from './routes/userRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import eventRoutes from './routes/eventRoutes.js'
+import veilleRoutes from './routes/veilleRoutes.js'
+import recipeRoutes from './routes/recipeRoutes.js'
+import plasticTypeRoutes from './routes/plasticTypeRoutes.js'
+import plasticColorRoutes from './routes/plasticColorRoutes.js'
 
 const port = process.env.PORT || 5000
 
@@ -28,6 +32,10 @@ app.use(cookieParser())
 app.use('/dolibarr-ui/api/users', userRoutes)
 app.use('/dolibarr-ui/api/upload', uploadRoutes)
 app.use('/dolibarr-ui/api/events', eventRoutes)
+app.use('/dolibarr-ui/api/veilles', veilleRoutes)
+app.use('/dolibarr-ui/api/recipes', recipeRoutes)
+app.use('/dolibarr-ui/api/plastic-colors', plasticColorRoutes)
+app.use('/dolibarr-ui/api/plastic-types', plasticTypeRoutes)
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))

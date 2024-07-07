@@ -58,6 +58,18 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     href: '/machines-and-moulds',
   },
   {
+    key:'plastics',
+    label: 'plastiques',
+    icon: <Factory />,
+    href: '/plastics',
+  },
+  {
+    key:'recyclableProducts',
+    label: 'produit recyclable',
+    icon: <Factory />,
+    href: '/recyclable-products',
+  },
+  {
     key:'collecte',
     label: 'Collectes',
     icon: <Recycle />,

@@ -3,9 +3,17 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import users from './data/users.js'
 import events from './data/events.js'
+import veilles from './data/veilles.js'
+import recipes from './data/recipes.js'
+import plasticColors from './data/plastic_colors.js'
+import plasticTypes from './data/plastic_types.js'
 
 import User from './models/userModel.js'
 import Event from './models/eventModel.js'
+import Veille from './models/veilleModel.js'
+import Recipe from './models/recipeModel.js'
+import PlasticColor from './models/plasticColorModel.js'
+import PlasticType from './models/plasticTypeModel.js'
 
 import connectDB from './config/db.js'
 
@@ -17,11 +25,18 @@ const importData = async () => {
   try {
     // await User.deleteMany()
     await Event.deleteMany()
-
+    await Veille.deleteMany()
+    await Recipe.deleteMany()
+    await PlasticColor.deleteMany()
+    await PlasticType.deleteMany()
     // const createdUsers = await User.insertMany(users)
 
     // const adminUser = createdUsers[0]._id
     await Event.insertMany(events)
+    await Veille.insertMany(veilles)
+    await Recipe.insertMany(recipes)
+    await PlasticColor.insertMany(plasticColors)
+    await PlasticType.insertMany(plasticTypes)
     console.log('Data Imported!'.green.inverse)
     process.exit()
   } catch (error) {
@@ -34,6 +49,10 @@ const destroyData = async () => {
   try {
     // await User.deleteMany()
     await Event.deleteMany()
+    await Veille.deleteMany()
+    await Recipe.deleteMany()
+    await PlasticColor.deleteMany()
+    await PlasticType.deleteMany()
     await console.log('Data Destroyed!'.red.inverse)
     process.exit()
   } catch (error) {
