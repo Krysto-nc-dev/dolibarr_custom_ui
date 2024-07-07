@@ -7,7 +7,7 @@ const veilles = [
     type: 'Vidéo',
     categories: 'Tutoriel',
     tags: ['tri', 'plastique', 'recyclage'],
-    url: 'https://www.youtube.com',
+    url: 'https://www.youtube.com/@BrothersMake',
     source: 'YouTube',
     lang: 'anglais',
   },
