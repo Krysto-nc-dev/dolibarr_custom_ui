@@ -1,15 +1,15 @@
 const veilles = [
   {
-    title: 'Tutoriel sur le tri des plastiques',
+    title: 'Chaine You tube des Brothers Make',
     description:
-      'Un guide complet pour trier les différents types de plastiques pour le recyclage.',
+      "salut ! Nous sommes Matt et Jonny de Brothers Make et nous concevons et réalisons des projets à partir d'une large gamme de matériaux, en mettant l'accent sur la durabilité. Nous espérons pouvoir inspirer certains d'entre vous à essayer de fabriquer des choses !",
     user: '6686899f7f0f7be0d5780336',
     type: 'Vidéo',
     categories: 'Tutoriel',
     tags: ['tri', 'plastique', 'recyclage'],
-    url: 'https://example.com/tutoriel-tri-plastiques',
-    source: 'Example Site',
-    lang: 'français',
+    url: 'https://www.youtube.com',
+    source: 'YouTube',
+    lang: 'anglais',
   },
   {
     title: 'Innovation dans le recyclage du plastique',
