@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useLoginMutation } from '../slices/userApiSlice';
 import { setCredentials } from '../slices/authSlice';
+import backgroundImage from '../assets/images/BG_bouchons.jpeg';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -22,15 +23,11 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      // Check if the user is an admin
       if (userInfo.isAdmin) {
-        // Redirect to the admin dashboard if the user is an admin
         navigate('/admin-dashboard');
       } else if (userInfo.role === 'User') {
-        // Redirect to the user dashboard if the user is not an admin
         navigate('/dashboard');
       } else {
-        // Redirect to the original destination if the user is not an admin
         navigate(redirect);
       }
     }
@@ -48,8 +45,15 @@ const LoginScreen = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+    <div className="relative min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="absolute inset-0">
+        <img
+          src={backgroundImage}
+          alt="Background"
+          className="w-full h-full object-cover opacity-70"
+        />
+      </div>
+      <div className="relative z-10 w-full max-w-md bg-white rounded-lg shadow-md p-8">
         <h2 className="text-3xl font-bold text-center text-textColor mb-6">
           Connexion
         </h2>
@@ -68,7 +72,7 @@ const LoginScreen = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-grayishBlue">
+            <label htmlFor="password" className="block text-sm font-medium text-textColor">
               Mot de passe
             </label>
             <input
@@ -100,13 +104,13 @@ const LoginScreen = () => {
           <div>
             <button
               type="submit"
-              className=" text-textColor w-full flex justify-center py-2 px-4 border border-accentColor rounded-md shadow-sm text-sm font-medium  bg-accentColor hover:bg-softRed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accentColor hover"
+              className="w-full flex justify-center py-2 px-4 border border-accentColor rounded-md shadow-sm text-sm font-medium text-textColor bg-accentColor hover:bg-softRed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accentColor"
             >
               {isLoading ? 'Connexion...' : 'Connexion'}
             </button>
           </div>
         </form>
-        <p className="mt-6 text-center text-sm text-grayishBlue">
+        <p className="mt-6 text-center text-sm text-textColor">
           Vous n'avez pas de compte ?{' '}
           <Link to="/register" className="font-medium text-softBlue hover:text-softRed">
             Inscrivez-vous

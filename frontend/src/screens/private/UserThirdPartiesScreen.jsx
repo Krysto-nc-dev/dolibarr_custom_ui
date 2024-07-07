@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGetThirdPartiesQuery } from '../../slices/dolibarr/dolliThirdPartyApiSlice';
 import { Link } from 'react-router-dom';
+import Loader from '../../components/shared/Loader';
 
 const UserThirdPartiesScreen = () => {
   const {
@@ -15,7 +16,7 @@ const UserThirdPartiesScreen = () => {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Tiers</h1>
       {isLoading ? (
-        <p>Chargement...</p>
+        <Loader/>
       ) : error ? (
         <p>Erreur : {error.message}</p>
       ) : (
