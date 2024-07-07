@@ -30,11 +30,11 @@ const UserBanksScreen = () => {
             className="group bg-white rounded-lg shadow-md p-4 border border-primaryColor hover:bg-primaryColor hover:text-white hover:no-underline"
           >
             <h2 className="text-xl font-bold mb-2 text-secondaryColor">{account.label}</h2>
-            <p><strong>Banque:</strong> {account.bank}</p>
-            <p><strong>Numéro de compte:</strong> {account.number}</p>
-            <p><strong>Solde:</strong> {parseFloat(account.solde).toFixed(2)} {account.currency_code}</p>
-            <p><strong>Propriétaire:</strong> {account.proprio}</p>
-            <p><strong>Adresse du propriétaire:</strong> {account.owner_address}</p>
+            <p className='text-textColor'><strong>Banque:</strong> {account.bank}</p>
+            <p className='text-textColor'><strong>Numéro de compte:</strong> {account.number}</p>
+            <p className='text-textColor'><strong>Solde:</strong> {parseFloat(account.solde).toFixed(2)} {account.currency_code}</p>
+            <p className='text-textColor'><strong>Propriétaire:</strong> {account.proprio}</p>
+            <p className='text-textColor'><strong>Adresse du propriétaire:</strong> {account.owner_address}</p>
             <div className="bg-gray-100 p-4 rounded-lg mt-4  transition">
               <h3 className="text-lg font-semibold mb-2 text-secondaryColor">RIB</h3>
               <p className="group-hover:text-black transition"><strong>Code banque:</strong> {account.code_banque}</p>

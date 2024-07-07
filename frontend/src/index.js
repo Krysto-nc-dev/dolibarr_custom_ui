@@ -46,12 +46,14 @@ import UserPlasticsScreen from './screens/private/UserPlasticsScreen.jsx'
 import PlasticTypesScreen from './screens/private/PlasticTypesScreen.jsx'
 import UserVeillesScreen from './screens/private/UserVeillesScreen.jsx'
 import UserRecyclableProducts from './screens/private/UserRecyclableProducts.jsx'
+import LoginScreen from './screens/LoginScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       {/* Public Routes */}
       <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
 
       {/* Registered users */}
       <Route path="" element={<PrivateRoute />}>
