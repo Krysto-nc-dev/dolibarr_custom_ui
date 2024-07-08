@@ -17,10 +17,20 @@ export const dolliInvoiceApiSlice = apiSlice.injectEndpoints({
       },
       keepUnusedDataFor: 5,
     }),
+    getInvoiceDetails: builder.query({
+      query: (id) => ({
+        url: `${DOLIBAR_URL}/invoices/${id}`,
+        headers: {
+          DOLAPIKEY: DOLIBARR_API_KEY,
+        },
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 })
 
 export const {
   useGetInvoicesQuery,
+  useGetInvoiceDetailsQuery,
   // Ajoutez d'autres exports ici pour les autres queries, mutations, etc.
 } = dolliInvoiceApiSlice

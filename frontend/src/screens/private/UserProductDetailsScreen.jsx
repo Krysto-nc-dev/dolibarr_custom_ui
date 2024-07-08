@@ -17,7 +17,6 @@ const UserProductDetailsScreen = () => {
     id: productId,
   });
 
-
   const handleDownload = async (modulepart, file) => {
     const url = `${DOLIBAR_URL}/documents/download?modulepart=${modulepart}&original_file=${encodeURIComponent(file)}`;
     
@@ -41,6 +40,7 @@ const UserProductDetailsScreen = () => {
       console.error('Failed to download document:', error);
     }
   };
+
   if (loadingProduct || loadingStock || loadingDocuments) {
     return <Loader />;
   }
@@ -69,7 +69,7 @@ const UserProductDetailsScreen = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-7xl mx-auto p-4 bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-start mb-6">
         <div>
           <h1 className="text-xl font-bold">{product.label}</h1>
@@ -115,6 +115,7 @@ const UserProductDetailsScreen = () => {
         <table className="min-w-full bg-white">
           <thead className="bg-primaryColor">
             <tr>
+              <th className="py-2 px-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Image</th>
               <th className="py-2 px-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Nom</th>
               <th className="py-2 px-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Taille</th>
               <th className="py-2 px-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Date</th>
@@ -130,6 +131,13 @@ const UserProductDetailsScreen = () => {
                 }
                 return (
                   <tr key={document.name}>
+                    <td className="py-2 px-4 border-b border-gray-200">
+                      <img
+                        src={`https://crm.krysto.nc/documents/produit/${document.level1name}/${encodeURIComponent(document.name)}`}
+                        alt={document.name}
+                        className="max-h-16"
+                      />
+                    </td>
                     <td className="py-2 px-4 border-b border-gray-200">{document.name}</td>
                     <td className="py-2 px-4 border-b border-gray-200">{formatSize(document.size)}</td>
                     <td className="py-2 px-4 border-b border-gray-200">{new Date(document.date * 1000).toLocaleDateString()}</td>
@@ -146,7 +154,7 @@ const UserProductDetailsScreen = () => {
               })
             ) : (
               <tr>
-                <td colSpan="4" className='text-dangerColor font-bold text-center py-2'>Aucun document disponible.</td>
+                <td colSpan="5" className='text-dangerColor font-bold text-center py-2'>Aucun document disponible.</td>
               </tr>
             )}
           </tbody>
