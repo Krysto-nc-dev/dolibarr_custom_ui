@@ -45,12 +45,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     icon: <CreditCard />,
     href: '/banks',
   },
-  {
-    key:'comptabilite',
-    label: 'Comptabilité',
-    icon: <Book />,
-    href: '/accounting',
-  },
+
   {
     key:'machineAndMoulds',
     label: 'Machines & Moules',

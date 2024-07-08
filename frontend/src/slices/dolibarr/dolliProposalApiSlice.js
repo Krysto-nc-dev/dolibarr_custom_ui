@@ -17,11 +17,22 @@ export const dolliProposalApiSlice = apiSlice.injectEndpoints({
       },
       keepUnusedDataFor: 5,
     }),
+
+    getProposalDetails: builder.query({
+      query: (id) => ({
+        url: `${DOLIBAR_URL}/proposals/${id}`,
+        headers: {
+          DOLAPIKEY: DOLIBARR_API_KEY,
+        },
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 })
 
 export const {
   useGetProposalsQuery,
+  useGetProposalDetailsQuery,
 
   // Ajoutez d'autres exports ici pour les autres queries, mutations, etc.
 } = dolliProposalApiSlice
