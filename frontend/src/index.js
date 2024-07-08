@@ -50,6 +50,7 @@ import LoginScreen from './screens/LoginScreen.jsx'
 import UserPropalDetails from './screens/private/userPropalDetails.jsx'
 import UserMachineAndMouldDetails from './screens/private/UserMachineAndMouldDetails.jsx'
 import RecipeDetails from './screens/private/RecipeDetails.jsx'
+import UserColorMixCalculatorScreen from './screens/private/UserColorMixCalculatorScreen'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -93,6 +94,10 @@ const router = createBrowserRouter(
             element={<UserMachineAndMouldDetails />}
           />
           <Route path="collectes" element={<UserCollectsScreen />} />
+          <Route
+            path="color-calculators"
+            element={<UserColorMixCalculatorScreen />}
+          />
           <Route path="recipes" element={<UserRecipesScreen />} />
           <Route path="recipe-details/:id" element={<RecipeDetails />} />
           <Route path="event/:id" element={<UserEventDetailsScreen />} />

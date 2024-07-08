@@ -31,6 +31,7 @@ const RecipeDetails = () => {
           <div className="absolute top-0 right-0 mt-4 mr-4 bg-blue-500 text-white py-1 px-3 rounded-full">
             {recipe.productionType}
           </div>
+         
           <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
           <p className="text-lg mb-4">{recipe.description}</p>
           
