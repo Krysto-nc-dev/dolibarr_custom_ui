@@ -14,6 +14,7 @@ import recipeRoutes from './routes/recipeRoutes.js'
 import plasticTypeRoutes from './routes/plasticTypeRoutes.js'
 import plasticColorRoutes from './routes/plasticColorRoutes.js'
 import recyclableProductRoutes from './routes/recyclableProductRoutes.js'
+import machineRoutes from './routes/machineRoutes.js' // Import the new routes
 
 const port = process.env.PORT || 5000
 
@@ -38,6 +39,7 @@ app.use('/dolibarr-ui/api/recipes', recipeRoutes)
 app.use('/dolibarr-ui/api/plastic-colors', plasticColorRoutes)
 app.use('/dolibarr-ui/api/plastic-types', plasticTypeRoutes)
 app.use('/dolibarr-ui/api/recyclable-products', recyclableProductRoutes)
+app.use('/dolibarr-ui/api/machines', machineRoutes) // Add the new route for machines
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
