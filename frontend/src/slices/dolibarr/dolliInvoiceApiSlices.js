@@ -26,11 +26,31 @@ export const dolliInvoiceApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    getInvoiceLines: builder.query({
+      query: (id) => ({
+        url: `${DOLIBAR_URL}/invoices/${id}/lines`,
+        headers: {
+          DOLAPIKEY: DOLIBARR_API_KEY,
+        },
+      }),
+      keepUnusedDataFor: 5,
+    }),
+    getInvoicePaiment: builder.query({
+      query: (id) => ({
+        url: `${DOLIBAR_URL}/invoices/${id}/payments`,
+        headers: {
+          DOLAPIKEY: DOLIBARR_API_KEY,
+        },
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 })
 
 export const {
   useGetInvoicesQuery,
   useGetInvoiceDetailsQuery,
+  useGetInvoiceLinesQuery,
+  useGetInvoicePaimentQuery,
   // Ajoutez d'autres exports ici pour les autres queries, mutations, etc.
 } = dolliInvoiceApiSlice
