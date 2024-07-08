@@ -48,6 +48,7 @@ import UserVeillesScreen from './screens/private/UserVeillesScreen.jsx'
 import UserRecyclableProducts from './screens/private/UserRecyclableProducts.jsx'
 import LoginScreen from './screens/LoginScreen.jsx'
 import UserPropalDetails from './screens/private/userPropalDetails.jsx'
+import UserMachineAndMouldDetails from './screens/private/UserMachineAndMouldDetails.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -85,6 +86,10 @@ const router = createBrowserRouter(
           <Route
             path="machines-and-moulds"
             element={<UserMachinesAndMolds />}
+          />
+          <Route
+            path="machine-details/:id"
+            element={<UserMachineAndMouldDetails />}
           />
           <Route path="collectes" element={<UserCollectsScreen />} />
           <Route path="recipes" element={<UserRecipesScreen />} />

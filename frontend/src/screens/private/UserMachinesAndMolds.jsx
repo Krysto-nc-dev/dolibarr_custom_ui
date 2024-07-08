@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGetMachinesQuery } from '../../slices/machineApiSlice'
 import Barcode from 'react-barcode'
+import { Link } from 'react-router-dom'
 
 const UserMachinesAndMolds = () => {
   const { data: machines, error, isLoading } = useGetMachinesQuery()
@@ -15,7 +16,7 @@ const UserMachinesAndMolds = () => {
           <div key={machine._id} className="bg-white p-4 rounded-lg shadow-md">
             <img src={`http://192.168.178.21:3000/uploads/${machine.images[0]}`} alt={machine.name} className="w-full h-48 object-cover rounded-md mb-4" />
             <div className="flex justify-between items-center mb-2">
-              <h2 className="text-xl font-bold text-primaryColor">{machine.name}</h2>
+              <Link to={`/machine-details/${machine._id}`} className="text-xl font-bold text-primaryColor">{machine.name}</Link>
             </div>
             <p className="text-sm text-gray-700 mb-2"><strong>Description:</strong> {machine.description}</p>
             <p className="text-sm text-gray-700 mb-2"><strong>Catégorie:</strong> {machine.category}</p>
