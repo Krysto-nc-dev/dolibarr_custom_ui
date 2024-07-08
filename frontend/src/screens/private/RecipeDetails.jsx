@@ -25,7 +25,7 @@ const RecipeDetails = () => {
   const weightSteps = [0.5, 1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] // weights in kilograms
 
   return (
-    <div className="p-6 max-w-5xl mx-auto bg-white rounded-lg shadow-md relative">
+    <div className="p-6 max-w-8xl mx-auto bg-white rounded-lg shadow-md relative">
       {recipe ? (
         <div>
           <div className="absolute top-0 right-0 mt-4 mr-4 bg-blue-500 text-white py-1 px-3 rounded-full">
@@ -61,13 +61,14 @@ const RecipeDetails = () => {
 
           <div className="mb-4">
             <h2 className="text-2xl font-semibold mb-2">Grammage des Couleurs</h2>
-            <table className="min-w-full bg-white">
+            <table className="min-w-full bg-gray-200 border-collapse">
               <thead>
-                <tr >
-                  <th className="py-2 px-4 bg-primaryColor text-white">Poids Total (kg)</th>
+                <tr className="border-b-0">
+                  <th className="py-2 px-4 bg-primaryColor text-white rounded-tl-lg">Poids Total (kg)</th>
                   {recipe.colors.map((color, index) => (
                     <th key={index} className="py-2 px-4 bg-primaryColor text-white">{getColorName(color.colorId)}</th>
                   ))}
+                  <th className="py-2 px-4 bg-primaryColor text-white rounded-tr-lg"></th>
                 </tr>
               </thead>
               <tbody>
