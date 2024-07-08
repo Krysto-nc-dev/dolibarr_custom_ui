@@ -6,7 +6,6 @@ export const dolliStockmovementApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getStockmovements: builder.query({
       query: (category) => {
-        let params = `category=${category}`
         return {
           // url: `${DOLIBAR_URL}/products?${params}&limit=100`,
           url: `${DOLIBAR_URL}/stockmovements?limit=1000`,

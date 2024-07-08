@@ -49,6 +49,7 @@ import UserRecyclableProducts from './screens/private/UserRecyclableProducts.jsx
 import LoginScreen from './screens/LoginScreen.jsx'
 import UserPropalDetails from './screens/private/userPropalDetails.jsx'
 import UserMachineAndMouldDetails from './screens/private/UserMachineAndMouldDetails.jsx'
+import RecipeDetails from './screens/private/RecipeDetails.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -93,6 +94,7 @@ const router = createBrowserRouter(
           />
           <Route path="collectes" element={<UserCollectsScreen />} />
           <Route path="recipes" element={<UserRecipesScreen />} />
+          <Route path="recipe-details/:id" element={<RecipeDetails />} />
           <Route path="event/:id" element={<UserEventDetailsScreen />} />
           <Route path="profile" element={<UserProfileScreen />} />
           <Route path="support" element={<UserSupportScreen />} />
