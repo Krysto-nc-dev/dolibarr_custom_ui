@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RotateCcw } from 'lucide-react';
+import { ChefHat, OctagonX, RotateCcw, SaveAll } from 'lucide-react';
 
 const ColorMixCalculator = ({ colors }) => {
   const [percentages, setPercentages] = useState(Array(colors.length).fill(0));
@@ -67,12 +67,12 @@ const ColorMixCalculator = ({ colors }) => {
       {totalPercentage >= 100 && isPercentageMode && (
         <div className='flex items-center justify-between' >
         <div className="mb-4 p-1 bg-green-500 text-white text-center rounded-md flex justify-center items-center">
-          Recette terminée ! Ready to cook !
+        <ChefHat strokeWidth={2.25} className='mr-3'/>   Recette terminée ! Ready to cook !
           <button 
             onClick={handleReset} 
             className=" inline-flex items-center  py-1 rounded-full hover:text-red-700"
             >
-            <RotateCcw className="ml-2" /> 
+            <OctagonX strokeWidth={1.5}  className="ml-2" /> 
           </button>
          
         </div>
@@ -80,7 +80,7 @@ const ColorMixCalculator = ({ colors }) => {
             onClick={handleSaveRecipe} 
             className=" inline-flex items-center px-3 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600"
           >
-            Enregistrer la Recette
+           <SaveAll strokeWidth={1.5}className='mr-3'  />   Enregistrer
           </button>
             </div >
       )}
@@ -88,12 +88,12 @@ const ColorMixCalculator = ({ colors }) => {
       {totalWeightInGrams >= totalWeight && !isPercentageMode && (
         <div className='flex items-center justify-between' >
         <div className="mb-4 p-1 bg-green-500 text-white text-center rounded-md flex justify-center items-center">
-          Recette terminée ! Ready to cook !
+        <ChefHat strokeWidth={2.25} className='mr-3'/>   Recette terminée ! Ready to cook !
           <button 
             onClick={handleReset} 
-            className=" inline-flex items-center  py-1 rounded-full hover:text-red-700"
+            className=" inline-flex items-center  py-1 rounded-full text-red-700"
             >
-            <RotateCcw className="ml-2" /> 
+            <OctagonX strokeWidth={1.5}  className="ml-2" /> 
           </button>
          
         </div>
@@ -101,7 +101,7 @@ const ColorMixCalculator = ({ colors }) => {
             onClick={handleSaveRecipe} 
             className=" inline-flex items-center px-3 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600"
           >
-            Enregistrer la Recette
+           <SaveAll strokeWidth={1.5}className='mr-3'  />  Enregistrer 
           </button>
             </div >
       )}
