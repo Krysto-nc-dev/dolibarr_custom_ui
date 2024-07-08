@@ -47,6 +47,7 @@ import PlasticTypesScreen from './screens/private/PlasticTypesScreen.jsx'
 import UserVeillesScreen from './screens/private/UserVeillesScreen.jsx'
 import UserRecyclableProducts from './screens/private/UserRecyclableProducts.jsx'
 import LoginScreen from './screens/LoginScreen.jsx'
+import UserPropalDetails from './screens/private/userPropalDetails.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -66,6 +67,7 @@ const router = createBrowserRouter(
             element={<UserProductDetailsScreen />}
           />
           <Route path="propal" element={<UserPropalScreen />} />
+          <Route path="propal-details/:id" element={<UserPropalDetails />} />
           <Route path="commerce" element={<UserCommerceScreen />} />
           <Route path="billing" element={<UserBillingsScreen />} />
           <Route path="banks" element={<UserBanksScreen />} />
