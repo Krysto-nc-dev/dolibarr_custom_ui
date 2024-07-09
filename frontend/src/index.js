@@ -51,6 +51,7 @@ import UserPropalDetails from './screens/private/userPropalDetails.jsx'
 import UserMachineAndMouldDetails from './screens/private/UserMachineAndMouldDetails.jsx'
 import RecipeDetails from './screens/private/RecipeDetails.jsx'
 import UserColorMixCalculatorScreen from './screens/private/UserColorMixCalculatorScreen'
+import UserVeilleDetailsScreen from './screens/private/UserVeilleDetailsScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -109,6 +110,10 @@ const router = createBrowserRouter(
           <Route path="plastic-colors" element={<PlasticColorsScreen />} />
           <Route path="plastic-types" element={<PlasticTypesScreen />} />
           <Route path="veilles" element={<UserVeillesScreen />} />
+          <Route
+            path="veille-details/:id"
+            element={<UserVeilleDetailsScreen />}
+          />
           <Route
             path="recyclable-products"
             element={<UserRecyclableProducts />}
