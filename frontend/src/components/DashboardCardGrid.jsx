@@ -3,6 +3,8 @@ import React from 'react'
 import { AccountBalanceProvider } from './utils/AccountBalanceProvider';
 import AccountBalanceDisplay from './utils/AccountBalanceDisplay';
 import ValReelStock from './utils/ValReelStock';
+import TotalStockWeight from './utils/TotalStockWeight';
+import TotalSales from './utils/TotalSales';
 
 const DashboardCardGrid = () => {
 
@@ -44,10 +46,9 @@ const DashboardCardGrid = () => {
       <UsersRound className='text-2xl text-white' />
         </div>
         <div className='pl-4'>
-            <span className='text-sm text-textColor font-light'>Total des ventes</span>
+            <span className='text-sm text-textColor font-light'>Poids total du stock</span>
             <div className='flex items-center'>
-                <strong className='text-xl text-textColor font-semibold'> 689 098 XPF</strong>
-                <span className='text-sm text-green-500 pl-2'>+ 5987</span>
+              <TotalStockWeight/>
             </div>
         </div>
       </BoxWrapper>
@@ -58,8 +59,7 @@ const DashboardCardGrid = () => {
         <div className='pl-4'>
             <span className='text-sm text-textColor font-light'>Total des ventes</span>
             <div className='flex items-center'>
-                <strong className='text-xl text-textColor font-semibold'> 689 098 XPF</strong>
-                <span className='text-sm text-green-500 pl-2'>+ 5987</span>
+            <TotalSales/>
             </div>
         </div>
       </BoxWrapper>

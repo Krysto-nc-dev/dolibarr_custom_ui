@@ -71,7 +71,7 @@ const UserInvoiceDetails = () => {
     <div className="max-w-7xl mx-auto p-4 bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h1 className="text-xl font-bold">Facture avec l'id : {invoiceId}</h1>
+     
         
           <p className='m-2'>
             <strong>Total TTC:</strong>
