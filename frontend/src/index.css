@@ -68,7 +68,7 @@
 .fc {
   --fc-bg-color: var(--backgroundColor);
   --fc-text-color: var(--textColor);
-  --fc-border-color: #ddd;
+  --fc-border-color: var(--primaryColor);
   --fc-daygrid-event-dot-width: 10px;
   --fc-today-bg-color: var(--highlightColor);
 }
@@ -83,14 +83,20 @@
 }
 
 .fc .fc-button {
-  background-color: var(--primaryColor);
+  background-color: transparent;
   border: none;
-  color: white;
-  font-weight: bold;
+  color: #000;
 }
 
 .fc .fc-button:hover {
-  background-color: var(--primaryColor-dark);
+  background-color: var(--secondaryColor);
+  color: #fff;
+}
+
+.fc .fc-button.fc-button-active {
+  border: none;
+  background-color: var(--secondaryColor);
+  color: #fff;
 }
 
 .fc .fc-button:disabled {

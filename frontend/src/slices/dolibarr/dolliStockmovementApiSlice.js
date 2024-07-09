@@ -7,7 +7,6 @@ export const dolliStockmovementApiSlice = apiSlice.injectEndpoints({
     getStockmovements: builder.query({
       query: (category) => {
         return {
-          // url: `${DOLIBAR_URL}/products?${params}&limit=100`,
           url: `${DOLIBAR_URL}/stockmovements?limit=1000`,
           headers: {
             DOLAPIKEY: DOLIBARR_API_KEY,
@@ -17,21 +16,20 @@ export const dolliStockmovementApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
 
-    getStockmovementsDetails: builder.query({
-      query: (id) => ({
-        url: `${DOLIBAR_URL}/stockmovements/${id}`,
+    addStockmovement: builder.mutation({
+      query: (newStockmovement) => ({
+        url: `${DOLIBAR_URL}/stockmovements`,
+        method: 'POST',
         headers: {
           DOLAPIKEY: DOLIBARR_API_KEY,
         },
+        body: newStockmovement,
       }),
-      keepUnusedDataFor: 5,
     }),
   }),
 })
 
 export const {
   useGetStockmovementsQuery,
-  useGetStockmovementsDetailsQuery,
-
-  // Ajoutez d'autres exports ici pour les autres queries, mutations, etc.
+  useAddStockmovementMutation,
 } = dolliStockmovementApiSlice

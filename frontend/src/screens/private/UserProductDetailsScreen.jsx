@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetProductDetailsQuery } from '../../slices/dolibarr/dolliProductApiSlice';
-import { useGetStockmovementsQuery } from '../../slices/dolibarr/dolliStockmovementApiSlice';
+import { useGetStockmovementsQuery, useAddStockmovementMutation } from '../../slices/dolibarr/dolliStockmovementApiSlice';
 import Loader from '../../components/shared/Loader';
 import Barcode from 'react-barcode';
 import { useGetDocumentsQuery } from '../../slices/dolibarr/dolliDocumentApiSlice';
 import { DOLIBAR_URL } from '../../constants';
 import { DOLIBARR_API_KEY } from '../../slices/constants';
+import { useGetWarehousesQuery } from '../../slices/dolibarr/dolliWarehouseApiSlice';
 
 const UserProductDetailsScreen = () => {
   const { id: productId } = useParams();
   const { data: product, isLoading: loadingProduct, error: errorProduct } = useGetProductDetailsQuery(productId);
-  const { data: stockmovements, isLoading: loadingStock, error: errorStock } = useGetStockmovementsQuery();
+  const { data: stockmovements, isLoading: loadingStock, error: errorStock, refetch: refetchStockMovements } = useGetStockmovementsQuery();
   const { data: documents, isLoading: loadingDocuments, error: errorDocuments } = useGetDocumentsQuery({
     modulepart: 'product',
     id: productId,
   });
+  const { data: warehouses, error: errorWarehouses, isLoading: loadingWarehouses } = useGetWarehousesQuery();
+
+  const [addStockmovement] = useAddStockmovementMutation();
+  const [quantity, setQuantity] = useState('');
+  const [selectedWarehouse, setSelectedWarehouse] = useState('');
+  const [currentStock, setCurrentStock] = useState(product ? Number(product.stock_reel) : 0);
+
+  useEffect(() => {
+    if (product) {
+      setCurrentStock(Number(product.stock_reel));
+    }
+  }, [product]);
 
   const handleDownload = async (modulepart, file) => {
     const url = `${DOLIBAR_URL}/documents/download?modulepart=${modulepart}&original_file=${encodeURIComponent(file)}`;
@@ -41,21 +54,54 @@ const UserProductDetailsScreen = () => {
     }
   };
 
-  if (loadingProduct || loadingStock || loadingDocuments) {
+  const handleStockMovement = async (type) => {
+    if (!quantity || isNaN(quantity) || !selectedWarehouse) {
+      alert('Please enter a valid quantity and select a warehouse');
+      return;
+    }
+
+    const qty = type === 'add' ? Number(quantity) : -Number(quantity);
+
+    const newStockmovement = {
+      product_id: productId,
+      warehouse_id: selectedWarehouse,
+      qty,
+      type: type === 'add' ? 3 : 2, // type 3 for stock increase, type 2 for stock decrease
+      movementlabel: type === 'add' ? 'Stock increase' : 'Stock decrease',
+    };
+
+    console.log('Adding stock movement:', newStockmovement);
+
+    try {
+      await addStockmovement(newStockmovement).unwrap();
+      alert('Stock movement added successfully');
+      setCurrentStock((prevStock) => prevStock + qty);
+      setQuantity('');
+      setSelectedWarehouse('');
+      refetchStockMovements();
+    } catch (error) {
+      console.error('Failed to add stock movement:', error);
+      alert('Failed to add stock movement');
+    }
+  };
+
+  if (loadingProduct || loadingStock || loadingDocuments || loadingWarehouses) {
     return <Loader />;
   }
 
-  if (errorProduct || errorStock || errorDocuments) {
+  if (errorProduct || errorStock || errorDocuments || errorWarehouses) {
     return (
       <p className="text-red-500">
-        {typeof (errorProduct || errorStock || errorDocuments).data.message === 'string'
-          ? (errorProduct || errorStock || errorDocuments).data.message
+        {typeof (errorProduct || errorStock || errorDocuments || errorWarehouses).data.message === 'string'
+          ? (errorProduct || errorStock || errorDocuments || errorWarehouses).data.message
           : 'Une erreur est survenue'}
       </p>
     );
   }
 
-  const stockValue = product.stock_reel * parseFloat(product.price);
+  const stockValue = currentStock * (parseFloat(product.price) || 0);
+  const productWeight = parseFloat(product.weight) || 0;
+  const totalStockWeight = (productWeight * currentStock) / 1000; // Convert grams to kilograms
   const filteredStockMovements = stockmovements.filter((movement) => movement.product_id === productId);
 
   const formatSize = (size) => {
@@ -79,6 +125,12 @@ const UserProductDetailsScreen = () => {
               {stockValue.toLocaleString()} XPF
             </span>
           </p>
+          <p className='m-2'>
+            <strong>Poids total du stock:</strong>
+            <span className='text-white font-bold bg-secondaryColor py-1 px-3 rounded-full'>
+              {totalStockWeight.toLocaleString()} kg
+            </span>
+          </p>
         </div>
         <Barcode value={product.barcode} />
       </div>
@@ -87,11 +139,11 @@ const UserProductDetailsScreen = () => {
         <div className="bg-gray-100 p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">Détails du produit</h2>
           <p><strong>Référence:</strong> {product.ref}</p>
-          <p><strong>Code-barres:</strong> {product.barcode}</p>
           <p><strong>Prix:</strong> {Number(product.price).toLocaleString()} XPF</p>
           <p><strong>Prix minimum:</strong> {Number(product.price_min).toLocaleString()} XPF</p>
           <p><strong>Prix TTC:</strong> {Number(product.price_ttc).toLocaleString()} XPF</p>
-          <p><strong>En stock:</strong> {product.stock_reel}</p>
+          <p><strong>En stock:</strong> {currentStock}</p>
+          <p><strong>Poids:</strong> {product.weight} Gr</p>
         </div>
         <div className="bg-gray-100 p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">Informations supplémentaires</h2>
@@ -103,8 +155,8 @@ const UserProductDetailsScreen = () => {
           </p>
           <p><strong>Statut:</strong> {product.status === "1" ? 'Actif' : 'Inactif'}</p>
           <p><strong>Type:</strong> {product.type === "1" ? 'Service' : 'Produit'}</p>
-          <p><strong>Date de création:</strong> {new Date(product.date_creation).toLocaleDateString()}</p>
-          <p><strong>Date de modification:</strong> {new Date(product.date_modification).toLocaleDateString()}</p>
+          <p><strong>Date de création:</strong> {new Date(product.date_creation * 1000).toLocaleDateString()}</p>
+          <p><strong>Date de modification:</strong> {new Date(product.date_modification * 1000).toLocaleDateString()}</p>
           <p><strong>Pays:</strong> {product.country_code}</p>
         </div>
       </div>
@@ -164,6 +216,39 @@ const UserProductDetailsScreen = () => {
       {/* Section des mouvements de stock */}
       <div className="mt-6">
         <h2 className="text-xl font-bold mb-4">Mouvements de Stock</h2>
+        <div className="flex space-x-4 mb-4">
+          <input
+            type="number"
+            className="p-2 border rounded"
+            placeholder="Quantité"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+          <select
+            className="p-2 border rounded"
+            value={selectedWarehouse}
+            onChange={(e) => setSelectedWarehouse(e.target.value)}
+          >
+            <option value="">Sélectionnez un entrepôt</option>
+            {warehouses.map((warehouse) => (
+              <option key={warehouse.id} value={warehouse.id}>
+                {warehouse.label}
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={() => handleStockMovement('add')}
+            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          >
+            Ajouter au stock
+          </button>
+          <button
+            onClick={() => handleStockMovement('remove')}
+            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Supprimer du stock
+          </button>
+        </div>
         <table className="min-w-full bg-white">
           <thead className="bg-primaryColor">
             <tr>
@@ -176,11 +261,11 @@ const UserProductDetailsScreen = () => {
             {filteredStockMovements.map((movement) => (
               <tr
                 key={movement.id}
-                className={movement.type === "0" ? 'bg-green-200' : 'bg-red-200'}
+                className={movement.qty > 0 ? 'bg-green-200' : 'bg-red-200'}
               >
                 <td className="py-2 px-4 border-b border-gray-200">{new Date(movement.datem * 1000).toLocaleDateString()}</td>
                 <td className="py-2 px-4 border-b border-gray-200">{Number(movement.qty).toLocaleString()}</td>
-                <td className="py-2 px-4 border-b border-gray-200">{movement.type === "0" ? 'Entrée' : 'Sortie'}</td>
+                <td className="py-2 px-4 border-b border-gray-200">{movement.qty > 0 ? 'Ajout' : 'Suppression'}</td>
               </tr>
             ))}
           </tbody>
