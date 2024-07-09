@@ -17,12 +17,12 @@ const veilleSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ['Vidéo', 'Site Web', 'Article', 'Precious Plastic'],
+      enum: ['Vidéo', 'Site Web', 'Article', 'PDF'],
       required: true,
     },
     categories: {
       type: String,
-      enum: ['Tutoriel', 'Actualités', 'Recherche', 'Innovation'],
+      enum: ['Tutoriel', 'Actualités', 'Recherche', 'Innovation', 'Etude'],
       default: 'Tutoriel',
     },
     tags: {
@@ -51,6 +51,10 @@ const veilleSchema = new mongoose.Schema(
       type: String,
       enum: ['français', 'anglais', 'espagnol', 'allemand', 'autre'],
       required: true,
+    },
+    photo: {
+      type: String,
+      default: 'no-photo.png',
     },
   },
   { timestamps: true },

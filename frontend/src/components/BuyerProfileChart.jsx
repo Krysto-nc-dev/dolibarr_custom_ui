@@ -33,7 +33,7 @@ const BuyerProfileChart = () => {
   }));
 
   return (
-    <div className='bg-white p-4 border border-primaryColor rounded-lg w-[38rem] h-[30rem]'>
+    <div className='bg-white p-4 border border-primaryColor rounded-lg w-[28rem] h-[30rem]'>
       <h2 className='text-center font-semibold mb-4'>Ventes par produit</h2>
       <ResponsivePie
         data={chartData}
@@ -43,13 +43,24 @@ const BuyerProfileChart = () => {
         cornerRadius={3}
         colors={{ datum: 'data.color' }}
         borderWidth={2}
-        borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
+        borderColor={{ from: 'color', modifiers: [['darker', 0.1]] }}
         radialLabelsSkipAngle={10}
         radialLabelsTextColor="#333333"
         radialLabelsLinkColor={{ from: 'color' }}
         sliceLabelsSkipAngle={10}
-        sliceLabelsTextColor="#fff"
-       
+        sliceLabelsTextColor="#ffff"
+        sliceLabel={() => ''} // Retire les chiffres à l'intérieur du graphique
+        tooltip={({ datum }) => (
+          <div
+            style={{
+              padding: '5px 10px',
+              background: '#fff',
+              border: '1px solid #ccc',
+            }}
+          >
+            <strong>{datum.label}</strong>: {datum.value.toLocaleString()} XPF
+          </div>
+        )}
         animate={true}
         motionConfig="gentle"
       />

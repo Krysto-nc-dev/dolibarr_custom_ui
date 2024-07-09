@@ -52,9 +52,9 @@ const TotalSales = () => {
       </div>
       <div className={`text-sm ${salesDifferenceClass} flex justify-center items-center mt-1`}>
         <SalesIcon className="mr-1 w-4 h-4" />
-        <span className="relative">
+        <span className="relative font-bold">
           {salesDifference.toLocaleString('fr-FR')}
-          <span className="text-mutedColor text-[10px] ml-1">XPF</span>
+          <span className="text-mutedColor text-[10px] ml-2 font-normal">XPF</span>
         </span>
       </div>
     </div>

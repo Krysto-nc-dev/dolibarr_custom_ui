@@ -23,6 +23,7 @@ const createVeille = asyncHandler(async (req, res) => {
     url,
     source,
     lang,
+    photo,
   } = req.body
 
   const veille = new Veille({
@@ -35,6 +36,7 @@ const createVeille = asyncHandler(async (req, res) => {
     url,
     source,
     lang,
+    photo,
   })
 
   const createdVeille = await veille.save()
@@ -69,6 +71,7 @@ const updateVeille = asyncHandler(async (req, res) => {
     url,
     source,
     lang,
+    photo,
   } = req.body
 
   const veille = await Veille.findById(req.params.id)
@@ -83,6 +86,7 @@ const updateVeille = asyncHandler(async (req, res) => {
     veille.url = url || veille.url
     veille.source = source || veille.source
     veille.lang = lang || veille.lang
+    veille.photo = photo || veille.photo
 
     const updatedVeille = await veille.save()
     res.status(200).json(updatedVeille)
