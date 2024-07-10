@@ -52,6 +52,7 @@ import UserMachineAndMouldDetails from './screens/private/UserMachineAndMouldDet
 import RecipeDetails from './screens/private/RecipeDetails.jsx'
 import UserColorMixCalculatorScreen from './screens/private/UserColorMixCalculatorScreen'
 import UserVeilleDetailsScreen from './screens/private/UserVeilleDetailsScreen.jsx'
+import ProjectScreen from './screens/private/ProjectScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -130,6 +131,7 @@ const router = createBrowserRouter(
             path="user-third-party-details/:id"
             element={<UserThirdpartieDetails />}
           />
+          <Route path="projet" element={<ProjectScreen />} />
           <Route path="settings" element={<UserSettingsScreen />} />
         </Route>
       </Route>

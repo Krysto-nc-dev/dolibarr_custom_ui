@@ -1,42 +1,71 @@
-import { Factory, Gem } from 'lucide-react'
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { DASHBOARD_SIDEBAR_LINKS } from '../utils/Navigation'
-import appIcon from '../../assets/images/icon.png'
+import { AlignJustify, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { DASHBOARD_SIDEBAR_LINKS } from '../utils/Navigation';
+import logo from '../../assets/logo.png';
 
 const Sidebar = () => {
-  const location = useLocation()
+  const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar open/close
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
-    <aside className="bg-primaryColor p-3 flex flex-col w-64 text-textColor h-full">
-      <div className="flex items-center gap-2 px-1 mb-6">
-        {/* <Gem className="text-secondaryColor" size="25" /> */}
+    <aside className={`bg-gray-700 p-3 text-textColor h-full absolute top-0 left-0 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'w-55' : 'w-15'}`}>
     
-          <img src={appIcon} alt="" className="w-6 h-6" />
-     
+      <div className="flex items-center justify-between gap-2 px-1 mt-2">
+        {/* Menu icon to toggle sidebar */}
+        <button onClick={toggleSidebar} className="text-secondaryColor focus:outline-none">
+          {isSidebarOpen ? (
+            <X className="text-red-600" size="25" />
+          ) : (
+            <AlignJustify size="25" />
+          )}
+        </button>
+        
+      </div>
+      {!isSidebarOpen && (
+        <div className="mt-8">
+          {DASHBOARD_SIDEBAR_LINKS.map((link) => (
+            <Link
+              to={link.href}
+              key={link.key}
+              className={`flex items-center text-center gap-2 mb-1  px-1 py-1 rounded-lg text-[20px] ${
+                location.pathname === link.href
+                  ? 'bg-lightColor text-white'
+                  : 'text-primaryColor font-bold'
+              } hover:bg-secondaryColor hover:text-backgroundColor`}
+            >
+              <span className='ml-1'>
 
-        <span className="text-secondaryColor text-lg font-bold">
-          MY Precious CRM
-        </span>
-      </div>
-      <div className="flex-1 mt-1">
-        {DASHBOARD_SIDEBAR_LINKS.map((link) => (
-          <Link
-            to={link.href}
-            key={link.key}
-            className={`flex items-center gap-2 mb-1 px-1 py-1 rounded-lg text-[10px] ${
-              location.pathname === link.href
-                ? 'bg-accentColor text-white'
-                : 'text-textColor'
-            } hover:bg-accentColor hover:text-white`}
-          >
-            {link.icon}
-            <span>{link.label}</span>
-          </Link>
-        ))}
-      </div>
+              {link.icon}
+              </span>
+            </Link>
+          ))}
+        </div>
+      )}
+      {isSidebarOpen && (
+        <div className="flex-1 mt-8">
+          {DASHBOARD_SIDEBAR_LINKS.map((link) => (
+            <Link
+              to={link.href}
+              key={link.key}
+              className={`flex items-center gap-2 mb-1 px-1 py-1 rounded-lg text-[10px] ${
+                location.pathname === link.href
+                  ? 'bg-lightColor text-white'
+                  : 'text-primaryColor font-bold'
+              } hover:bg-secondaryColor hover:text-backgroundColor`}
+            >
+              {link.icon}
+              <span>{link.label}</span>
+            </Link>
+          ))}
+        </div>
+      )}
     </aside>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

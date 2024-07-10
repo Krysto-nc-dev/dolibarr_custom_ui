@@ -11,7 +11,7 @@ const DashboardCardGrid = () => {
     const accountId = 1;
   return (
     <section className='flex gap-4 w-full' >
-      <BoxWrapper>
+      <BoxWrapper >
         <div className='rounded-full h-12 w-12 flex items-center justify-center bg-yellow-500'>
         <Banknote className='text-2xl text-white' />
         </div>

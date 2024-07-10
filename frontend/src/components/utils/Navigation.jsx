@@ -1,4 +1,4 @@
-import { LayoutDashboard, Box, Users, Calendar, CreditCard,  Book, DollarSign,  Warehouse, FilePen, Recycle, CookingPot, Factory, Eye, CloudDrizzle, RecycleIcon, Truck, Milk, Palette } from 'lucide-react';
+import { LayoutDashboard, Box, Users, Calendar, CreditCard,  Book, DollarSign,  Warehouse, FilePen, Recycle, CookingPot, Factory, Eye, CloudDrizzle, RecycleIcon, Truck, Milk, Palette, Projector } from 'lucide-react';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -87,6 +87,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     label: 'Agenda',
     icon: <Calendar />,
     href: '/calendar',
+  },
+  {
+    key:'PROJET',
+    label: 'Projet',
+    icon: <Projector />,
+    href: '/projet',
   },
   {
     key:'veilles',

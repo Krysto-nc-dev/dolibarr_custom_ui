@@ -23,7 +23,7 @@ const Header = () => {
         }
       }
   return (
-    <header className="h-20 px-10 flex justify-between items-center border-b border-gray-200 bg-primaryColor">
+    <header className="h-20 pl-20 pr-10 flex justify-between items-center bg-gray-700 ">
       <div className="relative">
         <Search fontSize={20} className="text-gray-400 absolute top-1/2 -translate-y-1/2 left-3" />
         <input 
@@ -36,7 +36,7 @@ const Header = () => {
         <Popover className="relative">
           {({ open }) => (
             <>
-              <Popover.Button className="p-1.5 rounded-sm inline-flex items-center text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-gray-100">
+              <Popover.Button className="p-1.5 rounded-sm inline-flex items-center text-primaryColor hover:text-opacity-100 focus:outline-none active:bg-gray-100">
                 <Bell fontSize={24} />
               </Popover.Button>
               <Transition
@@ -49,7 +49,7 @@ const Header = () => {
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 w-48">
-                  <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
+                  <div className="bg-primaryColor rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
                     Notifications
                   </div>
                 </Popover.Panel>
@@ -60,7 +60,7 @@ const Header = () => {
         <Popover className="relative">
           {({ open }) => (
             <>
-              <Popover.Button className="p-1.5 rounded-sm inline-flex items-center text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-gray-100">
+              <Popover.Button className="p-1.5 rounded-sm inline-flex items-center text-primaryColor  hover:text-opacity-100 focus:outline-none active:bg-gray-100">
                 <MessageCircle fontSize={24} />
               </Popover.Button>
               <Transition
@@ -73,7 +73,7 @@ const Header = () => {
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 w-48">
-                  <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
+                  <div className="bg-primaryColor rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
                    <Link to="/messages">Messages</Link>
                   </div>
                 </Popover.Panel>
@@ -97,11 +97,11 @@ const Header = () => {
                 leaveTo="opacity-0 translate-y-1"
               >
                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 w-48">
-                  <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5">
+                  <div className="bg-primaryColor rounded-sm shadow-md ring-1 ring-black ring-opacity-5 text-sm">
                     <Link to="/profile" className=" px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"> <CircleUser  className='mr-2'/>  Mon profile</Link>
                     <Link to="/settings" className="px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"><Settings className="mr-2"/> Paramètres</Link>
                     <Link to="/support" className="px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"><MessageCircleQuestion className="mr-2"/> Aide & supports</Link>
-                    <Link onClick={logoutHandler} className=" px-4 py-2 text-dangerColor hover:bg-gray-100 flex items-center hover:no-underline "> <LogOut className="mr-2"/> Déconnexion</Link>
+                    <Link onClick={logoutHandler} className=" px-4 py-2 text-red-700 hover:bg-gray-100 flex items-center hover:no-underline "> <LogOut className="mr-2"/> Déconnexion</Link>
                   </div>
                 </Popover.Panel>
               </Transition>

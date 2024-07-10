@@ -7,19 +7,22 @@
 
 
 :root {
-  --primaryColor: #2196F3; /* More accessible Lighter Blue */
-  --secondaryColor: #4A148C; /* More accessible Deep Purple */
-  --accentColor: #E91E63; /* More accessible Pink */
-  --textColor: #1B1F23; /* More accessible Dark Gray */
-  --backgroundColor: #E0E0E0; /* More accessible Light Gray */
-  --highlightColor: #FFB300; /* More accessible Orange */
-  --mutedColor: #757575; /* More accessible Medium Gray */
-  --dangerColor: #C62828; /* More accessible Red */
-  --warningColor: #FF6F00; /* More accessible Amber */
-  --successColor: #2E7D32; /* More accessible Green */
+  --primaryColor: #9196CA; /* Couleur principale */
+  --secondaryColor: #7EC7B8; /* Couleur secondaire */
+  --accentColor: #FFD700; /* Couleur accent, ici un jaune doré */
+  --textColor: #FFFFFF; /* Couleur de texte, un gris foncé pour le contraste */
+  --backgroundColor:  #333333; /* Couleur de fond, blanc pour la lisibilité */
+  --grayColor:  #949494; /* Couleur de fond, blanc pour la lisibilité */
+  --highlightColor: #F5F5DC; /* Couleur de surbrillance, un beige clair */
+  --mutedColor: #D3D3D3; /* Couleur atténuée, un gris clair pour les éléments moins importants */
+  --dangerColor: #E57373; /* Couleur d'alerte, un rouge adouci */
+  --warningColor: #FFB74D; /* Couleur d'avertissement, un orange adouci */
+  --successColor: #1c9222; /* Couleur de succès, un vert adouci */
 }
 
-
+body{
+  @apply text-[20px] text-textColor bg-backgroundColor ;
+}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
