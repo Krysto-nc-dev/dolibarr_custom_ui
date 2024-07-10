@@ -56,7 +56,7 @@ const PopularProductsData = [
 const PopularProducts = () => {
   return (
     <div
-      className="bg-white px-4 pt-3 pb-4 rounded-lg border border-primaryColor"
+      className="bg-gray-600 px-4 pt-3 pb-4 rounded-lg border border-primaryColor"
       style={{ width: '28rem' }}
     >
       <strong className="text-center font-semibold">

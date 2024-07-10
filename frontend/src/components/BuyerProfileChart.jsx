@@ -33,7 +33,7 @@ const BuyerProfileChart = () => {
   }));
 
   return (
-    <div className='bg-white p-4 border border-primaryColor rounded-lg w-[28rem] h-[30rem]'>
+    <div className='bg-gray-600 p-4 border border-primaryColor rounded-lg w-[28rem] h-[30rem]'>
       <h2 className='text-center font-semibold mb-4'>Ventes par produit</h2>
       <ResponsivePie
         data={chartData}
@@ -45,17 +45,19 @@ const BuyerProfileChart = () => {
         borderWidth={2}
         borderColor={{ from: 'color', modifiers: [['darker', 0.1]] }}
         radialLabelsSkipAngle={10}
-        radialLabelsTextColor="#333333"
+        radialLabelsTextColor="#ffffff" // Couleur des labels radiaux en blanc
         radialLabelsLinkColor={{ from: 'color' }}
         sliceLabelsSkipAngle={10}
-        sliceLabelsTextColor="#ffff"
+        sliceLabelsTextColor="#ffffff" // Couleur des labels de tranches en blanc
         sliceLabel={() => ''} // Retire les chiffres à l'intérieur du graphique
         tooltip={({ datum }) => (
           <div
             style={{
               padding: '5px 10px',
+              fontSize: '0.8rem',
               background: '#fff',
               border: '1px solid #ccc',
+              color: '#777777', // Couleur du texte des infobulles en gris
             }}
           >
             <strong>{datum.label}</strong>: {datum.value.toLocaleString()} XPF
@@ -63,6 +65,13 @@ const BuyerProfileChart = () => {
         )}
         animate={true}
         motionConfig="gentle"
+        theme={{
+          labels: {
+            text: {
+              fill: '#ffffff', // Couleur générale du texte en blanc
+            },
+          },
+        }}
       />
     </div>
   );

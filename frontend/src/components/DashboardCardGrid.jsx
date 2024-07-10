@@ -75,7 +75,7 @@ export default DashboardCardGrid
 
 function BoxWrapper({ children }) {
   return (
-    <div className=' bg-gray-50 rounded-md p-4 flex-1 border border-primaryColor flex items-center shadow-lg'>
+    <div className=' bg-gray-600 rounded-md p-4 flex-1 border border-primaryColor flex items-center shadow-lg'>
       {children}
     </div>
   )

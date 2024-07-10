@@ -13,9 +13,9 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className={`bg-gray-700 p-3 text-textColor h-full absolute top-0 left-0 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'w-55' : 'w-15'}`}>
+    <aside className={`bg-gray-700 p-3 text-textColor h-full absolute top-0 left-0 transition-all duration-300 ease-in-out z-50 ${isSidebarOpen ? 'w-55' : 'w-15'}`}>
     
-      <div className="flex items-center justify-between gap-2 px-1 mt-2">
+      <div className="flex items-center justify-between gap-2 px-1 ">
         {/* Menu icon to toggle sidebar */}
         <button onClick={toggleSidebar} className="text-secondaryColor focus:outline-none">
           {isSidebarOpen ? (

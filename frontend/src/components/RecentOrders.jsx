@@ -78,7 +78,7 @@ const recentOrdersData = [
 
 const RecentOrders = () => {
   return (
-    <div className="bg-white px-4 pt-3 pb-4 rounded-lg border border-primaryColor flex-1">
+    <div className="bg-gray-600 px-4 pt-3 pb-4 rounded-lg border border-primaryColor flex-1">
       <strong className="text-center font-semibold mb-4">
         Dernières commandes
       </strong>
