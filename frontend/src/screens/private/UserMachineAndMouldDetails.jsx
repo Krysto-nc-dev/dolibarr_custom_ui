@@ -21,7 +21,7 @@ const UserMachineAndMouldDetails = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gray-700 min-h-screen">
         <img src={`/uploads/${machine.images[0]}`} alt="Machine" className="w-full h-[450px] object-cover mb-4 rounded-lg" />
       <h1 className="text-3xl font-bold mb-6 text-center text-primaryColor">Détails de la Machine</h1>
       <div className="bg-white p-6 rounded-lg shadow-md">

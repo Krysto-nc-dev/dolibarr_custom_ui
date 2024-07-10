@@ -32,8 +32,8 @@ const UserPropalScreen = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center text-primaryColor">Propositions commerciales ({propals.length})</h1>
+    <div className="p-6  min-h-screen">
+      <h1 className="text-2xl font-bold mb-6 text-center text-primaryColor">Propositions commerciales ({propals.length})</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white">
           <thead className='bg-primaryColor'>
@@ -48,19 +48,19 @@ const UserPropalScreen = () => {
           </thead>
           <tbody>
             {propals.map((propal) => (
-              <tr key={propal.id}>
-                <td className="py-2 px-4 border-b border-gray-200">
+              <tr key={propal.id} className='bg-gray-700 hover:bg-gray-500'>
+                <td className="py-2 px-4 ">
                   <Link to={`/propal-details/${propal.id}`}>
                     {propal.ref}
                   </Link>
                 </td>
-                <td className="py-2 px-4 border-b border-gray-200">
+                <td className="py-2 px-4 ">
                  <span className='bg-primaryColor py-1 px-3 rounded-full text-white font-bold'>{getStatusText(propal.status)} </span> </td>
-                <td className="py-2 px-4 border-b border-gray-200">{parseFloat(propal.total_ht).toLocaleString('fr-FR', { minimumFractionDigits: 0 })} XPF</td>
-                <td className="py-2 px-4 border-b border-gray-200">{parseFloat(propal.total_tva).toLocaleString('fr-FR', { minimumFractionDigits: 0 })} XPF</td>
-                <td className="py-2 px-4 border-b border-gray-200">{parseFloat(propal.total_ttc).toLocaleString('fr-FR', { minimumFractionDigits: 0 })} XPF</td>
-                <td className="py-2 px-4 border-b border-gray-200">
-                  {propal.status === 4 ? new Date(propal.date_validation * 1000).toLocaleDateString('fr-FR') : 'N/A'}
+                <td className="py-2 px-4 ">{parseFloat(propal.total_ht).toLocaleString('fr-FR', { minimumFractionDigits: 0 })} XPF</td>
+                <td className="py-2 px-4 ">{parseFloat(propal.total_tva).toLocaleString('fr-FR', { minimumFractionDigits: 0 })} XPF</td>
+                <td className="py-2 px-4 ">{parseFloat(propal.total_ttc).toLocaleString('fr-FR', { minimumFractionDigits: 0 })} XPF</td>
+                <td className="py-2 px-4 ">
+                  {propal.status === 4 ? new Date(propal.date_validation * 1000).toLocaleDateString('fr-FR') : 'Non validée'}
                 </td>
               </tr>
             ))}

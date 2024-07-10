@@ -63,8 +63,16 @@ body{
     @apply font-semibold
   }
   a {
-    @apply text-primaryColor hover:underline
+    @apply text-blue-300 hover:no-underline 
   }
+}
+
+.card{
+  @apply bg-gray-700 text-gray-100 rounded-lg shadow-md m-4 text-sm cursor-pointer ;
+}
+
+.card:hover {
+  transform: scale(1.02); /* Zoom léger */
 }
 
 /* UserCalendar.css */

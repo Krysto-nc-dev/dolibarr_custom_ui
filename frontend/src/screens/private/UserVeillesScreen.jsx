@@ -22,7 +22,7 @@ const UserVeillesScreen = () => {
       <h1 className="text-2xl font-bold mb-6 text-primaryColor text-center">Veilles</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {veilles.map((veille) => (
-          <Link to={`/veille-details/${veille._id}`} key={veille._id} className="bg-white rounded-lg shadow-md overflow-hidden relative block hover:no-underline">
+          <Link to={`/veille-details/${veille._id}`} key={veille._id} className="card rounded-lg shadow-md overflow-hidden relative block hover:no-underline">
             <div className={`absolute top-0 right-0 p-2 ${typeColors[veille.type]} text-white rounded-bl-lg`}>
               {veille.type}
             </div>
@@ -34,7 +34,7 @@ const UserVeillesScreen = () => {
                   <li className='bg-primaryColor px-2 py-1 rounded-full text-white min-w-[8ch] text-center text-xs' key={index}>{tag}</li>
                 ))}
               </ul>
-              <p className="text-gray-700 mb-2 line-clamp-3 h-16 overflow-hidden">{veille.description}</p>
+              <p className=" mb-2 line-clamp-3 h-16 overflow-hidden">{veille.description}</p>
             </div>
           </Link>
         ))}

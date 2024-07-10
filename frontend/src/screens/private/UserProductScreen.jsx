@@ -205,12 +205,12 @@ const UserProductScreen = () => {
                 <th className="px-4 py-2 border-b">Nom</th>
                 <th className="px-4 py-2 border-b">Prix</th>
                 <th className="px-4 py-2 border-b">En stock</th>
-                <th className="px-4 py-2 border-b"></th>
+             
               </tr>
             </thead>
             <tbody>
               {filteredData.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50">
+                <tr key={product.id}  className="hover:bg-gray-500 bg-gray-700">
                   <td className="px-4 py-2 border-b">
                     <Link to={`/user-product-details/${product.id}`}>
                       {product.ref}
@@ -227,7 +227,7 @@ const UserProductScreen = () => {
                       product.stock_reel != null && (typeof product.stock_reel === 'number' || typeof product.stock_reel === 'string')
                       ? parseFloat(product.stock_reel) === 0
                         ? <span className="text-red-700 bg-red-200 px-3 py-1 rounded-full font-bold">Rupture de stock</span>
-                        : <span className="text-green-700 font-bold">{parseFloat(product.stock_reel).toFixed(0)}</span>
+                        : <span className="text-green-500 font-bold">{parseFloat(product.stock_reel).toFixed(0)}</span>
                       : <span className="text-red-700 bg-red-200 px-3 py-1 rounded-full font-bold">Rupture de stock</span>
                     )}
                   </td>

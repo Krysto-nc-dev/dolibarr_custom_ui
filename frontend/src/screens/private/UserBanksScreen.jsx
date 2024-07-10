@@ -27,7 +27,7 @@ const UserBanksScreen = () => {
           <Link 
             to={`/bank-account-details/${account.id}`} 
             key={account.id} 
-            className="group bg-white rounded-lg shadow-md p-4 border border-primaryColor hover:bg-primaryColor hover:text-white hover:no-underline"
+            className="group  hover:no-underline card"
           >
             <h2 className="text-xl font-bold mb-2 text-secondaryColor">{account.label}</h2>
             <p className='text-textColor'><strong>Banque:</strong> {account.bank}</p>
@@ -35,14 +35,14 @@ const UserBanksScreen = () => {
             <p className='text-textColor'><strong>Solde:</strong> {parseFloat(account.solde).toFixed(2)} {account.currency_code}</p>
             <p className='text-textColor'><strong>Propriétaire:</strong> {account.proprio}</p>
             <p className='text-textColor'><strong>Adresse du propriétaire:</strong> {account.owner_address}</p>
-            <div className="bg-gray-100 p-4 rounded-lg mt-4  transition">
+            <div className="bg-gray-500 p-4 rounded-lg mt-4  transition">
               <h3 className="text-lg font-semibold mb-2 text-secondaryColor">RIB</h3>
-              <p className="group-hover:text-black transition"><strong>Code banque:</strong> {account.code_banque}</p>
-              <p className="group-hover:text-black transition"><strong>Code guichet:</strong> {account.code_guichet}</p>
-              <p className="group-hover:text-black transition"><strong>Numéro de compte:</strong> {account.number}</p>
-              <p className="group-hover:text-black transition"><strong>Clé RIB:</strong> {account.cle_rib}</p>
-              <p className="group-hover:text-black transition"><strong>IBAN:</strong> {account.iban}</p>
-              <p className="group-hover:text-black transition"><strong>BIC:</strong> {account.bic}</p>
+              <p><strong>Code banque:</strong> {account.code_banque}</p>
+              <p><strong>Code guichet:</strong> {account.code_guichet}</p>
+              <p><strong>Numéro de compte:</strong> {account.number}</p>
+              <p><strong>Clé RIB:</strong> {account.cle_rib}</p>
+              <p><strong>IBAN:</strong> {account.iban}</p>
+              <p><strong>BIC:</strong> {account.bic}</p>
             </div>
           </Link>
         ))}

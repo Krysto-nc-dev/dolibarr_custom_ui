@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const UserPlasticsScreen = () => {
   return (
-    <div className="h-screen flex flex-col bg-backgroundColor text-textColor">
-      <div className="flex gap-3 justify-center py-4 bg-white shadow-md">
+    <div className="h-screen flex flex-col text-textColor">
+      <div className="flex gap-3 justify-center py-4  ">
         <Link
           to="/plastic-colors"
           className="inline-block px-6 py-3 text-white bg-primaryColor rounded-lg shadow-md hover:bg-primaryColor-dark focus:outline-none focus:ring-2 focus:ring-primaryColor focus:ring-opacity-75 transition"
@@ -45,12 +45,12 @@ const UserPlasticsScreen = () => {
 
 
       <Link
-  className="flex items-center justify-center w-full bg-white p-3 text-center mt-4"
+  className="flex items-center justify-center w-full  p-3 text-center mt-4 "
   to="https://preciousplastic.fr/academy/intro/"
   target="_blank"
   rel="noopener noreferrer"
 >
-  <p className="font-bold">Cliquez ici et apprenez les fondamentaux avec la Precious Plastic Academy !</p>
+  <p className="font-bold">Precious plastic academy</p>
 </Link>
 
 

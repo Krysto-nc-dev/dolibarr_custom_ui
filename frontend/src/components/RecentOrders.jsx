@@ -97,9 +97,9 @@ const RecentOrders = () => {
           </thead>
           <tbody>
             {recentOrdersData.map((order) => (
-              <tr key={order.id} >
+              <tr key={order.id} className='bg-gray-500' >
                 
-                <td><Link to={`/order/${order.id}`}>{order.id}</Link> </td>
+                <td>{order.id}</td>
                 <td><Link to={`/product/${order.product_id}`}>{order.product_id}</Link> </td>
              
                 <td><Link to={`/customer/${order.customer_id}`}>{order.customer_name}</Link> </td>

@@ -61,7 +61,7 @@ const ColorMixCalculator = ({ colors }) => {
   };
 
   return (
-    <div className="p-6 max-w-9xl mx-auto bg-white rounded-lg shadow-md">
+    <div className="p-6 max-w-9xl mx-auto rounded-lg shadow-md">
       <h1 className="text-md font-bold mb-4">Calculateur de Mélange de Couleurs</h1>
 
       {totalPercentage >= 100 && isPercentageMode && (
@@ -99,7 +99,7 @@ const ColorMixCalculator = ({ colors }) => {
         </div>
         <button 
             onClick={handleSaveRecipe} 
-            className=" inline-flex items-center px-3 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+            className=" inline-flex items-center px-3 py-3 bg-gray-200 text-white rounded-full hover:bg-blue-600"
           >
            <SaveAll strokeWidth={1.5}className='mr-3'  />  Enregistrer 
           </button>
@@ -108,7 +108,7 @@ const ColorMixCalculator = ({ colors }) => {
       <div className='flex justify-between items-center'>
 
       <div className="mb-4">
-        <label htmlFor="totalWeight" className="block text-xs font-medium text-gray-700">
+        <label htmlFor="totalWeight" className="block text-xs font-medium ">
           Poids Total (grammes)
         </label>
         <input
@@ -116,7 +116,7 @@ const ColorMixCalculator = ({ colors }) => {
           type="number"
           value={totalWeight}
           onChange={(e) => setTotalWeight(Math.max(0, parseFloat(e.target.value)))}
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primaryColor focus:border-primaryColor"
+          className="mt-1 block w-full p-2 border text-gray-700 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primaryColor focus:border-primaryColor "
           />
       </div>
 
@@ -124,7 +124,7 @@ const ColorMixCalculator = ({ colors }) => {
       
         <button 
           onClick={toggleMode} 
-          className="ml-4 inline-flex items-center px-10 max-w-10xl py-3 bg-gray-200 rounded-full hover:bg-gray-300"
+          className="ml-4 inline-flex items-center px-10 max-w-10xl py-3 bg-primaryColor text-sm rounded-full hover:bg-secondaryColor "
           >
           <RotateCcw className="mr-2 h-5" /> 
           {isPercentageMode ? 'Entrer par Grammes' : 'Entrer par Pourcentages'}
@@ -138,12 +138,12 @@ const ColorMixCalculator = ({ colors }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
         {colors.map((color, index) => (
           <div key={index} className="mb-4">
-            <label className="block text-xs font-medium text-gray-700">{color.name}</label>
+            <label className="block text-xs font-medium ">{color.name}</label>
             <input
               type="number"
               value={isPercentageMode ? percentages[index] : weights[index]}
               onChange={(e) => isPercentageMode ? handlePercentageChange(index, e.target.value) : handleWeightChange(index, e.target.value)}
-              className={`mt-1 block w-full p-2 border ${((isPercentageMode && totalPercentage >= 100) || (!isPercentageMode && totalWeightInGrams >= totalWeight)) ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-primaryColor focus:border-primaryColor`}
+              className={`mt-1 block w-full p-2 border text-gray-700 ${((isPercentageMode && totalPercentage >= 100) || (!isPercentageMode && totalWeightInGrams >= totalWeight)) ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-primaryColor focus:border-primaryColor`}
               disabled={(isPercentageMode && totalPercentage >= 100) || (!isPercentageMode && totalWeightInGrams >= totalWeight)}
             />
             {((isPercentageMode && totalPercentage >= 100) || (!isPercentageMode && totalWeightInGrams >= totalWeight)) && (
@@ -158,13 +158,13 @@ const ColorMixCalculator = ({ colors }) => {
         <table className="min-w-full bg-white border-collapse">
           <thead>
             <tr className="border-b-0">
-              <th className="py-2 px-4 bg-primaryColor text-white rounded-tl-lg">Couleur</th>
-              <th className="py-2 px-4 bg-primaryColor text-white rounded-tr-lg">{isPercentageMode ? 'Poids (grammes)' : 'Pourcentage (%)'}</th>
+              <th className="py-2 px-4 bg-primaryColor text-gray-700 ">Couleur</th>
+              <th className="py-2 px-4 bg-primaryColor text-gray-700 ">{isPercentageMode ? 'Poids (grammes)' : 'Pourcentage (%)'}</th>
             </tr>
           </thead>
           <tbody>
             {filteredColorsWeights.map(({ color, weight, percentage }, index) => (
-              <tr key={index}>
+              <tr key={index} className='bg-gray-700 hover:bg-gray-500'>
                 <td className="py-2 px-4 border-b">{color}</td>
                 <td className={`py-2 px-4 border-b`}>{isPercentageMode ? weight.toFixed(2) : percentage.toFixed(2)} {isPercentageMode ? 'g' : '%'}</td>
               </tr>

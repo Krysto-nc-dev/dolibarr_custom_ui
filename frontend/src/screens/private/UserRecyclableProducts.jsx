@@ -25,17 +25,20 @@ const UserRecyclableProducts = () => {
       <h1 className="text-xl font-bold mb-6 text-primaryColor text-center">Produits Recyclables</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {recyclableProducts.map((product) => (
-          <div key={product._id} className="bg-white p-4 rounded-lg shadow-md">
+          <div key={product._id} className="card">
+            <div className="bg-white">
+
             <img src={`http://192.168.178.21:3000/uploads/${product.photo}`} alt={product.name} className="w-full h-48 object-contain rounded-md mb-4" />
+            </div>
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-md font-bold text-primaryColor">{product.name}</h2>
               <div className="ml-4">
                 <Barcode value={product.barCode} width={1} height={30} fontSize={10} />
               </div>
             </div>
-            <p className="text-sm text-gray-700 mb-2"><strong>Marque:</strong> {product.brand}</p>
-            <p className="text-sm text-gray-700 mb-2"><strong>Description:</strong> {product.description}</p>
-            <div className="text-sm text-gray-700 mb-2 flex items-center">
+            <p className="text-sm "><strong>Marque:</strong> {product.brand}</p>
+            <p className="text-sm "><strong>Description:</strong> {product.description}</p>
+            <div className="text-sm mb-2 flex items-center">
               <strong>Note de recyclage:</strong>
               <div className="ml-2 flex">{renderStars(product.recyclingNote)}</div>
             </div>
