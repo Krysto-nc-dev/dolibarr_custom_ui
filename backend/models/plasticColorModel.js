@@ -6,6 +6,11 @@ const plasticColorSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  photo: {
+    type: String,
+    required: true,
+    default: 'no-photo.png',
+  },
 })
 
 const PlasticColor = mongoose.model('PlasticColor', plasticColorSchema)

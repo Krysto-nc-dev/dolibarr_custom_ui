@@ -25,7 +25,7 @@ const RecipeDetails = () => {
   const weightSteps = [0.5, 1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] // weights in kilograms
 
   return (
-    <div className="p-6 max-w-8xl mx-auto bg-white rounded-lg shadow-md relative">
+    <div className="p-6 max-w-8xl mx-auto  rounded-lg shadow-md relative">
       {recipe ? (
         <div>
           <div className="absolute top-0 right-0 mt-4 mr-4 bg-blue-500 text-white py-1 px-3 rounded-full">
@@ -38,7 +38,10 @@ const RecipeDetails = () => {
           <div className="flex flex-wrap -mx-2 mb-4">
             {recipe.images.map((image, index) => (
               <div key={index} className="w-1/3 px-2 mb-4">
-                <img src={image} alt={`Image de la recette ${index + 1}`} className="w-full h-32 object-cover rounded-md shadow-sm" />
+                 
+                 <img src={`http://192.168.178.21:3000/uploads/${image}`} alt={`Image de la recette ${index + 1}`}  className="w-full h-32 object-cover rounded-md shadow-sm"  />
+
+               
               </div>
             ))}
           </div>
@@ -48,7 +51,7 @@ const RecipeDetails = () => {
             <div className="flex flex-wrap -mx-2">
               {recipe.colors.map((color, index) => (
                 <div key={index} className="w-1/3 px-2 mb-4">
-                  <div className="p-4 bg-gray-100 rounded-lg shadow-sm">
+                  <div className="p-4 bg-gray-500 rounded-lg shadow-sm">
                     <p className="text-lg font-semibold">{getColorName(color.colorId)}</p>
                     <p>Pourcentage: {color.percentage}%</p>
                     <div className="w-full bg-gray-300 rounded-full h-4 overflow-hidden">

@@ -1,83 +1,100 @@
 const recipes = [
   {
-    title: 'Recette de couleur bleue',
+    title: 'Lune Tachetée',
     description:
-      'Mélange de différentes couleurs pour obtenir une teinte bleue.',
+      'Une plaque marbrée majoritairement blanche avec de légères touches de noir, évoquant la surface mystérieuse de la lune.',
     colors: [
-      { colorId: '737a3694e5fc335f796a4924', percentage: 50 }, // Bleu Clair
-      { colorId: '737a3694e5fc335f796a4921', percentage: 30 }, // Blanc
-      { colorId: '737a3694e5fc335f796a4922', percentage: 20 }, // Noir
+      { colorId: '737a3694e5fc335f796a4921', percentage: 95 }, // Blanc
+      { colorId: '737a3694e5fc335f796a4922', percentage: 5 }, // Noir
     ],
-    productionType: 'injection',
+    productionType: 'compression',
     user: '6686899f7f0f7be0d5780336',
-    images: [
-      'https://images.unsplash.com/photo-1588421357574-87938a86fa28?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://images.unsplash.com/photo-1601436155198-2ebfea8117b0?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ],
+    images: ['sheet1.png'],
   },
   {
-    title: 'Recette de couleur verte',
+    title: "Nuage d'Encre",
     description:
-      'Mélange de différentes couleurs pour obtenir une teinte verte.',
+      "Un mélange subtil de blanc et de noir, rappelant un nuage enveloppé d'une brume noire.",
     colors: [
-      { colorId: '737a3694e5fc335f796a4928', percentage: 60 }, // Vert
-      { colorId: '737a3694e5fc335f796a4927', percentage: 25 }, // Jaune
-      { colorId: '737a3694e5fc335f796a4922', percentage: 15 }, // Noir
-    ],
-    productionType: 'extrusion',
-    user: '6686899f7f0f7be0d5780336',
-    images: [
-      'https://images.unsplash.com/photo-1561016444-14f747499547?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://plus.unsplash.com/premium_photo-1666836046442-70ebab318a76?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ],
-  },
-  {
-    title: 'Recette de couleur rouge',
-    description:
-      'Mélange de différentes couleurs pour obtenir une teinte rouge.',
-    colors: [
-      { colorId: '737a3694e5fc335f796a4923', percentage: 70 }, // Rouge
-      { colorId: '737a3694e5fc335f796a4921', percentage: 20 }, // Blanc
+      { colorId: '737a3694e5fc335f796a4921', percentage: 90 }, // Blanc
       { colorId: '737a3694e5fc335f796a4922', percentage: 10 }, // Noir
     ],
     productionType: 'compression',
     user: '6686899f7f0f7be0d5780336',
-    images: [
-      'https://images.unsplash.com/photo-1595757816291-ab4c1cba0fc2?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://images.unsplash.com/photo-1504537103742-67c282f65f24?q=80&w=1075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ],
+    images: ['sheet2.png'],
   },
   {
-    title: 'Recette de couleur jaune',
+    title: 'Aube Ombreuse',
     description:
-      'Mélange de différentes couleurs pour obtenir une teinte jaune.',
+      "Une plaque où le blanc domine mais le noir commence à prendre plus de place, semblable aux premières lueurs de l'aube.",
     colors: [
-      { colorId: '737a3694e5fc335f796a4927', percentage: 80 }, // Jaune
-      { colorId: '737a3694e5fc335f796a4921', percentage: 10 }, // Blanc
-      { colorId: '737a3694e5fc335f796a4922', percentage: 10 }, // Noir
+      { colorId: '737a3694e5fc335f796a4921', percentage: 75 }, // Blanc
+      { colorId: '737a3694e5fc335f796a4922', percentage: 25 }, // Noir
+    ],
+    productionType: 'compression',
+    user: '6686899f7f0f7be0d5780336',
+    images: ['sheet3.png'],
+  },
+  {
+    title: 'Marbre Nocturne',
+    description:
+      'Un équilibre parfait entre le blanc et le noir, créant une apparence marbrée sophistiquée.',
+    colors: [
+      { colorId: '737a3694e5fc335f796a4921', percentage: 50 }, // Blanc
+      { colorId: '737a3694e5fc335f796a4922', percentage: 50 }, // Noir
+    ],
+    productionType: 'compression',
+    user: '6686899f7f0f7be0d5780336',
+    images: ['sheet4.png'],
+  },
+  {
+    title: 'Marbre Fumé',
+    description:
+      "Principalement noire avec des motifs blancs, cette plaque rappelle la fumée dans l'obscurité.",
+    colors: [
+      { colorId: '737a3694e5fc335f796a4921', percentage: 25 }, // Blanc
+      { colorId: '737a3694e5fc335f796a4922', percentage: 75 }, // Noir
+    ],
+    productionType: 'compression',
+    user: '6686899f7f0f7be0d5780336',
+    images: ['sheet5.png'],
+  },
+  {
+    title: 'Nuit Brumeuse',
+    description:
+      'Une plaque majoritairement noire avec des nuances de blanc, évoquant une nuit enveloppée de brume.',
+    colors: [
+      { colorId: '737a3694e5fc335f796a4921', percentage: 15 }, // Blanc
+      { colorId: '737a3694e5fc335f796a4922', percentage: 85 }, // Noir
+    ],
+    productionType: 'compression',
+    user: '6686899f7f0f7be0d5780336',
+    images: ['sheet6.png'],
+  },
+  {
+    title: 'Ébène Pâle',
+    description:
+      "Une plaque quasiment noire avec des touches très subtiles de blanc, semblable à l'ébène.",
+    colors: [
+      { colorId: '737a3694e5fc335f796a4921', percentage: 5 }, // Blanc
+      { colorId: '737a3694e5fc335f796a4922', percentage: 95 }, // Noir
+    ],
+    productionType: 'compression',
+    user: '6686899f7f0f7be0d5780336',
+    images: ['sheet7.png'],
+  },
+  {
+    title: 'Solar Flare',
+    description:
+      "Cette plaque, vibrant de 90% de jaune éclatant avec des touches de rouge intense et un léger marbré noir, capture l'essence d'une éruption solaire. Le mélange produit un effet visuel unique, rappelant les nuances de l'orange brûlant et les ombres profondes des flammes solaires.",
+    colors: [
+      { colorId: '737a3694e5fc335f796a4923', percentage: 5 }, // Rouge
+      { colorId: '737a3694e5fc335f796a4927', percentage: 90 }, // Jaune
+      { colorId: '737a3694e5fc335f796a4922', percentage: 5 }, // Noir
     ],
     productionType: 'injection',
     user: '6686899f7f0f7be0d5780336',
-    images: [
-      'https://images.unsplash.com/flagged/photo-1593005510329-8a4035a7238f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://images.unsplash.com/photo-1615457938971-3ab61c1c0d57?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ],
-  },
-  {
-    title: 'Recette de couleur noire',
-    description:
-      'Mélange de différentes couleurs pour obtenir une teinte noire.',
-    colors: [
-      { colorId: '737a3694e5fc335f796a4922', percentage: 90 }, // Noir
-      { colorId: '737a3694e5fc335f796a4924', percentage: 5 }, // Bleu Clair
-      { colorId: '737a3694e5fc335f796a4923', percentage: 5 }, // Rouge
-    ],
-    productionType: 'extrusion',
-    user: '6686899f7f0f7be0d5780336',
-    images: [
-      'https://images.unsplash.com/photo-1550684376-efcbd6e3f031?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      'https://images.unsplash.com/photo-1618022325802-7e5e732d97a1?q=80&w=1048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    ],
+    images: ['solarFlare.jpg'],
   },
 ]
 

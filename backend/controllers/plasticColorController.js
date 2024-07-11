@@ -14,10 +14,11 @@ const getPlasticColors = asyncHandler(async (req, res) => {
 // @route   POST /api/plasticColors
 // @access  Public
 const createPlasticColor = asyncHandler(async (req, res) => {
-  const { name } = req.body
+  const { name, photo } = req.body
 
   const plasticColor = new PlasticColor({
     name,
+    photo,
   })
 
   const createdPlasticColor = await plasticColor.save()
@@ -42,12 +43,13 @@ const getPlasticColorById = asyncHandler(async (req, res) => {
 // @route   PUT /api/plasticColors/:id
 // @access  Public
 const updatePlasticColor = asyncHandler(async (req, res) => {
-  const { name } = req.body
+  const { name, photo } = req.body
 
   const plasticColor = await PlasticColor.findById(req.params.id)
 
   if (plasticColor) {
     plasticColor.name = name || plasticColor.name
+    plasticColor.photo = photo || plasticColor.photo
 
     const updatedPlasticColor = await plasticColor.save()
     res.status(200).json(updatedPlasticColor)
