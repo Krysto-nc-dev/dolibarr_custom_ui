@@ -10,6 +10,15 @@ const recipeSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    source: {
+      type: String,
+      required: false,
+    },
+    plasticType: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PlasticType', // Référence au modèle Tyoe  de plastique
+      required: false,
+    },
     colors: [
       {
         colorId: {

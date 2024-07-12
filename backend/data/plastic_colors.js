@@ -64,6 +64,10 @@ const plastic_colors = [
     name: 'Vert Clair',
     photo: 'LIGTHGREEN.jpeg',
   },
+  {
+    _id: '737a3694e5fc336f796a412b',
+    name: 'Lilas',
+  },
 ]
 
 export default plastic_colors

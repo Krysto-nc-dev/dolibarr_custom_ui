@@ -9,6 +9,7 @@ import plasticColors from './data/plastic_colors.js'
 import plasticTypes from './data/plastic_types.js'
 import recyclableProducts from './data/recyclable_products.js'
 import machines from './data/machines.js' // Import des données de machines
+import projects from './data/projects.js' // Import des données de projets
 
 import User from './models/userModel.js'
 import Event from './models/eventModel.js'
@@ -18,6 +19,7 @@ import PlasticColor from './models/plasticColorModel.js'
 import PlasticType from './models/plasticTypeModel.js'
 import RecyclableProduct from './models/recyclableProductModel.js'
 import Machine from './models/machineModel.js' // Import du modèle Machine
+import Project from './models/ProjectModel.js' // Import du modèle Projects
 
 import connectDB from './config/db.js'
 
@@ -35,6 +37,7 @@ const importData = async () => {
     await PlasticType.deleteMany()
     await RecyclableProduct.deleteMany()
     await Machine.deleteMany() // Suppression des anciennes données de machines
+    await Project.deleteMany() // Suppression des anciennes données de projets
 
     // const createdUsers = await User.insertMany(users)
 
@@ -46,6 +49,7 @@ const importData = async () => {
     await PlasticType.insertMany(plasticTypes)
     await RecyclableProduct.insertMany(recyclableProducts)
     await Machine.insertMany(machines) // Import des nouvelles données de machines
+    await Project.insertMany(projects) // Import des nouvelles données de projets
 
     console.log('Data Imported!'.green.inverse)
     process.exit()
@@ -65,6 +69,7 @@ const destroyData = async () => {
     await PlasticType.deleteMany()
     await RecyclableProduct.deleteMany()
     await Machine.deleteMany() // Suppression des données de machines
+    await Project.deleteMany() // Suppression des données de projets
 
     console.log('Data Destroyed!'.red.inverse)
     process.exit()

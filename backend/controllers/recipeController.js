@@ -13,7 +13,16 @@ const getRecipes = asyncHandler(async (req, res) => {
 // @route   POST /api/recipes
 // @access  Public
 const createRecipe = asyncHandler(async (req, res) => {
-  const { title, description, colors, productionType, user, images } = req.body
+  const {
+    title,
+    description,
+    colors,
+    productionType,
+    user,
+    images,
+    source,
+    plasticType,
+  } = req.body
 
   const recipe = new Recipe({
     title,
@@ -22,6 +31,8 @@ const createRecipe = asyncHandler(async (req, res) => {
     productionType,
     user,
     images,
+    source,
+    plasticType,
   })
 
   const createdRecipe = await recipe.save()
@@ -46,7 +57,16 @@ const getRecipeById = asyncHandler(async (req, res) => {
 // @route   PUT /api/recipes/:id
 // @access  Public
 const updateRecipe = asyncHandler(async (req, res) => {
-  const { title, description, colors, productionType, user, images } = req.body
+  const {
+    title,
+    description,
+    colors,
+    productionType,
+    user,
+    images,
+    source,
+    plasticType,
+  } = req.body
 
   const recipe = await Recipe.findById(req.params.id)
 
@@ -57,6 +77,8 @@ const updateRecipe = asyncHandler(async (req, res) => {
     recipe.productionType = productionType || recipe.productionType
     recipe.user = user || recipe.user
     recipe.images = images || recipe.images
+    recipe.source = source || recipe.source
+    recipe.plasticType = plasticType || recipe.plasticType
 
     const updatedRecipe = await recipe.save()
     res.status(200).json(updatedRecipe)

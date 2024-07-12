@@ -38,10 +38,7 @@ const RecipeDetails = () => {
           <div className="flex flex-wrap -mx-2 mb-4">
             {recipe.images.map((image, index) => (
               <div key={index} className="w-1/3 px-2 mb-4">
-                 
-                 <img src={`http://192.168.178.21:3000/uploads/${image}`} alt={`Image de la recette ${index + 1}`}  className="w-full h-32 object-cover rounded-md shadow-sm"  />
-
-               
+                <img src={`http://192.168.178.21:3000/uploads/${image}`} alt={`Image de la recette ${index + 1}`} className="w-full h-32 object-cover rounded-md shadow-sm" />
               </div>
             ))}
           </div>
@@ -65,20 +62,19 @@ const RecipeDetails = () => {
 
           <div className="mb-4">
             <h2 className="text-2xl font-semibold mb-2">Grammage des Couleurs</h2>
-            <table className="min-w-full bg-gray-200 border-collapse">
+            <table className="min-w-full bg-gray-700 border-collapse ">
               <thead>
                 <tr className="border-b-0">
                   <th className="py-2 px-4 bg-primaryColor text-white rounded-tl-lg">Poids Total (kg)</th>
                   {recipe.colors.map((color, index) => (
                     <th key={index} className="py-2 px-4 bg-primaryColor text-white">{getColorName(color.colorId)}</th>
                   ))}
-                  <th className="py-2 px-4 bg-primaryColor text-white rounded-tr-lg"></th>
                 </tr>
               </thead>
               <tbody>
                 {weightSteps.map((weight) => (
-                  <tr key={weight}>
-                    <td className="py-2 px-4 border-b">{weight} kg</td>
+                  <tr key={weight} className='hover:bg-gray-400'>
+                    <td className="py-2 px-4 border-b bg-secondaryColor hover:bg-accentColor hover:text-backgroundColor font-bold">{weight} kg</td>
                     {recipe.colors.map((color, index) => (
                       <td key={index} className="py-2 px-4 border-b">
                         {(weight * color.percentage / 100).toFixed(2)} kg
