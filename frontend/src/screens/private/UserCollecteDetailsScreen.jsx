@@ -53,7 +53,7 @@ const UserCollecteDetailsScreen = () => {
             <span className={`text-lg font-semibold py-1 px-4 rounded ${getStatusColorClass(collecte.status)}`}>{collecte.status}</span>
             {collecte.barcode && (
               <div className="mt-4">
-                <Barcode value={collecte.barcode} />
+                <Barcode className='h-20' value={collecte.barcode} />
               </div>
             )}
           </div>

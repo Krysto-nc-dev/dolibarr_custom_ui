@@ -1,5 +1,6 @@
 const collectes = [
   {
+    _id: '61e5f6b6f0a8b84c1c9c7b95',
     title: 'Collecte de Plastique Particulier',
     description: 'Collecte hebdomadaire de plastique pour les particuliers',
     dollibarTierId: '9',
@@ -14,6 +15,7 @@ const collectes = [
     createdBy: '6686899f7f0f7be0d5780336',
   },
   {
+    _id: '61e5f6b6f0a8b84c1c9c7b96',
     title: 'Collecte de Plastique Professionnel',
     description: 'Collecte mensuelle de plastique pour les entreprises',
     dollibarTierId: '22',
@@ -28,6 +30,7 @@ const collectes = [
     createdBy: '6686899f7f0f7be0d5780336',
   },
   {
+    _id: '61e5f6b6f0a8b84c1c9c7b97',
     title: 'Collecte Unique de Plastique',
     description: 'Collecte unique de plastique pour un événement spécial',
     dollibarTierId: '143',

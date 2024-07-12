@@ -68,6 +68,10 @@ const plastic_colors = [
     _id: '737a3694e5fc336f796a412b',
     name: 'Lilas',
   },
+  {
+    _id: '737a3694e5fc336f796a413b',
+    name: 'Melange de couleurs',
+  },
 ]
 
 export default plastic_colors
