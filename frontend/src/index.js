@@ -54,6 +54,7 @@ import UserColorMixCalculatorScreen from './screens/private/UserColorMixCalculat
 import UserVeilleDetailsScreen from './screens/private/UserVeilleDetailsScreen.jsx'
 import ProjectScreen from './screens/private/ProjectScreen.jsx'
 import ProjectDetailsScreen from './screens/private/ProjectDetailsScreen.jsx'
+import UserCollecteDetailsScreen from './screens/private/UserCollecteDetailsScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -134,6 +135,10 @@ const router = createBrowserRouter(
           />
           <Route path="projet" element={<ProjectScreen />} />
           <Route path="projects/:id" element={<ProjectDetailsScreen />} />
+          <Route
+            path="collecte-details/:id"
+            element={<UserCollecteDetailsScreen />}
+          />
 
           <Route path="settings" element={<UserSettingsScreen />} />
         </Route>

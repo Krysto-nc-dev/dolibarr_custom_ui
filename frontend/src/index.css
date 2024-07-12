@@ -57,7 +57,7 @@ body{
     @apply py-3 px-2.5 text-sm text-left border-y border-primaryColor
   }
   thead {
-    @apply bg-secondaryColor
+    @apply bg-primaryColor
   }
   th {
     @apply font-semibold
