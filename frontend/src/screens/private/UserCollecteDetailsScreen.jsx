@@ -36,7 +36,6 @@ const UserCollecteDetailsScreen = () => {
             <h2 className="text-xl font-bold text-primaryColor mb-2">{collecte.title}</h2>
             <p className="text-lg mb-2"><strong>Détails :</strong> {collecte.description}</p>
             <p className="text-lg mb-2"><strong>Type de collecte :</strong> {collecte.collectionType}</p>
-            <p className="text-lg mb-2"><strong>Contrat :</strong> {collecte.contract}</p>
             <p className="text-lg mb-2"><strong>Tiers :</strong>  <Link to={`/user-third-party-details/${collecte.dollibarTierId}`} className='hover:text-secondaryColor'>{tier ? tier.name : 'Non défini'}</Link></p>
             <p className="text-lg mb-2"><strong>Récurrence :</strong> {collecte.recurring ? 'Oui' : 'Non'}</p>
             {collecte.recurring && (
@@ -60,11 +59,43 @@ const UserCollecteDetailsScreen = () => {
           </div>
         </div>
       </div>
+
+      {/* Section pour afficher le contrat dans un tableau */}
+      <div className="mt-6">
+        <h2 className="text-xl font-bold mb-2 text-primaryColor">Contrat</h2>
+        {collecte.contract ? (
+          <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <thead className="bg-gray-800 text-white">
+              <tr>
+                <th className="py-2 px-4">Nom du contrat</th>
+                <th className="py-2 px-4">Télécharger</th>
+                {/* Ajoutez d'autres en-têtes de colonnes si nécessaire */}
+              </tr>
+            </thead>
+            <tbody className="text-gray-700">
+              <tr>
+                <td className="py-2 px-4">{collecte.contract}</td>
+                <td className="py-2 px-4">
+                  <a
+                    href={`http://localhost:5000/uploads/${encodeURIComponent(collecte.contract)}`}
+                    className="text-blue-500 hover:text-blue-700"
+                    download
+                  >
+                    Télécharger
+                  </a>
+                </td>
+                {/* Ajoutez d'autres cellules de données si nécessaire */}
+              </tr>
+            </tbody>
+          </table>
+        ) : (
+          <p className="text-lg">Aucun contrat disponible pour cette collecte.</p>
+        )}
+      </div>
     </div>
   );
 };
 
-// Fonction utilitaire pour obtenir la classe CSS en fonction du statut
 const getStatusColorClass = (status) => {
   switch (status) {
     case 'En attente':
