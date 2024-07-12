@@ -1,5 +1,9 @@
 import mongoose from 'mongoose'
 
+const generateBarcode = () => {
+  return Math.floor(1000000000000 + Math.random() * 9000000000000).toString()
+}
+
 // Sous-schéma pour les maintenances et réparations
 const maintenanceSchema = new mongoose.Schema(
   {
@@ -156,11 +160,7 @@ const machineSchema = new mongoose.Schema(
 // Middleware pour générer automatiquement le code-barres avant de sauvegarder
 machineSchema.pre('save', function (next) {
   if (!this.barcode) {
-    // Génération d'un code-barres unique de 13 chiffres
-    this.barcode = Array(13)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 10))
-      .join('')
+    this.barcode = generateBarcode()
   }
   next()
 })

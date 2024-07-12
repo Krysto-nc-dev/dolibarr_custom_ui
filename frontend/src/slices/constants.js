@@ -10,6 +10,7 @@ export const VEILLES_URL = `/dolibarr-ui/api/veilles`
 export const RECYCLABLE_PRODUCTS_URL = `/dolibarr-ui/api/recyclable-products`
 export const MACHINES_URL = `/dolibarr-ui/api/machines`
 export const PROJECTS_URL = `/dolibarr-ui/api/projects`
+export const COLLECTE_URL = `/dolibarr-ui/api/collectes`
 // DOLIBARR
 
 export const DOLIBAR_URL = `https://crm.krysto.nc/api/index.php`

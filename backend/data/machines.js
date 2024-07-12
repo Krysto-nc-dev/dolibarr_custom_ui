@@ -1,9 +1,3 @@
-import mongoose from 'mongoose'
-
-const generateBarcode = () => {
-  return Math.floor(1000000000000 + Math.random() * 9000000000000).toString()
-}
-
 const machines = [
   {
     name: 'Arbour press injection',
@@ -18,7 +12,6 @@ const machines = [
     orderDate: new Date('2022-12-01'),
     receptionDate: new Date('2023-01-10'),
     serviceDate: new Date('2023-01-20'),
-    barcode: generateBarcode(),
     tierId: '1',
     totalCoast: 700,
     provenanceCountry: 'Royaume-Uni',
@@ -64,7 +57,7 @@ const machines = [
     orderDate: new Date('2022-11-20'),
     receptionDate: new Date('2023-01-05'),
     serviceDate: new Date('2023-01-15'),
-    barcode: generateBarcode(),
+
     tierId: '1',
     totalCoast: 700,
     provenanceCountry: 'Royaume-Uni',
@@ -108,7 +101,7 @@ const machines = [
     orderDate: new Date('2022-12-15'),
     receptionDate: new Date('2023-02-01'),
     serviceDate: new Date('2023-02-10'),
-    barcode: generateBarcode(),
+
     tierId: '1',
     totalCoast: 700,
     provenanceCountry: 'Royaume-Uni',
@@ -150,7 +143,7 @@ const machines = [
     orderDate: new Date('2023-01-15'),
     receptionDate: new Date('2023-03-01'),
     serviceDate: new Date('2023-03-10'),
-    barcode: generateBarcode(),
+
     tierId: '1',
     totalCoast: 700,
     provenanceCountry: 'Royaume-Uni',
@@ -193,7 +186,7 @@ const machines = [
     orderDate: new Date('2023-03-20'),
     receptionDate: new Date('2023-04-15'),
     serviceDate: new Date('2023-04-25'),
-    barcode: generateBarcode(),
+
     tierId: '1',
     totalCoast: 700,
     provenanceCountry: 'Nouvelle-Calédonie',
