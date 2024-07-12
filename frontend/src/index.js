@@ -39,7 +39,7 @@ import UserPropalScreen from './screens/private/UserPropalScreen.jsx'
 import AddEventForm from './screens/private/AddEventForm.jsx'
 import UserMachinesAndMolds from './screens/private/UserMachinesAndMolds.jsx'
 import UserRecipesScreen from './screens/private/UserRecipesScreen.jsx'
-import UserCollectsScreen from './screens/private/UserCollectsScreen.jsx'
+
 import UserThirdpartieDetails from './screens/private/UserThirdpartieDetails.jsx'
 import PlasticColorsScreen from './screens/private/PlasticColorsScreen.jsx'
 import UserPlasticsScreen from './screens/private/UserPlasticsScreen.jsx'
@@ -54,7 +54,9 @@ import UserColorMixCalculatorScreen from './screens/private/UserColorMixCalculat
 import UserVeilleDetailsScreen from './screens/private/UserVeilleDetailsScreen.jsx'
 import ProjectScreen from './screens/private/ProjectScreen.jsx'
 import ProjectDetailsScreen from './screens/private/ProjectDetailsScreen.jsx'
-import UserCollecteDetailsScreen from './screens/private/UserCollecteDetailsScreen.jsx'
+
+import UserCampagneCollects from './screens/private/UserCampagneCollects.jsx'
+import UserCampagneCollecteDetailsScreen from './screens/private/UserCampagneCollectDetails.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -97,7 +99,11 @@ const router = createBrowserRouter(
             path="machine-details/:id"
             element={<UserMachineAndMouldDetails />}
           />
-          <Route path="collectes" element={<UserCollectsScreen />} />
+          <Route path="collectes" element={<UserCampagneCollects />} />
+          <Route
+            path="campagne-details/:id"
+            element={<UserCampagneCollecteDetailsScreen />}
+          />
           <Route
             path="color-calculators"
             element={<UserColorMixCalculatorScreen />}
@@ -135,10 +141,6 @@ const router = createBrowserRouter(
           />
           <Route path="projet" element={<ProjectScreen />} />
           <Route path="projects/:id" element={<ProjectDetailsScreen />} />
-          <Route
-            path="collecte-details/:id"
-            element={<UserCollecteDetailsScreen />}
-          />
 
           <Route path="settings" element={<UserSettingsScreen />} />
         </Route>

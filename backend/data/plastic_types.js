@@ -169,10 +169,10 @@ const plastic_types = [
   },
   {
     _id: '737a3694e5fc335f796a4949',
-    sigleFr: 'Other',
-    sigleEn: 'Other',
-    scientificNameFr: 'Autre',
-    scientificNameEn: 'Other',
+    sigleFr: 'Mixed',
+    sigleEn: 'Mixed',
+    scientificNameFr: 'Melange',
+    scientificNameEn: 'Mixed',
     description:
       "Cette catégorie regroupe des types de plastique qui ne correspondent pas aux catégories standard énumérées précédemment. Ces plastiques peuvent être des mélanges ou des compositions spéciales, ou ils peuvent avoir des propriétés uniques qui ne les classent pas clairement dans les catégories traditionnelles. En raison de leur diversité, les propriétés spécifiques de ces plastiques peuvent varier considérablement, y compris leur température d'injection, leur densité, leur point de fusion, leur résistance à la chaleur, leur résistance chimique, leur rigidité, leur toxicité et leur impact environnemental. Il est essentiel de connaître et de gérer correctement ces plastiques, car leur recyclage et leur élimination peuvent également être spécifiques à chaque type.",
     icone: 'other.svg',

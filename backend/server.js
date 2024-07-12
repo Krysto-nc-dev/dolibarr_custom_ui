@@ -3,6 +3,7 @@ import cors from 'cors'
 import express from 'express'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
+
 dotenv.config()
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
@@ -16,8 +17,7 @@ import plasticColorRoutes from './routes/plasticColorRoutes.js'
 import recyclableProductRoutes from './routes/recyclableProductRoutes.js'
 import machineRoutes from './routes/machineRoutes.js'
 import projectRoutes from './routes/projectRoutes.js'
-import collecteRoutes from './routes/collecteRouter.js'
-import collecteDetailsRoutes from './routes/collecteDetailsRouter.js'
+import campagneCollectRoutes from './routes/campagneCollectRouter.js' // Importez le routeur de campagneCollect
 
 const port = process.env.PORT || 5000
 
@@ -44,8 +44,7 @@ app.use('/dolibarr-ui/api/plastic-types', plasticTypeRoutes)
 app.use('/dolibarr-ui/api/recyclable-products', recyclableProductRoutes)
 app.use('/dolibarr-ui/api/machines', machineRoutes)
 app.use('/dolibarr-ui/api/projects', projectRoutes)
-app.use('/dolibarr-ui/api/collectes', collecteRoutes)
-app.use('/dolibarr-ui/api/collecte-details', collecteDetailsRoutes)
+app.use('/dolibarr-ui/api/campagnes-collecte', campagneCollectRoutes)
 
 const __dirname = path.resolve()
 // Permet d'accéder aux fichiers dans le répertoire 'uploads'

@@ -9,6 +9,7 @@ const tagTypes = [
   'Recipes',
   'Veilles',
   'RecyclableProducts',
+  'CollecteDetails',
 ]
 
 const baseQuery = fetchBaseQuery({ baseUrl: BASE_URL })

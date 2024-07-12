@@ -1,11 +1,39 @@
 import mongoose from 'mongoose'
-import geocoder from '../utils/geocoder.js'
 
 const generateBarcode = () => {
   return Math.floor(1000000000000 + Math.random() * 9000000000000).toString()
 }
 
 const collecteSchema = new mongoose.Schema(
+  {
+    dateCollecte: {
+      type: Date,
+      required: true,
+    },
+    PlasticWeightKg: {
+      type: Number,
+      required: true,
+    },
+    PlasticType: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PlasticType',
+      required: true,
+    },
+    PlasticColor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PlasticColor',
+      required: true,
+    },
+    collectedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+  },
+  { timestamps: true },
+)
+
+const campagneCollectSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -64,58 +92,26 @@ const collecteSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['En attente', 'En cours', 'Terminée', 'Annulée'],
+      enum: ['Actif', 'Inactif'],
       required: true,
-      default: 'En attente',
+      default: 'Actif',
     },
     address: {
       type: String,
       required: true,
     },
-
-    location: {
-      type: {
-        type: String,
-        enum: ['Point'],
-      },
-      coordinates: {
-        type: [Number],
-        index: '2dsphere',
-      },
-      formattedAddress: String,
-      street: String,
-      city: String,
-      zipcode: String,
-      country: String,
-    },
+    collectes: [collecteSchema], // Relation avec le sous-modèle collecteSchema
   },
-
-  {
-    timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  },
+  { timestamps: true },
 )
 
-// Geocode & create location
-collecteSchema.pre('save', async function (next) {
-  const loc = await geocoder.geocode(this.address)
-  this.location = {
-    type: 'Point',
-    coordinates: [loc[0].longitude, loc[0].latitude],
-    formattedAddress: loc[0].formattedAddress,
-    street: loc[0].streetName,
-    city: loc[0].city,
-    state: loc[0].stateCode,
-    zipcode: loc[0].zipcode,
-    country: loc[0].countryCode,
+campagneCollectSchema.pre('save', function (next) {
+  if (this.recurring && !this.barcode) {
+    this.barcode = generateBarcode()
   }
-
-  // Do not save address
-  this.address = undefined
   next()
 })
 
-const Collecte = mongoose.model('Collecte', collecteSchema)
+const CampagneCollect = mongoose.model('CampagneCollect', campagneCollectSchema)
 
-export default Collecte
+export default CampagneCollect

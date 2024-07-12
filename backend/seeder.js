@@ -10,8 +10,7 @@ import plasticTypes from './data/plastic_types.js'
 import recyclableProducts from './data/recyclable_products.js'
 import machines from './data/machines.js'
 import projects from './data/projects.js'
-import collectes from './data/collects.js'
-import collecteDetails from './data/collectDetails.js'
+import campagnesCollectes from './data/campagneCollecte.js'
 
 import User from './models/userModel.js'
 import Event from './models/eventModel.js'
@@ -22,8 +21,7 @@ import PlasticType from './models/plasticTypeModel.js'
 import RecyclableProduct from './models/recyclableProductModel.js'
 import Machine from './models/machineModel.js'
 import Project from './models/ProjectModel.js'
-import Collecte from './models/CollecteModel.js'
-import CollecteDetails from './models/CollecteDetailsModel.js'
+import CampagneCollecte from './models/CampagneCollecteModel.js'
 
 import connectDB from './config/db.js'
 
@@ -41,8 +39,7 @@ const importData = async () => {
     await RecyclableProduct.deleteMany()
     await Machine.deleteMany()
     await Project.deleteMany()
-    await Collecte.deleteMany()
-    await CollecteDetails.deleteMany()
+    await CampagneCollecte.deleteMany()
 
     await Event.insertMany(events)
     await Veille.insertMany(veilles)
@@ -52,8 +49,7 @@ const importData = async () => {
     await RecyclableProduct.insertMany(recyclableProducts)
     await Machine.insertMany(machines)
     await Project.insertMany(projects)
-    await CollecteDetails.insertMany(collecteDetails)
-    await Collecte.insertMany(collectes)
+    await CampagneCollecte.insertMany(campagnesCollectes)
 
     console.log('Data Imported!'.green.inverse)
     process.exit()
@@ -73,8 +69,7 @@ const destroyData = async () => {
     await RecyclableProduct.deleteMany()
     await Machine.deleteMany()
     await Project.deleteMany()
-    await Collecte.deleteMany()
-    await CollecteDetails.deleteMany()
+    await CampagneCollecte.deleteMany()
 
     console.log('Data Destroyed!'.red.inverse)
     process.exit()
