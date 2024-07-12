@@ -38,7 +38,7 @@ const RecipeDetails = () => {
           <div className="flex flex-wrap -mx-2 mb-4">
             {recipe.images.map((image, index) => (
               <div key={index} className="w-1/3 px-2 mb-4">
-                <img src={`http://192.168.178.21:3000/uploads/${image}`} alt={`Image de la recette ${index + 1}`} className="w-full h-32 object-cover rounded-md shadow-sm" />
+                <img src={`http://192.168.178.21:3000/uploads/${image}`} alt={`recette ${index + 1}`} className="w-full h-32 object-cover rounded-md shadow-sm" />
               </div>
             ))}
           </div>

@@ -44,7 +44,14 @@ app.use('/dolibarr-ui/api/machines', machineRoutes)
 app.use('/dolibarr-ui/api/projects', projectRoutes)
 
 const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+// Permet d'accéder aux fichiers dans le répertoire 'uploads'
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
+// Définition de la route pour télécharger un fichier
+app.get('/download/:filename', (req, res) => {
+  const filePath = path.join(__dirname, 'uploads', req.params.filename)
+  res.download(filePath)
+})
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/frontend/build')))

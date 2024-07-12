@@ -22,12 +22,12 @@ const UserBanksScreen = () => {
 
   return (
     <div className="h-screen flex flex-col p-4 space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {data.map((account) => (
           <Link 
             to={`/bank-account-details/${account.id}`} 
             key={account.id} 
-            className="group  hover:no-underline card"
+            className="group  hover:no-underline card p-4"
           >
             <h2 className="text-xl font-bold mb-2 text-secondaryColor">{account.label}</h2>
             <p className='text-textColor'><strong>Banque:</strong> {account.bank}</p>

@@ -29,7 +29,7 @@ const UserWarehousesScreen = () => {
       <h1 className="text-3xl font-bold mb-6 text-primaryColor text-center">Entrepôts ({warehouses.length})</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {warehouses.map((warehouse) => (
-          <Link to={`/user-warehouse-details/${warehouse.id}`} key={warehouse.id} className= "card">
+          <Link to={`/user-warehouse-details/${warehouse.id}`} key={warehouse.id} className= "card p-4">
             <h2 className="text-xl font-bold mb-2 text-secondaryColor">{warehouse.label}</h2>
             <p className="text-gray-100"><strong>Lieu:</strong> {warehouse.lieu}</p>
             <p className="text-gray-100"><strong>Description:</strong> {warehouse.description}</p>

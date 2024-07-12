@@ -6,7 +6,7 @@ import {
   updateProject,
   deleteProject,
   addStage,
-} from '../controllers/projectController.js'
+} from '../controllers/projectControllers.js'
 
 const router = express.Router()
 

@@ -25,9 +25,9 @@ const projectStageSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['Not Started', 'In Progress', 'Completed'],
+      enum: ['Non commencée', 'En cours', 'Terminée'],
       required: true,
-      default: 'Not Started',
+      default: 'Non commencée',
     },
   },
   { timestamps: true },

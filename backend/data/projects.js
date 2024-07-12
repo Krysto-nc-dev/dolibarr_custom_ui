@@ -21,7 +21,7 @@ const projects = [
           'Collecter les informations et préparer la documentation nécessaire pour la demande.',
         startDate: new Date('2023-06-01'),
         endDate: new Date('2023-06-30'),
-        status: 'Completed',
+        status: 'Terminée',
       },
       {
         stageNumber: 2,
@@ -30,7 +30,7 @@ const projects = [
           'Soumettre la demande de subvention aux autorités compétentes.',
         startDate: new Date('2023-07-01'),
         endDate: new Date('2023-07-15'),
-        status: 'Completed',
+        status: 'Terminée',
       },
       {
         stageNumber: 3,
@@ -39,7 +39,7 @@ const projects = [
           'Attendre la réponse des autorités concernant la demande de subvention.',
         startDate: new Date('2023-07-16'),
         endDate: new Date('2023-09-01'),
-        status: 'In Progress',
+        status: 'En cours',
       },
     ],
   },
@@ -54,7 +54,7 @@ const projects = [
     endDate: new Date('2025-01-15'),
     status: 'En cours',
     teamMembers: ['6686899f7f0f7be0d5780336', '6686899f7f0f7be0d5780337'],
-    documents: ['rd_plan.pdf', 'bioplastics_research.docx'],
+    documents: ['rd_plan.pdf', 'bioplastics_research.pdf'],
     stages: [
       {
         stageNumber: 1,
@@ -63,7 +63,7 @@ const projects = [
           'Conduire une recherche initiale pour identifier les matériaux alternatifs potentiels.',
         startDate: new Date('2023-01-15'),
         endDate: new Date('2023-03-15'),
-        status: 'Completed',
+        status: 'Terminée',
       },
       {
         stageNumber: 2,
@@ -72,7 +72,7 @@ const projects = [
           'Développer des prototypes de bioplastiques à partir des matériaux identifiés.',
         startDate: new Date('2023-03-16'),
         endDate: new Date('2023-06-30'),
-        status: 'In Progress',
+        status: 'En cours',
       },
       {
         stageNumber: 3,
@@ -81,7 +81,7 @@ const projects = [
           'Tester et évaluer les prototypes pour vérifier leur viabilité et performance.',
         startDate: new Date('2023-07-01'),
         endDate: new Date('2023-12-31'),
-        status: 'Not Started',
+        status: 'Non commencée',
       },
     ],
   },
@@ -105,7 +105,7 @@ const projects = [
           'Réaliser une étude de marché pour identifier les besoins et opportunités.',
         startDate: new Date('2023-09-01'),
         endDate: new Date('2023-09-30'),
-        status: 'Not Started',
+        status: 'Non commencée',
       },
       {
         stageNumber: 2,
@@ -114,7 +114,7 @@ const projects = [
           'Concevoir le produit en fonction des résultats de l’étude de marché.',
         startDate: new Date('2023-10-01'),
         endDate: new Date('2023-11-15'),
-        status: 'Not Started',
+        status: 'Non commencée',
       },
       {
         stageNumber: 3,
@@ -123,7 +123,7 @@ const projects = [
           'Lancer une production pilote pour tester le produit sur le marché.',
         startDate: new Date('2023-11-16'),
         endDate: new Date('2024-01-15'),
-        status: 'Not Started',
+        status: 'Non commencée',
       },
     ],
   },
