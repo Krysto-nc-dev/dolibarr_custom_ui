@@ -46,6 +46,7 @@ const UserCampagneCollects = () => {
             <tr>
               <th className="px-4 py-2">Titre</th>
               <th className="px-4 py-2">Type de collecte</th>
+              <th className="px-4 py-2">Tier</th>
               <th className="px-4 py-2">Récurrence</th>
               <th className="px-4 py-2">Fréquence</th>
               <th className="px-4 py-2">Adresse</th>
@@ -58,6 +59,7 @@ const UserCampagneCollects = () => {
               <tr key={campagne._id}>
                 <td className="border px-4 py-2">{campagne.title}</td>
                 <td className="border px-4 py-2">{campagne.collectionType}</td>
+                <td className="border px-4 py-2">{campagne.dollibarTierId}</td>
                 <td className="border px-4 py-2">{campagne.recurring ? 'Oui' : 'Non'}</td>
                 <td className="border px-4 py-2">{campagne.frequency}</td>
                 <td className="border px-4 py-2">{campagne.address}</td>

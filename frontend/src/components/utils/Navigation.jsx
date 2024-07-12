@@ -68,7 +68,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     key:'collecte',
     label: 'Collectes',
     icon: <Truck/>,
-    href: '/collectes',
+    href: '/campagnes-collecte',
   },
   {
     key:'colorsCalculator',

@@ -99,7 +99,10 @@ const router = createBrowserRouter(
             path="machine-details/:id"
             element={<UserMachineAndMouldDetails />}
           />
-          <Route path="collectes" element={<UserCampagneCollects />} />
+          <Route
+            path="/campagnes-collecte"
+            element={<UserCampagneCollects />}
+          />
           <Route
             path="campagne-details/:id"
             element={<UserCampagneCollecteDetailsScreen />}
