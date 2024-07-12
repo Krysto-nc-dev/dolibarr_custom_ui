@@ -6,6 +6,7 @@ import { useGetThirdPartyDetailsQuery } from '../../slices/dolibarr/dolliThirdPa
 import { useGetCampagneCollecteByIdQuery } from '../../slices/campagneCollectApiSlice';
 import { useGetPlasticTypesQuery } from '../../slices/plasticTypesSlice';
 import { useGetPlasticColorsQuery } from '../../slices/plasticColorSlice';
+import { ResponsivePie } from '@nivo/pie';
 
 const UserCampagneCollecteDetailsScreen = () => {
   const { id: campagneId } = useParams();
@@ -49,6 +50,155 @@ const UserCampagneCollecteDetailsScreen = () => {
     const color = plasticColors.find(color => color._id === id);
     return color ? color.name : 'Couleur inconnue';
   };
+
+  // Préparer les données pour le pie chart
+  const plasticWeightsByType = campagne.collectes.reduce((acc, collecte) => {
+    const typeName = getPlasticTypeName(collecte.PlasticType);
+    if (!acc[typeName]) {
+      acc[typeName] = 0;
+    }
+    acc[typeName] += collecte.PlasticWeightKg;
+    return acc;
+  }, {});
+
+  const pieChartData = Object.keys(plasticWeightsByType).map(typeName => ({
+    id: typeName,
+    label: typeName,
+    value: plasticWeightsByType[typeName]
+  }));
+
+  const MyResponsivePie = ({ data }) => (
+    <ResponsivePie
+      data={data}
+      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+      innerRadius={0.5}
+      padAngle={0.7}
+      cornerRadius={3}
+      activeOuterRadiusOffset={8}
+      borderWidth={1}
+      borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
+      arcLinkLabelsSkipAngle={10}
+      arcLinkLabelsTextColor="#ffffff"
+      arcLinkLabelsThickness={2}
+    
+    
+      arcLinkLabelsColor={{ from: 'color' }}
+      arcLabelsSkipAngle={10}
+      tooltip={({ datum }) => (
+        <div
+          style={{
+            padding: '5px 10px',
+            fontSize: '0.8rem',
+            background: '#fff',
+            border: '1px solid #ccc',
+            color: '#777777', // Couleur du texte des infobulles en gris
+          }}
+        >
+          <strong>{datum.label}</strong>: {datum.value.toLocaleString()} Kg
+        </div>
+      )}
+      arcLabelsTextColor={{
+        from: 'color',
+        modifiers: [['darker', 4]]
+      }}
+      defs={[
+        {
+          id: 'dots',
+          type: 'patternDots',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          size: 2,
+          padding: 1,
+          stagger: true
+        },
+        {
+          id: 'lines',
+          type: 'patternLines',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          rotation: -45,
+          lineWidth: 1,
+          spacing: 10
+        }
+      ]}
+      fill={[
+        {
+          match: {
+            id: 'Mixed'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'PP'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'PS'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'OTHER'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'PET'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'HDPE'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'LDPE'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'PVC'
+          },
+          id: 'lines'
+        }
+      ]}
+      legends={[
+        {
+          anchor: 'bottom',
+          direction: 'row',
+          justify: false,
+          translateX: 0,
+          translateY: 56,
+          itemsSpacing: 0,
+          itemWidth: 100,
+          itemHeight: 18,
+          itemTextColor: '#999',
+          itemDirection: 'left-to-right',
+          itemOpacity: 1,
+          symbolSize: 18,
+          symbolShape: 'circle',
+          effects: [
+            {
+              on: 'hover',
+              style: {
+                itemTextColor: '#ffff'
+              }
+            }
+          ]
+        }
+      ]}
+      
+    />
+  );
 
   return (
     <div className="p-4 min-h-screen text-textColor">
@@ -144,6 +294,14 @@ const UserCampagneCollecteDetailsScreen = () => {
         ) : (
           <p className="text-lg">Aucune collecte disponible pour cette campagne.</p>
         )}
+      </div>
+
+      {/* Section pour afficher le diagramme en camembert */}
+      <div className="mt-6 ">
+        <h2 className="text-xl font-bold mb-2 text-primaryColor">Répartition du Poids par Type de Plastique</h2>
+        <div  className='bg-gray-700 rounded-md ' style={{ height: 400 }}>
+          <MyResponsivePie data={pieChartData} />
+        </div>
       </div>
     </div>
   );

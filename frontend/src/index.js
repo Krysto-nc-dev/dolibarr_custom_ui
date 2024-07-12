@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
+
 import App from './App'
 import NotFound from './screens/NotFound'
 import PrivateRoute from './components/utils/PrivateRoute'

@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import { useGetProjectByIdQuery } from '../../slices/projectApiSlice';
 import { FiDownload } from 'react-icons/fi';
 import { Loader } from 'lucide-react';
+import DropComponents from '../../components/DropComponents';
+import TaskBoard from '../../components/taskComponents/TaskBoard';
+
 
 const ProjectDetailsScreen = () => {
   const { id: projectId } = useParams();
@@ -117,6 +120,7 @@ const ProjectDetailsScreen = () => {
                 <th className="py-2 px-4">Numéro du Stage</th>
                 <th className="py-2 px-4">Titre</th>
                 <th className="py-2 px-4">Description</th>
+                <th className="py-2 px-4">Status</th>
                 <th className="py-2 px-4">Date de Début</th>
                 <th className="py-2 px-4">Date de Fin</th>
               </tr>
@@ -127,6 +131,7 @@ const ProjectDetailsScreen = () => {
                   <td className="py-2 px-4">{stage.stageNumber}</td>
                   <td className="py-2 px-4">{stage.title}</td>
                   <td className="py-2 px-4">{stage.description}</td>
+                  <td className="py-2 px-4">{stage.status}</td>
                   <td className="py-2 px-4">
                     {new Date(stage.startDate).toLocaleDateString()}
                   </td>
@@ -139,6 +144,7 @@ const ProjectDetailsScreen = () => {
           </table>
         </div>
       </div>
+     <TaskBoard/>
     </div>
   );
 };

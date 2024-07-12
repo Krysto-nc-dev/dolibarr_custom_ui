@@ -129,3 +129,86 @@ body{
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
+
+
+
+
+
+
+/* styles.css (ou tout autre fichier CSS de votre choix) */
+
+.task-board {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #f0f0f0;
+}
+
+.task-column {
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 10px;
+  height: 30rem;
+
+}
+
+.task-column h2 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.task-column.to-do {
+  background-color: red; /* Yellow for To Do */
+  width: 30%;
+}
+
+.task-column.in-progress {
+  background-color: orange; /* Blue for In Progress */
+  width: 30%;
+}
+
+.task-column.done {
+  background-color: #4caf50; /* Green for Done */
+  width: 30%;
+}
+
+.task-card {
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Padding inside the card */
+  margin-bottom: 8px; /* Space between cards */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: transform 0.2s ease; /* Smooth transition for transform */
+  border: none; /* Remove border */
+}
+
+.task-card.overlay {
+  opacity: 0; /* Make the overlay card disappear completely */
+  pointer-events: none; /* Ensure it doesn't interfere with interactions */
+}
+
+.drag-over {
+  background-color: #f0f0f0;
+}
+
+/* Additional styling for content inside the card */
+.task-card .content {
+  background-color: #ffffff; /* Background color for the content */
+  padding: 8px; /* Padding for the content */
+  border-radius: 8px; /* Rounded corners for the content */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for the content */
+}
+
+
+
+.todo{
+  background-color: red;
+}
+.inProgress{
+  background-color: orange;
+}
+.done{
+  background-color: green;
+}

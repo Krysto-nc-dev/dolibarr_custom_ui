@@ -127,6 +127,45 @@ const projects = [
       },
     ],
   },
+  {
+    title: 'Achat plastell (trieur de plastique par type)',
+    description: "Achat d'un plastell pour trier les plastiques par type",
+    category: 'Autres',
+    projectType: 'Court terme',
+    budget: 30000,
+    startDate: new Date('2023-09-01'),
+    endDate: new Date('2024-03-01'),
+    status: 'En cours',
+    teamMembers: ['6686899f7f0f7be0d5780338'],
+    documents: ['plastell_devis.pdf'],
+    stages: [
+      {
+        stageNumber: 1,
+        title: 'Demande de devis',
+        description: 'Demande de devis',
+        startDate: new Date('2023-09-01'),
+        endDate: new Date('2023-09-30'),
+        status: 'Terminée',
+      },
+      {
+        stageNumber: 2,
+        title: 'Validation du devis',
+        description:
+          'Concevoir le produit en fonction des résultats de l’étude de marché.',
+        startDate: new Date('2023-10-01'),
+        endDate: new Date('2023-11-15'),
+        status: 'Non commencée',
+      },
+      {
+        stageNumber: 3,
+        title: 'Reception de la machine',
+        description: 'Reception du plastell',
+        startDate: new Date('2023-11-16'),
+        endDate: new Date('2024-01-15'),
+        status: 'Non commencée',
+      },
+    ],
+  },
 ]
 
 export default projects

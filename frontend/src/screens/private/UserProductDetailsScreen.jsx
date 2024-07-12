@@ -115,28 +115,28 @@ const UserProductDetailsScreen = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4 bg-white rounded-lg shadow-md">
+    <div className="max-w-7xl mx-auto p-4  rounded-lg shadow-md">
       <div className="flex justify-between items-start mb-6">
         <div>
           <h1 className="text-xl font-bold">{product.label}</h1>
           <p className='m-2'>
             <strong>Valeur du stock:</strong>
-            <span className='text-white font-bold bg-secondaryColor py-1 px-3 rounded-full'>
+            <span className='text-white font-bold bg-gray-700 py-1 px-3 rounded-full'>
               {stockValue.toLocaleString()} XPF
             </span>
           </p>
           <p className='m-2'>
             <strong>Poids total du stock:</strong>
-            <span className='text-white font-bold bg-secondaryColor py-1 px-3 rounded-full'>
+            <span className='text-white font-bold bg-gray-700 py-1 px-3 rounded-full'>
               {totalStockWeight.toLocaleString()} kg
             </span>
           </p>
         </div>
         <Barcode value={product.barcode} />
       </div>
-      <div className="text-gray-600 mb-4" dangerouslySetInnerHTML={{ __html: product.description }} />
+      <div className="text-textColor mb-4" dangerouslySetInnerHTML={{ __html: product.description }} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-gray-100 p-4 rounded-lg">
+        <div className="bg-gray-700 p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">Détails du produit</h2>
           <p><strong>Référence:</strong> {product.ref}</p>
           <p><strong>Prix:</strong> {Number(product.price).toLocaleString()} XPF</p>
@@ -145,11 +145,11 @@ const UserProductDetailsScreen = () => {
           <p><strong>En stock:</strong> {currentStock}</p>
           <p><strong>Poids:</strong> {product.weight} Gr</p>
         </div>
-        <div className="bg-gray-100 p-4 rounded-lg">
+        <div className="bg-gray-700 p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">Informations supplémentaires</h2>
           <p>
             <strong>En vente:</strong>
-            <span className={product.status_buy === "0" ? 'text-green-700' : 'text-red-700'}>
+            <span className={product.status_buy === "0" ? 'text-green-400' : 'text-red-400'}>
               {product.status_buy === "0" ? ' Oui' : ' Non'}
             </span>
           </p>
@@ -164,7 +164,7 @@ const UserProductDetailsScreen = () => {
       {/* Section des documents */}
       <div className="mt-6">
         <h2 className="text-xl font-bold mb-4">Documents</h2>
-        <table className="min-w-full bg-white">
+        <table className="min-w-full bg-gray-700">
           <thead className="bg-primaryColor">
             <tr>
               <th className="py-2 px-4 text-left text-xs font-semibold text-white uppercase tracking-wider">Image</th>
@@ -219,13 +219,13 @@ const UserProductDetailsScreen = () => {
         <div className="flex space-x-4 mb-4">
           <input
             type="number"
-            className="p-2 border rounded"
+            className="p-2 border rounded bg-gray-700"
             placeholder="Quantité"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
           <select
-            className="p-2 border rounded"
+            className="p-2 border rounded bg-gray-700"
             value={selectedWarehouse}
             onChange={(e) => setSelectedWarehouse(e.target.value)}
           >
@@ -238,13 +238,13 @@ const UserProductDetailsScreen = () => {
           </select>
           <button
             onClick={() => handleStockMovement('add')}
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            className="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-600"
           >
             Ajouter au stock
           </button>
           <button
             onClick={() => handleStockMovement('remove')}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            className="px-4 py-2 bg-red-700 text-white rounded hover:bg-red-600"
           >
             Supprimer du stock
           </button>
@@ -261,7 +261,7 @@ const UserProductDetailsScreen = () => {
             {filteredStockMovements.map((movement) => (
               <tr
                 key={movement.id}
-                className={movement.qty > 0 ? 'bg-green-200' : 'bg-red-200'}
+                className={movement.qty > 0 ? 'bg-green-500' : 'bg-red-500'}
               >
                 <td className="py-2 px-4 border-b border-gray-200">{new Date(movement.datem * 1000).toLocaleDateString()}</td>
                 <td className="py-2 px-4 border-b border-gray-200">{Number(movement.qty).toLocaleString()}</td>
