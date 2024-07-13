@@ -89,13 +89,14 @@ const machineSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['Machine', 'Moule', 'Outillage'],
+      enum: ['Machine', 'Moule', 'Outillage', 'bureautique'],
       required: true,
     },
     type: {
       type: String,
       enum: ['injection', 'extrusion', 'compression', 'Broyeur', 'Autres'],
       required: true,
+      default: 'Autres',
     },
     provenanceCountry: {
       type: String,

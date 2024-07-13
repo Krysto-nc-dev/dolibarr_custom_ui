@@ -14,7 +14,8 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import SortableTask from './SortableTask';
 import { CSS } from '@dnd-kit/utilities';
 
-const TaskBoard = () => {
+const TaskBoard = ({stages}) => {
+    
   const [tasks, setTasks] = useState([
     { id: '1', name: 'Task 1', description: 'Description of Task 1', status: 'To Do' },
     { id: '2', name: 'Task 2', description: 'Description of Task 2', status: 'In Progress' },

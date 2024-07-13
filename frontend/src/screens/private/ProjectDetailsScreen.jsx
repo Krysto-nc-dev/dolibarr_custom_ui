@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetProjectByIdQuery } from '../../slices/projectApiSlice';
 import { FiDownload } from 'react-icons/fi';
 import { Loader } from 'lucide-react';
-import DropComponents from '../../components/DropComponents';
+
 import TaskBoard from '../../components/taskComponents/TaskBoard';
 
 
@@ -14,7 +14,7 @@ const ProjectDetailsScreen = () => {
     error: errorProject,
     isLoading: isLoadingProject,
   } = useGetProjectByIdQuery(projectId);
-
+  console.log(project);
   if (isLoadingProject) {
     return <Loader />;
   }
@@ -144,7 +144,7 @@ const ProjectDetailsScreen = () => {
           </table>
         </div>
       </div>
-     <TaskBoard/>
+     <TaskBoard />
     </div>
   );
 };

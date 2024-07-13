@@ -1,4 +1,4 @@
-import { LayoutDashboard, Box, Users, Calendar, CreditCard,  Book, DollarSign,  Warehouse, FilePen, Recycle, CookingPot, Factory, Eye, CloudDrizzle, RecycleIcon, Truck, Milk, Palette, Projector } from 'lucide-react';
+import { LayoutDashboard, Box, Users, Calendar, CreditCard,  DollarSign,  Warehouse, FilePen,  CookingPot, Factory, Eye, RecycleIcon, Truck, Milk, Palette, Projector,  Star } from 'lucide-react';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -69,6 +69,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     label: 'Collectes',
     icon: <Truck/>,
     href: '/campagnes-collecte',
+  },
+  {
+    key:'stockPlastic',
+    label: 'Stocks plastique',
+    icon: <Star />,
+    href: '/plastic-stocks',
   },
   {
     key:'colorsCalculator',

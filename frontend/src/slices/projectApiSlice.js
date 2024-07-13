@@ -49,6 +49,14 @@ export const projectApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Project'],
     }),
+    updateStage: builder.mutation({
+      query: ({ projectId, stageId, updatedStage }) => ({
+        url: `${PROJECTS_URL}/${projectId}/stages/${stageId}`,
+        method: 'PUT',
+        body: updatedStage,
+      }),
+      invalidatesTags: ['Project'],
+    }),
   }),
 })
 
@@ -60,4 +68,5 @@ export const {
   useUpdateProjectMutation,
   useDeleteProjectMutation,
   useAddStageMutation,
+  useUpdateStageMutation, // Ajout du hook pour la mise à jour d'étape
 } = projectApiSlice

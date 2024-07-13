@@ -58,6 +58,7 @@ import ProjectDetailsScreen from './screens/private/ProjectDetailsScreen.jsx'
 
 import UserCampagneCollects from './screens/private/UserCampagneCollects.jsx'
 import UserCampagneCollecteDetailsScreen from './screens/private/UserCampagneCollectDetails.jsx'
+import UserPlasticStocks from './screens/private/UserPlasticStocks.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -147,6 +148,7 @@ const router = createBrowserRouter(
           <Route path="projects/:id" element={<ProjectDetailsScreen />} />
 
           <Route path="settings" element={<UserSettingsScreen />} />
+          <Route path="plastic-stocks" element={<UserPlasticStocks />} />
         </Route>
       </Route>
 

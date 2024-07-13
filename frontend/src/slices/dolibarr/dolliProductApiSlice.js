@@ -4,11 +4,26 @@ import { apiSlice } from '../apiSlice'
 export const dolliProductApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: (mode) => {
-        const params = mode ? `mode=${mode}` : ''
+      query: ({ mode, variant_filter, category } = {}) => {
+        const params = new URLSearchParams()
+
+        if (mode) {
+          params.append('mode', mode)
+        }
+        if (variant_filter) {
+          params.append('variant_filter', variant_filter)
+        }
+        if (category) {
+          params.append('category', category)
+        }
+
+        const queryString = params.toString()
+        const url = queryString
+          ? `${DOLIBAR_URL}/products?${queryString}`
+          : `${DOLIBAR_URL}/products`
 
         return {
-          url: `${DOLIBAR_URL}/products?${params}`,
+          url: url,
           headers: {
             DOLAPIKEY: DOLIBARR_API_KEY,
           },

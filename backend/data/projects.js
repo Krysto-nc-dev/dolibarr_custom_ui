@@ -166,6 +166,37 @@ const projects = [
       },
     ],
   },
+  {
+    title: 'Demande aide crise NC Mai 2024',
+    description:
+      'Projet de développement d’un nouveau produit en plastique recyclé pour le marché.',
+    category: 'Demande de subvention',
+    projectType: 'Court terme',
+    budget: 0,
+    startDate: new Date('2024-07-11'),
+    status: 'En cours',
+    teamMembers: ['6686899f7f0f7be0d5780338'],
+    documents: ['attestation-de-depot.pdf'],
+    stages: [
+      {
+        stageNumber: 1,
+        title: 'Soumission de la Demande',
+        description:
+          'Dépot du dossier - demarches simplifiée -Numéro de dossier : 18953299',
+        startDate: new Date('2024-07-11'),
+        endDate: new Date('2024-07-11'),
+        status: 'Terminée',
+      },
+      {
+        stageNumber: 2,
+        title: 'Soumission de la Demande',
+        description: 'Examen du dossier',
+        startDate: new Date('2024-07-11'),
+
+        status: 'En cours',
+      },
+    ],
+  },
 ]
 
 export default projects
