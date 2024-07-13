@@ -27,7 +27,7 @@ const Sidebar = () => {
         
       </div>
       {!isSidebarOpen && (
-        <div className="mt-8">
+        <div className="mt-3">
           {DASHBOARD_SIDEBAR_LINKS.map((link) => (
             <Link
               to={link.href}

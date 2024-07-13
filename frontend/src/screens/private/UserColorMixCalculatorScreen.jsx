@@ -2,7 +2,7 @@ import React from 'react';
 import ColorMixCalculator from "../../components/ColorMixCalculator";
 import { useGetPlasticColorsQuery } from "../../slices/plasticColorSlice";
 import Loader from '../../components/shared/Loader';
-import ColorsCalculatorDocumentation from '../../components/utils/ColorsCalculatorDocumentation';
+
 
 const UserColorMixCalculatorScreen = () => {
   const { data: colors, error: errorColors, isLoading: loadingColors } = useGetPlasticColorsQuery();
@@ -23,7 +23,7 @@ const UserColorMixCalculatorScreen = () => {
     ) : (
         <div className="flex justify-center items-center h-screen"><span className="text-lg">Aucune couleur disponible.</span></div>
     )}
-    <ColorsCalculatorDocumentation/>
+   
     </div>
   );
 };
