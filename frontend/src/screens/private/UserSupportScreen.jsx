@@ -9,7 +9,7 @@ const UserSupportScreen = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* FAQ Section */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-gray-700 p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold mb-4 text-secondaryColor">
             FAQ
           </h2>
@@ -18,7 +18,7 @@ const UserSupportScreen = () => {
               <summary className="font-medium cursor-pointer text-lg">
                 Comment réinitialiser mon mot de passe ?
               </summary>
-              <p className="mt-2 text-gray-600 group-open:block">
+              <p className="mt-2 text-sm group-open:block">
                 Pour réinitialiser votre mot de passe, cliquez sur "Mot de passe
                 oublié" sur la page de connexion et suivez les instructions.
               </p>
@@ -27,7 +27,7 @@ const UserSupportScreen = () => {
               <summary className="font-medium cursor-pointer text-lg">
                 Comment contacter le support ?
               </summary>
-              <p className="mt-2 text-gray-600 group-open:block">
+              <p className="mt-2 text-sm group-open:block">
                 Vous pouvez contacter notre équipe de support en utilisant le
                 formulaire de contact ci-dessous ou en appelant notre ligne
                 d'assistance.
@@ -37,7 +37,7 @@ const UserSupportScreen = () => {
               <summary className="font-medium cursor-pointer text-lg">
                 Comment mettre à jour mes informations personnelles ?
               </summary>
-              <p className="mt-2 text-gray-600 group-open:block">
+              <p className="mt-2 text-sm group-open:block">
                 Pour mettre à jour vos informations personnelles, accédez à
                 votre compte et cliquez sur "Modifier le profil".
               </p>
@@ -46,7 +46,7 @@ const UserSupportScreen = () => {
               <summary className="font-medium cursor-pointer text-lg">
                 Où puis-je trouver mes factures ?
               </summary>
-              <p className="mt-2 text-gray-600 group-open:block">
+              <p className="mt-2 text-sm group-open:block">
                 Vos factures sont disponibles dans la section "Factures" de
                 votre compte. Vous pouvez les télécharger à tout moment.
               </p>
@@ -55,7 +55,7 @@ const UserSupportScreen = () => {
               <summary className="font-medium cursor-pointer text-lg">
                 Comment supprimer mon compte ?
               </summary>
-              <p className="mt-2 text-gray-600 group-open:block">
+              <p className="mt-2 text-sm group-open:block">
                 Pour supprimer votre compte, veuillez contacter notre support
                 via le formulaire de contact ou par téléphone.
               </p>
@@ -64,7 +64,7 @@ const UserSupportScreen = () => {
         </div>
 
         {/* Contact Form Section */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-gray-700 p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold mb-4 text-secondaryColor">
             Contactez-nous
           </h2>
@@ -107,7 +107,7 @@ const UserSupportScreen = () => {
       </div>
 
       {/* Additional Resources Section */}
-      <div className="bg-white p-6 rounded-lg shadow-md">
+      <div className="bg-gray-700 p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-4 text-secondaryColor">
           Ressources supplémentaires
         </h2>

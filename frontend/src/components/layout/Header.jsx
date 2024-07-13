@@ -1,4 +1,4 @@
-import { Bell, CircleUser, LogOut, MessageCircle, MessageCircleQuestion, PowerOffIcon, Search, Settings } from "lucide-react";
+import { Bell, BookOpenText, CircleUser, LogOut, MessageCircle, MessageCircleQuestion, PowerOffIcon, Search, Settings } from "lucide-react";
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from "react";
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from "../../slices/authSlice";
 import { useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../slices/userApiSlice";
+import { BsInfoCircle } from "react-icons/bs";
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -100,6 +101,7 @@ const Header = () => {
                   <div className="bg-primaryColor rounded-sm shadow-md ring-1 ring-black ring-opacity-5 text-sm">
                     <Link to="/profile" className=" px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"> <CircleUser  className='mr-2'/>  Mon profile</Link>
                     <Link to="/settings" className="px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"><Settings className="mr-2"/> Paramètres</Link>
+                    <Link to="/documentation" className="px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"> <BookOpenText className="mr-2"/> Documentation</Link>
                     <Link to="/support" className="px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center hover:no-underline"><MessageCircleQuestion className="mr-2"/> Aide & supports</Link>
                     <Link onClick={logoutHandler} className=" px-4 py-2 text-red-700 hover:bg-gray-100 flex items-center hover:no-underline "> <LogOut className="mr-2"/> Déconnexion</Link>
                   </div>
