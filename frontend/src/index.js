@@ -61,6 +61,7 @@ import UserCampagneCollecteDetailsScreen from './screens/private/UserCampagneCol
 import UserPlasticStocks from './screens/private/UserPlasticStocks.jsx'
 import UserDocumentation from './screens/private/UserDocumentation.jsx'
 import UserSupplierInvoicesScreen from './screens/private/UserSupplierInvoicesScreen.jsx'
+import UserEmailBank from './screens/private/UserEmailBank.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -156,6 +157,7 @@ const router = createBrowserRouter(
             element={<UserSupplierInvoicesScreen />}
           />
           <Route path="documentation" element={<UserDocumentation />} />
+          <Route path="mail-bank" element={<UserEmailBank />} />
         </Route>
       </Route>
 

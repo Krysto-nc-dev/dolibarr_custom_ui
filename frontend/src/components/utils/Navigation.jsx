@@ -1,4 +1,4 @@
-import { LayoutDashboard, Box, Users, Calendar, CreditCard,  DollarSign,  Warehouse, FilePen,  CookingPot, Factory, Eye, RecycleIcon, Truck, Milk, Palette, Projector,  Star, Receipt } from 'lucide-react';
+import { LayoutDashboard, Box, Users, Calendar, CreditCard,  DollarSign,  Warehouse, FilePen,  CookingPot, Factory, Eye, RecycleIcon, Truck, Milk, Palette, Projector,  Star, Receipt, Mail } from 'lucide-react';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -13,6 +13,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     label: 'Tiers',
     icon: <Users />,
     href: '/user-thirdparties',
+  },
+  {
+    key: 'emailing',
+    label: 'emailing',
+    icon:  <Mail/>,
+    href: '/mail-bank',
   },
 
   {

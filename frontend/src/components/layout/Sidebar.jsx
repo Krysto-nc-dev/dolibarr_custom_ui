@@ -21,7 +21,7 @@ const Sidebar = () => {
           {isSidebarOpen ? (
             <X className="text-red-600" size="25" />
           ) : (
-            <AlignJustify size="25" />
+            <AlignJustify size="22" />
           )}
         </button>
         
@@ -32,13 +32,13 @@ const Sidebar = () => {
             <Link
               to={link.href}
               key={link.key}
-              className={`flex items-center text-center gap-2 mb-1  px-1 py-1 rounded-lg text-[20px] ${
+              className={`flex items-center text-center gap-2 mb-[0.7px] px-1 py-1 rounded-lg text-[14px] ${
                 location.pathname === link.href
                   ? 'bg-lightColor text-white'
                   : 'text-primaryColor font-bold'
               } hover:bg-secondaryColor hover:text-backgroundColor`}
             >
-              <span className='ml-1'>
+              <span>
 
               {link.icon}
               </span>
@@ -47,12 +47,12 @@ const Sidebar = () => {
         </div>
       )}
       {isSidebarOpen && (
-        <div className="flex-1 mt-8">
+        <div className="flex-1 mt-3">
           {DASHBOARD_SIDEBAR_LINKS.map((link) => (
             <Link
               to={link.href}
               key={link.key}
-              className={`flex items-center gap-2 mb-1 px-1 py-1 rounded-lg text-[10px] ${
+              className={`flex items-center gap-2 mb-[0.7px] px-1 py-1 rounded-lg text-[10px] ${
                 location.pathname === link.href
                   ? 'bg-lightColor text-white'
                   : 'text-primaryColor font-bold'

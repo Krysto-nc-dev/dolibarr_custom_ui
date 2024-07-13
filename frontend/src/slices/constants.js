@@ -11,6 +11,7 @@ export const RECYCLABLE_PRODUCTS_URL = `/dolibarr-ui/api/recyclable-products`
 export const MACHINES_URL = `/dolibarr-ui/api/machines`
 export const PROJECTS_URL = `/dolibarr-ui/api/projects`
 export const CAMPAGNE_COLLECTE_URL = `/dolibarr-ui/api/campagnes-collecte`
+export const EMAILS_URL = `/dolibarr-ui/api/emails`
 
 // DOLIBARR
 

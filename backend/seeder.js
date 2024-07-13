@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import users from './data/users.js'
+import emails from './data/emails.js'
 import events from './data/events.js'
 import veilles from './data/veilles.js'
 import recipes from './data/recipes.js'
@@ -20,6 +21,7 @@ import PlasticColor from './models/plasticColorModel.js'
 import PlasticType from './models/plasticTypeModel.js'
 import RecyclableProduct from './models/recyclableProductModel.js'
 import Machine from './models/machineModel.js'
+import Email from './models/EmailModel.js'
 import Project from './models/ProjectModel.js'
 import CampagneCollecte from './models/CampagneCollecteModel.js'
 
@@ -40,6 +42,7 @@ const importData = async () => {
     await Machine.deleteMany()
     await Project.deleteMany()
     await CampagneCollecte.deleteMany()
+    await Email.deleteMany()
 
     await Event.insertMany(events)
     await Veille.insertMany(veilles)
@@ -50,6 +53,7 @@ const importData = async () => {
     await Machine.insertMany(machines)
     await Project.insertMany(projects)
     await CampagneCollecte.insertMany(campagnesCollectes)
+    await Email.insertMany(emails)
 
     console.log('Data Imported!'.green.inverse)
     process.exit()
@@ -70,6 +74,7 @@ const destroyData = async () => {
     await Machine.deleteMany()
     await Project.deleteMany()
     await CampagneCollecte.deleteMany()
+    await Email.deleteMany()
 
     console.log('Data Destroyed!'.red.inverse)
     process.exit()
