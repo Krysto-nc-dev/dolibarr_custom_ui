@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Loader } from 'lucide-react';
 import {
   useGetCashierByIdQuery,
   useAddSaleMutation,
-} from '../../slices/cashierApiSlice'
-import { Loader } from 'lucide-react'
-import { useGetProductsQuery } from '../../slices/dolibarr/dolliProductApiSlice'
+} from '../../slices/cashierApiSlice';
+import { useGetProductsQuery } from '../../slices/dolibarr/dolliProductApiSlice';
 
 const UserCashierDetailsScreen = () => {
-  const { id: cashierId } = useParams()
+  const { id: cashierId } = useParams();
 
-  // State to manage form data
   const [formData, setFormData] = useState({
     clientFirstname: '',
     clientLastname: '',
@@ -19,14 +18,14 @@ const UserCashierDetailsScreen = () => {
     touriste: false,
     clientCountry: 'Nouvelle-Calédonie',
     products: [],
-  })
+  });
 
-  // Hooks to fetch cashier details by ID and list of products
   const {
     data: cashierDetails,
     error: errorCashierDetails,
     isLoading: loadingCashierDetails,
-  } = useGetCashierByIdQuery(cashierId)
+  } = useGetCashierByIdQuery(cashierId);
+
   const {
     data: products,
     error: productError,
@@ -34,100 +33,124 @@ const UserCashierDetailsScreen = () => {
   } = useGetProductsQuery({
     mode: '1',
     variant_filter: '1',
-  })
+  });
 
-  // Hook to add a sale
-  const [addSale, { isLoading: addingSale }] = useAddSaleMutation()
+  const [addSale, { isLoading: addingSale }] = useAddSaleMutation();
 
-  // Update formData.products when products change
   useEffect(() => {
     if (products) {
       const initialProductsState = products.map((product) => ({
         productId: product.id,
-        unitPrice: parseFloat(product.price) || 0, // Handle cases where price might be undefined or NaN
+        unitPrice: parseFloat(product.price) || 0,
         quantity: 0,
         subTotal: 0,
-      }))
+      }));
       setFormData((prevState) => ({
         ...prevState,
         products: initialProductsState,
-      }))
+      }));
     }
-  }, [products])
+  }, [products]);
 
-  // Function to handle form field changes
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    const newValue = type === 'checkbox' ? checked : value
+    const { name, value, type, checked } = e.target;
+    const newValue = type === 'checkbox' ? checked : value;
 
     setFormData((prevState) => ({
       ...prevState,
       [name]: newValue,
-    }))
-  }
+    }));
+  };
 
-  // Function to handle product change with quantity
   const handleProductChange = (productId, unitPriceStr, quantity) => {
-    const unitPrice = parseFloat(unitPriceStr)
+    const unitPrice = parseFloat(unitPriceStr);
 
-    const updatedProducts = formData.products.map((product) => {
-      if (product.productId === productId) {
-        return {
-          ...product,
-          quantity,
-          subTotal: unitPrice * quantity,
-        }
-      }
-      return product
-    })
+    const updatedProducts = formData.products.map((product) =>
+      product.productId === productId
+        ? { ...product, quantity, subTotal: unitPrice * quantity }
+        : product
+    );
 
     setFormData((prevState) => ({
       ...prevState,
       products: updatedProducts,
-    }))
-  }
+    }));
+  };
 
-  // Function to submit the sale form
   const handleSubmitSale = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+  
+    const filteredProducts = formData.products
+      .filter((product) => product.quantity > 0)
+      .map((product) => ({
+        productID: product.productId,
+        unitPrice: product.unitPrice,
+        quantity: product.quantity,
+      }));
+  
+    const saleData = {
+      sale: {
+        clientFirstname: formData.clientFirstname,
+        clientLastname: formData.clientLastname,
+        clientMail: formData.clientMail,
+        clientCity: formData.clientCity,
+        touriste: formData.touriste,
+        clientCountry: formData.clientCountry,
+        title: "Achat divers", // Ajoutez le titre si nécessaire
+        products: filteredProducts,
+      },
+    };
+  
     try {
-      await addSale({ cashierId, sale: formData })
-      // Refresh cashier details after adding the sale
-      // You can add logic here to refresh the data
+      await addSale({ cashierId, sale: saleData });
+      console.log('Sale added successfully');
+      // Réinitialiser le formulaire après l'ajout réussi
+      setFormData({
+        clientFirstname: '',
+        clientLastname: '',
+        clientMail: '',
+        clientCity: '',
+        touriste: false,
+        clientCountry: 'Nouvelle-Calédonie',
+        products: formData.products.map((product) => ({
+          ...product,
+          quantity: 0,
+          subTotal: 0,
+        })),
+      });
     } catch (error) {
-      console.error('Error adding sale:', error)
+      console.error('Error adding sale:', error);
     }
-  }
+  };
 
-  // Display loader while loading data
   if (loadingCashierDetails || loadingProducts) {
-    return <Loader />
+    return <Loader />;
   }
 
-  // Handle errors if the request fails
   if (errorCashierDetails || productError) {
     return (
       <div className="mx-auto p-4 text-red-500">
         Error: {errorCashierDetails?.message || productError?.message}
       </div>
-    )
+    );
   }
 
-  // Display cashier details if data is loaded
   return (
     <div className="mx-auto p-4">
-      <div className="bg-gray-700 rounded-lg shadow-md p-6">
+      <div className="rounded-lg shadow-md p-6">
         <div className="flex justify-between items-center mb-5">
           <div>{cashierDetails && cashierDetails.tierId}</div>
           <div className="mb-4">
             <span
               className={`px-2 py-1 rounded ${
-                cashierDetails.status === 'Ouvert'
+                cashierDetails && cashierDetails.status === 'Ouvert'
                   ? 'bg-green-500 text-white'
                   : 'bg-red-500 text-white'
               }`}
             >
-              {cashierDetails.status === 'Ouvert' ? 'Ouvert' : 'Fermé'}
+              {cashierDetails && cashierDetails.status === 'Ouvert'
+                ? 'Ouvert'
+                : 'Fermé'}
             </span>
           </div>
         </div>
@@ -189,9 +212,9 @@ const UserCashierDetailsScreen = () => {
                     <tbody className="divide-y divide-gray-200">
                       {sale.products.map((product, prodIndex) => {
                         const matchedProduct = products.find(
-                          (p) => p.id === product.productId,
-                        )
-                        if (!matchedProduct) return null // Handle case where product not found
+                          (p) => p.id === product.productId
+                        );
+                        if (!matchedProduct) return null;
 
                         return (
                           <tr key={prodIndex}>
@@ -211,7 +234,7 @@ const UserCashierDetailsScreen = () => {
                               {Math.floor(product.subTotal)} XPF
                             </td>
                           </tr>
-                        )
+                        );
                       })}
                     </tbody>
                   </table>
@@ -235,7 +258,7 @@ const UserCashierDetailsScreen = () => {
               <div>
                 <label
                   htmlFor="clientFirstname"
-                  className="block text-sm font-medium text-gray-100"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Prénom
                 </label>
@@ -246,13 +269,13 @@ const UserCashierDetailsScreen = () => {
                   value={formData.clientFirstname}
                   onChange={handleChange}
                   required
-                  className="mt-1 bg-gray-500 text-gray-200 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
                 />
               </div>
               <div>
                 <label
                   htmlFor="clientLastname"
-                  className="block text-sm font-medium text-gray-100"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Nom
                 </label>
@@ -263,13 +286,13 @@ const UserCashierDetailsScreen = () => {
                   value={formData.clientLastname}
                   onChange={handleChange}
                   required
-                  className="mt-1 bg-gray-500 text-gray-200 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
                 />
               </div>
               <div>
                 <label
                   htmlFor="clientMail"
-                  className="block text-sm font-medium text-gray-100"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Email
                 </label>
@@ -280,13 +303,13 @@ const UserCashierDetailsScreen = () => {
                   value={formData.clientMail}
                   onChange={handleChange}
                   required
-                  className="mt-1 bg-gray-500 text-gray-200 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
                 />
               </div>
               <div>
                 <label
                   htmlFor="clientCity"
-                  className="block text-sm font-medium text-gray-100"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Ville
                 </label>
@@ -297,103 +320,93 @@ const UserCashierDetailsScreen = () => {
                   value={formData.clientCity}
                   onChange={handleChange}
                   required
-                  className="mt-1 bg-gray-500 text-gray-200 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
                 />
               </div>
               <div className="col-span-2">
-                <label htmlFor="touriste" className="flex items-center">
+                <label className="flex items-center text-sm font-medium text-gray-700">
                   <input
-                    type="checkbox"
                     id="touriste"
                     name="touriste"
+                    type="checkbox"
                     checked={formData.touriste}
                     onChange={handleChange}
-                    className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                    className="mr-2 bg-gray-100 text-primaryColor focus:ring-primaryColor rounded-md"
                   />
-                  <span className="ml-2 text-sm text-gray-100">
-                    Client Touriste
-                  </span>
+                  <span className="block">Touriste</span>
                 </label>
-              </div>
-              <div>
-                <label
-                  htmlFor="clientCountry"
-                  className="block text-sm font-medium text-gray-100"
-                >
-                  Pays
-                </label>
-                <select
-                  id="clientCountry"
-                  name="clientCountry"
-                  value={formData.clientCountry}
-                  onChange={handleChange}
-                  className="mt-1   block w-full pl-3 pr-10 py-2 text-base bg-gray-500 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                >
-                  {[
-                    'Australie',
-                    'France',
-                    'Nouvelle-Zélande',
-                    'Chine',
-                    'Japon',
-                    'Autres',
-                    'Nouvelle-Calédonie',
-                  ].map((country, index) => (
-                    <option key={index} value={country}>
-                      {country}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Produits
-              </label>
-              {products.map((product) => (
-                <div
-                  key={product.id}
-                  className="grid grid-cols-3 items-center mb-2"
-                >
-                  <label
-                    htmlFor={`product-${product.id}`}
-                    className="ml-2 block text-sm text-gray-100 col-span-2"
-                  >
-                    {product.label} -{' '}
-                    {product.price !== undefined
-                      ? `${Math.floor(parseFloat(product.price))} XPF`
-                      : 'Prix non disponible'}
-                  </label>
-                  <select
-                    id={`product-${product.id}`}
-                    name={`product-${product.id}`}
-                    onChange={(e) => {
-                      const quantity = parseInt(e.target.value, 10)
-                      handleProductChange(product.id, product.price, quantity)
-                    }}
-                    className="ml-2 block text-sm bg-gray-500 text-gray-200 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md col-span-1"
-                  >
-                    {[...Array(10).keys()].map((num) => (
-                      <option key={num} value={num}>
-                        {num}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ))}
+              <h4 className="text-lg font-medium mb-2">Produits</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
+                {formData.products.map((product, index) => (
+                  <div key={index} className="flex items-center">
+                    <label
+                      htmlFor={`quantity-${product.productId}`}
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      {product.productId}
+                    </label>
+                    <input
+                      type="number"
+                      id={`quantity-${product.productId}`}
+                      name={`quantity-${product.productId}`}
+                      value={product.quantity}
+                      onChange={(e) =>
+                        handleProductChange(
+                          product.productId,
+                          product.unitPrice,
+                          parseInt(e.target.value, 10)
+                        )
+                      }
+                      className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-24 shadow-sm sm:text-sm rounded-md"
+                    />
+                    <span className="ml-2 text-gray-700">
+                      XPF {Math.floor(product.unitPrice)}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div>
+            <div className="mb-4">
               <button
                 type="submit"
-                className="inline-flex w-full items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className={`inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primaryColor hover:bg-primaryColorFocus focus:outline-none focus:border-primaryColor focus:shadow-outline-primaryColor active:bg-primaryColorActive transition ease-in-out duration-150 ${
+                  addingSale ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={addingSale}
               >
-                {addingSale ? 'Ajout en cours...' : 'Ajouter la vente'}
+                {addingSale ? (
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V2.83a1 1 0 00-2 0V4a6 6 0 00-6 6h2.83a1 1 0 000-2H4z"
+                    ></path>
+                  </svg>
+                ) : null}
+                Ajouter une vente
               </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UserCashierDetailsScreen
+export default UserCashierDetailsScreen;

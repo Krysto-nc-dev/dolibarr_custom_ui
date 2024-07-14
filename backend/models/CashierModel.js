@@ -102,6 +102,9 @@ cashierSchema.pre('validate', function (next) {
   this.sales.forEach((sale) => {
     let saleTotal = 0
 
+    // Filtrer les produits avec une quantité de 0
+    sale.products = sale.products.filter((product) => product.quantity > 0)
+
     sale.products.forEach((product) => {
       product.subTotal = product.unitPrice * product.quantity // Calcul du sous-total pour chaque produit
       saleTotal += product.subTotal

@@ -110,12 +110,14 @@ const deleteCashier = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Add sale to cashier for the day
-// @route   POST /api/cashiers/:cashierId/sales
-// @access  Public
 const addSale = asyncHandler(async (req, res) => {
   const { cashierId } = req.params
   const { sale } = req.body
+
+  if (!sale || !Array.isArray(sale.products)) {
+    res.status(400)
+    throw new Error('Invalid sale data: sale and sale.products are required')
+  }
 
   try {
     const cashier = await Cashier.findById(cashierId)
@@ -125,15 +127,23 @@ const addSale = asyncHandler(async (req, res) => {
       throw new Error('Cashier not found')
     }
 
-    // Calculate subTotal for each product in the sale
+    // Filtrer les produits avec une quantité de 0
+    sale.products = sale.products.filter((product) => product.quantity > 0)
+
+    if (sale.products.length === 0) {
+      res.status(400)
+      throw new Error('No valid products in the sale')
+    }
+
+    // Recalculer subTotal pour chaque produit dans la vente
     sale.products.forEach((product) => {
       product.subTotal = product.unitPrice * product.quantity
     })
 
+    // Ajouter la vente au caissier
     cashier.sales.push(sale)
 
-    // Recalculate total day sales and total sales using middleware
-
+    // Sauvegarder le caissier mis à jour dans la base de données
     const updatedCashier = await cashier.save()
     res.status(201).json(updatedCashier)
   } catch (error) {
