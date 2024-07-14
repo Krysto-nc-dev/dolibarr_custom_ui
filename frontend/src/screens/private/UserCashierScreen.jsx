@@ -12,6 +12,8 @@ const UserCashierScreen = () => {
     const { data: cashiers, error: cashiersError, isLoading: loadingCashier, refetch: refetchCashiers } = useGetCashiersQuery();
     const { data: thirdParties, error: errorThirdParties, isLoading: loadingThirdParties } = useGetThirdPartiesQuery({ mode: "1" });
     const [addCashier] = useCreateCashierMutation();
+
+    console.log(cashiers);
     const [showModal, setShowModal] = useState(false);
     const [formData, setFormData] = useState({
         date: '',
@@ -96,7 +98,7 @@ const UserCashierScreen = () => {
 
     // Fonction pour obtenir la classe CSS en fonction du statut du caissier
     const getStatusColor = (status) => {
-        return status === 'ouvert' ? 'bg-green-500 text-white' : 'bg-red-500 text-white';
+        return status === 'Ouvert' ? 'bg-green-500 text-white' : 'bg-red-500 text-white';
     };
 
     if (loadingCashier || loadingThirdParties) {
@@ -150,7 +152,7 @@ const UserCashierScreen = () => {
                                     </td>
                                     <td className="py-3 px-2 text-center">
                                         <span className={`flex items-center justify-center px-10 py-1 rounded-full font-bold ${getStatusColor(cashier.status)}`}>
-                                            {cashier.status === 'ouvert' ? 'Ouvert' : 'Fermé'}
+                                            {cashier.status === 'Ouvert' ? 'Ouvert' : 'Fermé'}
                                         </span>
                                     </td>
                                     <td className="py-3 px-2 text-right">

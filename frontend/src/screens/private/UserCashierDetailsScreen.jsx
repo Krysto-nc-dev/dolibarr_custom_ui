@@ -1,68 +1,75 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useGetCashierByIdQuery } from '../../slices/cashierApiSlice'
-import { Loader } from 'lucide-react'
-import { useGetProductsQuery } from '../../slices/dolibarr/dolliProductApiSlice'
-import { useGetThirdPartyDetailsQuery } from '../../slices/dolibarr/dolliThirdPartyApiSlice'
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useGetCashierByIdQuery } from '../../slices/cashierApiSlice';
+import { Loader } from 'lucide-react';
+import { useGetProductsQuery } from '../../slices/dolibarr/dolliProductApiSlice';
+import { useGetThirdPartiesQuery } from '../../slices/dolibarr/dolliThirdPartyApiSlice';
 
 const UserCashierDetailsScreen = () => {
-  const { id: cashierId } = useParams()
+  const { id: cashierId } = useParams();
 
   // Utilisation du hook pour récupérer les détails du caissier par ID
   const {
     data: cashierDetails,
     error: errorCashierDetails,
     isLoading: loadingCashierDetails,
-  } = useGetCashierByIdQuery(cashierId)
+  } = useGetCashierByIdQuery(cashierId);
+
+  // Utilisation du hook pour récupérer les tiers
+  const {
+    data: tiers,
+    error: errorTiers,
+    isLoading: loadingTiers,
+  } = useGetThirdPartiesQuery();
+
+  // Utilisation du hook pour récupérer les produits
   const {
     data: products,
     error: errorProducts,
     isLoading: loadingProducts,
-  } = useGetProductsQuery()
-  const {
-    data: tier,
-    error: errorTier,
-    isLoading: loadingTier,
-  } = useGetThirdPartyDetailsQuery(cashierDetails.tierId) // Récupération des détails du tiers
+  } = useGetProductsQuery();
 
-  if (loadingCashierDetails || loadingProducts || loadingTier) {
-    return <Loader /> // Affichage d'un loader pendant le chargement des données
+  if (loadingCashierDetails || loadingProducts || loadingTiers) {
+    return <Loader />; // Affichage d'un loader pendant le chargement des données
   }
 
-  if (errorCashierDetails || errorProducts || errorTier) {
+  if (errorCashierDetails || errorProducts || errorTiers) {
     return (
       <div className="mx-auto p-4 text-red-500">
         Error: {errorCashierDetails && errorCashierDetails.message}{' '}
         {errorProducts && errorProducts.message}{' '}
-        {errorTier && errorTier.message}
+        {errorTiers && errorTiers.message}
       </div>
-    ) // Gestion de l'erreur si la requête échoue
+    ); // Gestion de l'erreur si la requête échoue
   }
 
   // Fonction pour récupérer le nom et la référence du produit à partir de son ID
   const getProductDetailsById = (productId) => {
-    const product = products.find((prod) => prod.id === productId)
+    const product = products.find((prod) => prod.id === productId);
     return product
       ? { name: product.label, reference: product.ref }
-      : { name: 'Produit inconnu', reference: 'Référence inconnue' }
-  }
+      : { name: 'Produit inconnu', reference: 'Référence inconnue' };
+  };
+
+  // Récupération du tiers correspondant à cashierDetails.tierId
+  const tier = tiers.find((tier) => tier.id === cashierDetails.tierId);
 
   // Si les données sont chargées et qu'il n'y a pas d'erreur, afficher les détails du caissier
   return (
     <div className="mx-auto p-4">
       <div className="bg-gray-700 rounded-lg shadow-md p-6">
         <div className="flex justify-between items-center mb-5">
-          <div>{tier.name}</div>
+          <div>{tier ? tier.name : 'Nom du tier inconnu'}</div>
 
           <div className="mb-4">
             <span
               className={`px-2 py-1 rounded ${
-                cashierDetails.status === 'ouvert'
+                cashierDetails.status === 'Ouvert'
                   ? 'bg-green-500 text-white'
                   : 'bg-red-500 text-white'
               }`}
             >
-              {cashierDetails.status === 'ouvert' ? 'Ouvert' : 'Fermé'}
+              {cashierDetails.status === 'Ouvert' ? 'Ouvert' : 'Fermé'}
             </span>
           </div>
         </div>
@@ -83,10 +90,9 @@ const UserCashierDetailsScreen = () => {
             >
               <div className="flex justify-between mb-2">
                 <div className="text-sm">
-                  <strong className=''>Client:</strong> {sale.clientFirstname}{' '}
-                  {sale.clientLastname}
+                  <strong className="">Client:</strong>{' '}
+                  {sale.clientFirstname} {sale.clientLastname}
                 </div>
-
                 <div className="text-sm mb-2">
                   <strong>Email:</strong> {sale.clientMail}
                 </div>
@@ -94,7 +100,6 @@ const UserCashierDetailsScreen = () => {
                   <strong>Ville:</strong> {sale.clientCity}
                 </div>
               </div>
-
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-200">
                   <tr>
@@ -119,10 +124,12 @@ const UserCashierDetailsScreen = () => {
                   {sale.products.map((product, prodIndex) => {
                     const { name, reference } = getProductDetailsById(
                       product.productID,
-                    )
+                    );
                     return (
                       <tr key={prodIndex}>
-                        <td className="px-3 py-2 whitespace-nowrap">{name}</td>
+                        <td className="px-3 py-2 whitespace-nowrap">
+                          {name}
+                        </td>
                         <td className="px-3 py-2 whitespace-nowrap">
                           {reference}
                         </td>
@@ -136,7 +143,7 @@ const UserCashierDetailsScreen = () => {
                           {product.subTotal} XPF
                         </td>
                       </tr>
-                    )
+                    );
                   })}
                 </tbody>
               </table>
@@ -150,7 +157,7 @@ const UserCashierDetailsScreen = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UserCashierDetailsScreen
+export default UserCashierDetailsScreen;
