@@ -5,10 +5,9 @@ import Cashier from '../models/CashierModel.js'
 // @route   POST /api/cashiers
 // @access  Public
 const createCashier = asyncHandler(async (req, res) => {
-  const { date, tierId, status } = req.body // Assurez-vous de récupérer tierId et status depuis req.body
+  const { date, tierId, status, placePrice } = req.body
 
   try {
-    // Vérifier si un enregistrement de caissier existe déjà pour cette date
     const existingCashier = await Cashier.findOne({ date })
 
     if (existingCashier) {
@@ -16,7 +15,6 @@ const createCashier = asyncHandler(async (req, res) => {
       throw new Error('Cashier record already exists for this date')
     }
 
-    // Créer un nouvel objet de caissier avec toutes les données nécessaires
     const cashier = new Cashier({
       date,
       sales: [],
@@ -24,9 +22,9 @@ const createCashier = asyncHandler(async (req, res) => {
       totalSales: 0,
       tierId,
       status,
+      placePrice, // Default placePrice to 0
     })
 
-    // Sauvegarder le nouveau caissier créé dans la base de données
     const createdCashier = await cashier.save()
     res.status(201).json(createdCashier)
   } catch (error) {
@@ -68,7 +66,7 @@ const getCashierById = asyncHandler(async (req, res) => {
 // @route   PUT /api/cashiers/:id
 // @access  Public
 const updateCashier = asyncHandler(async (req, res) => {
-  const { date, sales, totalDaySales, tierId, status } = req.body
+  const { date, sales, totalDaySales, tierId, status, placePrice } = req.body
 
   try {
     const cashier = await Cashier.findById(req.params.id)
@@ -79,6 +77,7 @@ const updateCashier = asyncHandler(async (req, res) => {
       cashier.totalDaySales = totalDaySales || cashier.totalDaySales
       cashier.tierId = tierId || cashier.tierId
       cashier.status = status || cashier.status
+      cashier.placePrice = placePrice || cashier.placePrice
 
       const updatedCashier = await cashier.save()
       res.status(200).json(updatedCashier)
@@ -110,6 +109,9 @@ const deleteCashier = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Add sale to cashier record
+// @route   POST /api/cashiers/:cashierId/add-sale
+// @access  Public
 const addSale = asyncHandler(async (req, res) => {
   const { cashierId } = req.params
   const { sale } = req.body
@@ -127,7 +129,7 @@ const addSale = asyncHandler(async (req, res) => {
       throw new Error('Cashier not found')
     }
 
-    // Filtrer les produits avec une quantité de 0
+    // Filter products with quantity > 0
     sale.products = sale.products.filter((product) => product.quantity > 0)
 
     if (sale.products.length === 0) {
@@ -135,15 +137,15 @@ const addSale = asyncHandler(async (req, res) => {
       throw new Error('No valid products in the sale')
     }
 
-    // Recalculer subTotal pour chaque produit dans la vente
+    // Calculate subTotal for each product in the sale
     sale.products.forEach((product) => {
       product.subTotal = product.unitPrice * product.quantity
     })
 
-    // Ajouter la vente au caissier
+    // Add the sale to cashier's sales array
     cashier.sales.push(sale)
 
-    // Sauvegarder le caissier mis à jour dans la base de données
+    // Save the updated cashier in the database
     const updatedCashier = await cashier.save()
     res.status(201).json(updatedCashier)
   } catch (error) {

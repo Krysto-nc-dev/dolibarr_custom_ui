@@ -2,6 +2,7 @@ const cashiers = [
   {
     date: new Date('2024-07-01'),
     tierId: '36',
+    placePrice: 30000,
     status: 'Fermé',
     sales: [
       {
@@ -38,6 +39,8 @@ const cashiers = [
   {
     date: new Date('2024-07-02'),
     tierId: '55',
+    placePrice: 20000,
+
     status: 'Fermé',
     sales: [
       {

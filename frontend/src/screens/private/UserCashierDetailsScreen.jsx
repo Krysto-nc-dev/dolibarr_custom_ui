@@ -17,6 +17,7 @@ const UserCashierDetailsScreen = () => {
     clientCity: '',
     touriste: false,
     clientCountry: 'Nouvelle-Calédonie',
+    paymentMethod: 'Espèces',
     products: [],
   });
 
@@ -44,6 +45,8 @@ const UserCashierDetailsScreen = () => {
         unitPrice: parseFloat(product.price) || 0,
         quantity: 0,
         subTotal: 0,
+        label: product.label,
+        ref: product.ref,
       }));
       setFormData((prevState) => ({
         ...prevState,
@@ -139,7 +142,7 @@ const UserCashierDetailsScreen = () => {
     <div className="mx-auto p-4">
       <div className="rounded-lg shadow-md p-6">
         <div className="flex justify-between items-center mb-5">
-          <div>{cashierDetails && cashierDetails.tierId}</div>
+          <div>tiers id : {cashierDetails && cashierDetails.tierId}</div>
           <div className="mb-4">
             <span
               className={`px-2 py-1 rounded ${
@@ -162,6 +165,12 @@ const UserCashierDetailsScreen = () => {
               new Date(cashierDetails.date).toLocaleDateString()}
           </div>
         </div>
+        <div className="mb-4 flex justify-between">
+  <div>Prix de l'inscription</div>
+  <div>
+    {cashierDetails && cashierDetails.placePrice} XPF
+  </div>
+</div>
         <div className="mb-4 flex justify-between">
           <div>Chiffre d'affaires</div>
           <div>
@@ -323,6 +332,40 @@ const UserCashierDetailsScreen = () => {
                   className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
                 />
               </div>
+              <div>
+                <label
+                  htmlFor="clientCountry"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Pays
+                </label>
+                <input
+                  type="text"
+                  id="clientCountry"
+                  name="clientCountry"
+                  value={formData.clientCountry}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="paymentMethod"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Mode de paiment
+                </label>
+                <input
+                  type="text"
+                  id="paymentMethod"
+                  name="paymentMethod"
+                  value={formData.paymentMethod}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
+                />
+              </div>
               <div className="col-span-2">
                 <label className="flex items-center text-sm font-medium text-gray-700">
                   <input
@@ -346,7 +389,7 @@ const UserCashierDetailsScreen = () => {
                       htmlFor={`quantity-${product.productId}`}
                       className="block text-sm font-medium text-gray-700"
                     >
-                      {product.productId}
+                      {product.label}
                     </label>
                     <input
                       type="number"
@@ -364,6 +407,9 @@ const UserCashierDetailsScreen = () => {
                     />
                     <span className="ml-2 text-gray-700">
                       XPF {Math.floor(product.unitPrice)}
+                    </span>
+                    <span className="ml-2 text-gray-700">
+                      Réf: {product.ref}
                     </span>
                   </div>
                 ))}

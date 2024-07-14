@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+
   quantity: {
     type: Number,
     required: true,
@@ -52,6 +53,12 @@ const saleSchema = new mongoose.Schema(
       required: true,
       default: 'Nouvelle-Calédonie',
     },
+    PaymentMethod: {
+      type: String,
+      enum: ['Chéque', 'Espèces', 'Carte Bancaire'],
+      required: true,
+      default: 'Espèces',
+    },
     title: {
       type: String,
       required: true,
@@ -70,6 +77,10 @@ const cashierSchema = new mongoose.Schema(
     date: {
       type: Date,
       required: true,
+    },
+    placePrice: {
+      type: Number,
+      default: 0, // Définir une valeur par défaut à 0 si nécessaire
     },
     sales: [saleSchema], // Tableau des ventes réalisées dans la journée
     totalDaySales: {
