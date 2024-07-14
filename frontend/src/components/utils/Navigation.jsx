@@ -1,4 +1,4 @@
-import { LayoutDashboard, Box, Users, Calendar, CreditCard,  DollarSign,  Warehouse, FilePen,  CookingPot, Factory, Eye, RecycleIcon, Truck, Milk, Palette, Projector,  Star, Receipt, Mail } from 'lucide-react';
+import { LayoutDashboard, Box, Users, Calendar, CreditCard,  DollarSign,  Warehouse, FilePen,  CookingPot, Factory, Eye, RecycleIcon, Truck, Milk, Palette, Projector,  Star, Receipt, Mail, ScanBarcode } from 'lucide-react';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -52,10 +52,16 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     href: '/supplier-invoices',
   },
   {
-    key: 'banques & caisses',
-    label: 'Banques & Caisses',
+    key: 'banques',
+    label: 'Comptes bancaires',
     icon: <CreditCard />,
     href: '/banks',
+  },
+  {
+    key: 'Caisse',
+    label: 'Caisse',
+    icon: <ScanBarcode />,
+    href: '/cashier',
   },
 
   {

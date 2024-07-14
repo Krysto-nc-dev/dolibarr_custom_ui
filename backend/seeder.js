@@ -5,6 +5,7 @@ import users from './data/users.js'
 import emails from './data/emails.js'
 import events from './data/events.js'
 import veilles from './data/veilles.js'
+import cashiers from './data/cashiers.js'
 import recipes from './data/recipes.js'
 import plasticColors from './data/plastic_colors.js'
 import plasticTypes from './data/plastic_types.js'
@@ -23,6 +24,7 @@ import RecyclableProduct from './models/recyclableProductModel.js'
 import Machine from './models/machineModel.js'
 import Email from './models/EmailModel.js'
 import Project from './models/ProjectModel.js'
+import Cashier from './models/CashierModel.js'
 import CampagneCollecte from './models/CampagneCollecteModel.js'
 
 import connectDB from './config/db.js'
@@ -43,6 +45,7 @@ const importData = async () => {
     await Project.deleteMany()
     await CampagneCollecte.deleteMany()
     await Email.deleteMany()
+    await Cashier.deleteMany()
 
     await Event.insertMany(events)
     await Veille.insertMany(veilles)
@@ -52,6 +55,7 @@ const importData = async () => {
     await RecyclableProduct.insertMany(recyclableProducts)
     await Machine.insertMany(machines)
     await Project.insertMany(projects)
+    await Cashier.insertMany(cashiers)
     await CampagneCollecte.insertMany(campagnesCollectes)
     await Email.insertMany(emails)
 
@@ -75,6 +79,7 @@ const destroyData = async () => {
     await Project.deleteMany()
     await CampagneCollecte.deleteMany()
     await Email.deleteMany()
+    await Cashier.deleteMany()
 
     console.log('Data Destroyed!'.red.inverse)
     process.exit()

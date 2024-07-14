@@ -1,18 +1,28 @@
-import { DOLIBAR_URL } from '../../constants'
-import { DOLIBARR_API_KEY } from '../../constants'
+import { DOLIBAR_URL, DOLIBARR_API_KEY } from '../../constants'
 import { apiSlice } from '../apiSlice'
 
 export const dolliThirdPartyApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getThirdParties: builder.query({
-      query: () => {
-        // Commencez par les paramètres fixes.
-        // obtiens tout les produits et service avec le tag SOLEN (19)
-        let params = `limit=100000`
+      query: ({ mode, category } = {}) => {
+        const params = new URLSearchParams()
 
-        // Construisez l'URL complète avec les paramètres.
+        params.append('limit', '100000')
+
+        if (mode) {
+          params.append('mode', mode)
+        }
+        if (category) {
+          params.append('category', category)
+        }
+
+        const queryString = params.toString()
+        const url = queryString
+          ? `${DOLIBAR_URL}/thirdparties?${queryString}`
+          : `${DOLIBAR_URL}/thirdparties`
+
         return {
-          url: `${DOLIBAR_URL}/thirdparties?${params}`,
+          url: url,
           headers: {
             DOLAPIKEY: DOLIBARR_API_KEY,
           },
@@ -36,6 +46,5 @@ export const dolliThirdPartyApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetThirdPartiesQuery,
   useGetThirdPartyDetailsQuery,
-
   // Ajoutez d'autres exports ici pour les autres queries, mutations, etc.
 } = dolliThirdPartyApiSlice

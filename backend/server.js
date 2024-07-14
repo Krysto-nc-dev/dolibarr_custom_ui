@@ -18,6 +18,7 @@ import recyclableProductRoutes from './routes/recyclableProductRoutes.js'
 import machineRoutes from './routes/machineRoutes.js'
 import projectRoutes from './routes/projectRoutes.js'
 import emailRoutes from './routes/emailRoutes.js'
+import cashierRoutes from './routes/cashierRouter.js'
 import campagneCollectRoutes from './routes/campagneCollectRouter.js' // Importez le routeur de campagneCollect
 
 const port = process.env.PORT || 5000
@@ -47,6 +48,7 @@ app.use('/dolibarr-ui/api/machines', machineRoutes)
 app.use('/dolibarr-ui/api/projects', projectRoutes)
 app.use('/dolibarr-ui/api/campagnes-collecte', campagneCollectRoutes)
 app.use('/dolibarr-ui/api/emails', emailRoutes)
+app.use('/dolibarr-ui/api/cashiers', cashierRoutes)
 
 const __dirname = path.resolve()
 // Permet d'accéder aux fichiers dans le répertoire 'uploads'

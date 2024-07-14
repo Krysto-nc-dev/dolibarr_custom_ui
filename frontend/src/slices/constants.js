@@ -12,6 +12,7 @@ export const MACHINES_URL = `/dolibarr-ui/api/machines`
 export const PROJECTS_URL = `/dolibarr-ui/api/projects`
 export const CAMPAGNE_COLLECTE_URL = `/dolibarr-ui/api/campagnes-collecte`
 export const EMAILS_URL = `/dolibarr-ui/api/emails`
+export const CASHIERS_URL = `/dolibarr-ui/api/cashiers`
 
 // DOLIBARR
 

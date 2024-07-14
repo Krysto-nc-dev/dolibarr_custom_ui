@@ -9,13 +9,13 @@ import { Outlet } from 'react-router-dom'
 const App = () => {
   return (
     <div>
-      <ToastContainer />
       <ScrollToTop />
       <div className="bg-backgroundColor">
         <div>
           <Outlet />
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

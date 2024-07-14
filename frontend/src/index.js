@@ -62,6 +62,9 @@ import UserPlasticStocks from './screens/private/UserPlasticStocks.jsx'
 import UserDocumentation from './screens/private/UserDocumentation.jsx'
 import UserSupplierInvoicesScreen from './screens/private/UserSupplierInvoicesScreen.jsx'
 import UserEmailBank from './screens/private/UserEmailBank.jsx'
+import UserCashierScreen from './screens/private/UserCashierScreen.jsx'
+import UserCashierDetailsScreen from './screens/private/UserCashierDetailsScreen.jsx'
+import NewCashierScreen from './screens/private/NewCashierScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -127,6 +130,12 @@ const router = createBrowserRouter(
           <Route path="plastic-colors" element={<PlasticColorsScreen />} />
           <Route path="plastic-types" element={<PlasticTypesScreen />} />
           <Route path="veilles" element={<UserVeillesScreen />} />
+          <Route path="cashier" element={<UserCashierScreen />} />
+          <Route path="new-cashier" element={<NewCashierScreen />} />
+          <Route
+            path="cashier-details/:id"
+            element={<UserCashierDetailsScreen />}
+          />
           <Route
             path="veille-details/:id"
             element={<UserVeilleDetailsScreen />}
