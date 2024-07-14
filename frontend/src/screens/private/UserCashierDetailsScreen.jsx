@@ -82,7 +82,7 @@ const UserCashierDetailsScreen = () => {
 
   const handleSubmitSale = async (e) => {
     e.preventDefault();
-  
+
     const filteredProducts = formData.products
       .filter((product) => product.quantity > 0)
       .map((product) => ({
@@ -90,7 +90,7 @@ const UserCashierDetailsScreen = () => {
         unitPrice: product.unitPrice,
         quantity: product.quantity,
       }));
-  
+
     const saleData = {
       sale: {
         clientFirstname: formData.clientFirstname,
@@ -103,7 +103,7 @@ const UserCashierDetailsScreen = () => {
         products: filteredProducts,
       },
     };
-  
+
     try {
       await addSale({ cashierId, sale: saleData });
       console.log('Sale added successfully');
@@ -130,13 +130,14 @@ const UserCashierDetailsScreen = () => {
     return <Loader />;
   }
 
-  if (errorCashierDetails || productError) {
-    return (
-      <div className="mx-auto p-4 text-red-500">
-        Error: {errorCashierDetails?.message || productError?.message}
-      </div>
-    );
-  }
+  const placePrice = cashierDetails && cashierDetails.placePrice;
+  const totalSales = cashierDetails && cashierDetails.totalSales;
+
+  // Calculer le pourcentage du chiffre d'affaires par rapport au prix de la place
+  const progressPercentage = (totalSales / placePrice) * 100;
+
+  let realGain = totalSales - placePrice;
+  let realGainClass = realGain >= 0 ? 'text-green-500' : 'text-red-500';
 
   return (
     <div className="mx-auto p-4">
@@ -166,16 +167,55 @@ const UserCashierDetailsScreen = () => {
           </div>
         </div>
         <div className="mb-4 flex justify-between">
-  <div>Prix de l'inscription</div>
-  <div>
-    {cashierDetails && cashierDetails.placePrice} XPF
-  </div>
-</div>
-        <div className="mb-4 flex justify-between">
-          <div>Chiffre d'affaires</div>
-          <div>
-            {cashierDetails && Math.floor(cashierDetails.totalSales)} XPF
+          <div>Prix de l'inscription</div>
+          <div>{cashierDetails && cashierDetails.placePrice} XPF</div>
+        </div>
+        <div className="mb-4">
+          <div className="flex justify-between mb-2">
+            <div>Chiffre d'affaires</div>
+            <div>{cashierDetails && Math.floor(cashierDetails.totalSales)} XPF</div>
           </div>
+          <div className="relative pt-1">
+            <div className="flex mb-2 items-center justify-between">
+              <div>
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primaryColor bg-gray-200">
+                  Progression
+                </span>
+              </div>
+              <div className="text-right">
+                <span className="text-xs font-semibold inline-block text-primaryColor">
+                  {progressPercentage.toFixed(2)}%
+                </span>
+              </div>
+            </div>
+            <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+            <div
+              style={{ width: `${progressPercentage}%` }}
+              className={`shadow-none flex flex-col text-center whitespace-nowrap justify-center ${
+                progressPercentage >= 100
+                  ? 'bg-green-500'
+                  : progressPercentage >= 50
+                  ? 'bg-green-500'
+                  : 'bg-red-500'
+              } text-white`}
+            ></div>
+          </div>
+          {progressPercentage >= 100 ? (
+            <div className="text-sm font-medium text-center">
+              Gain réel :{' '}
+              <span className={realGainClass}>
+                {Math.floor(realGain)} XPF
+              </span>
+            </div>
+          ) : (
+            <div className="text-sm font-medium text-center">
+              Montant restant à atteindre pour gagner de l'argent :{' '}
+              <span className="text-red-500">
+                {Math.floor(placePrice - totalSales)} XPF
+              </span>
+            </div>
+          )}
+        </div>
         </div>
         <div className="mb-4">
           {cashierDetails &&
@@ -418,9 +458,9 @@ const UserCashierDetailsScreen = () => {
             <div className="mb-4">
               <button
                 type="submit"
-                className={`inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primaryColor hover:bg-primaryColorFocus focus:outline-none focus:border-primaryColor focus:shadow-outline-primaryColor active:bg-primaryColorActive transition ease-in-out duration-150 ${
+                className={`inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white hover:bg-primaryColorFocus focus:outline-none focus:border-primaryColor focus:shadow-outline-primaryColor active:bg-primaryColorActive transition ease-in-out duration-150 ${
                   addingSale ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                } ${progressPercentage >= 100 ? 'bg-primaryColor' : ''}`}
                 disabled={addingSale}
               >
                 {addingSale ? (
@@ -445,7 +485,7 @@ const UserCashierDetailsScreen = () => {
                     ></path>
                   </svg>
                 ) : null}
-                Ajouter une vente
+                {progressPercentage >= 100 ? 'Vente ajoutée' : 'Ajouter une vente'}
               </button>
             </div>
           </form>
