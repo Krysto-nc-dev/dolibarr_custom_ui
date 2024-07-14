@@ -140,10 +140,10 @@ const UserCashierDetailsScreen = () => {
   let realGainClass = realGain >= 0 ? 'text-green-500' : 'text-red-500';
 
   return (
-    <div className="mx-auto p-4">
-      <div className="rounded-lg shadow-md p-6">
+    <div className="mx-auto p-4 max-w-9xl">
+      <div className="rounded-lg shadow-md p-6 bg-gray-700 text-textColor">
         <div className="flex justify-between items-center mb-5">
-          <div>tiers id : {cashierDetails && cashierDetails.tierId}</div>
+          <div className="text-gray-700">Tiers ID : {cashierDetails && cashierDetails.tierId}</div>
           <div className="mb-4">
             <span
               className={`px-2 py-1 rounded ${
@@ -158,7 +158,7 @@ const UserCashierDetailsScreen = () => {
             </span>
           </div>
         </div>
-        <div className="mb-4 text-sm flex justify-between">
+        <div className="mb-4 text-sm flex justify-between text-textColor">
           <div>Date :</div>
           <div>
             {cashierDetails &&
@@ -166,19 +166,19 @@ const UserCashierDetailsScreen = () => {
               new Date(cashierDetails.date).toLocaleDateString()}
           </div>
         </div>
-        <div className="mb-4 flex justify-between">
+        <div className="mb-4 flex justify-between text-textColor">
           <div>Prix de l'inscription</div>
           <div>{cashierDetails && cashierDetails.placePrice} XPF</div>
         </div>
         <div className="mb-4">
-          <div className="flex justify-between mb-2">
+          <div className="flex justify-between mb-2 text-textColor">
             <div>Chiffre d'affaires</div>
             <div>{cashierDetails && Math.floor(cashierDetails.totalSales)} XPF</div>
           </div>
           <div className="relative pt-1">
             <div className="flex mb-2 items-center justify-between">
               <div>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primaryColor bg-gray-200">
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-text-textColor bg-gray-500">
                   Progression
                 </span>
               </div>
@@ -188,34 +188,34 @@ const UserCashierDetailsScreen = () => {
                 </span>
               </div>
             </div>
-            <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-            <div
-              style={{ width: `${progressPercentage}%` }}
-              className={`shadow-none flex flex-col text-center whitespace-nowrap justify-center ${
-                progressPercentage >= 100
-                  ? 'bg-green-500'
-                  : progressPercentage >= 50
-                  ? 'bg-green-500'
-                  : 'bg-red-500'
-              } text-white`}
-            ></div>
+            <div className="overflow-hidden h-6 mb-4 text-xs flex rounded bg-gray-200">
+              <div
+                style={{ width: `${progressPercentage}%` }}
+                className={`shadow-none flex flex-col text-center whitespace-nowrap justify-center ${
+                  progressPercentage >= 100
+                    ? 'bg-green-500'
+                    : progressPercentage >= 50
+                    ? 'bg-yellow-500'
+                    : 'bg-red-500'
+                } text-white`}
+              ></div>
+            </div>
+            {progressPercentage >= 100 ? (
+              <div className="text-sm font-medium text-center text-textColor">
+                Gain réel :{' '}
+                <span className={realGainClass}>
+                  {Math.floor(realGain)} XPF
+                </span>
+              </div>
+            ) : (
+              <div className="text-sm font-medium text-center text-textColor">
+                Montant restant à atteindre pour gagner de l'argent :{' '}
+                <span className="text-red-500">
+                  {Math.floor(placePrice - totalSales)} XPF
+                </span>
+              </div>
+            )}
           </div>
-          {progressPercentage >= 100 ? (
-            <div className="text-sm font-medium text-center">
-              Gain réel :{' '}
-              <span className={realGainClass}>
-                {Math.floor(realGain)} XPF
-              </span>
-            </div>
-          ) : (
-            <div className="text-sm font-medium text-center">
-              Montant restant à atteindre pour gagner de l'argent :{' '}
-              <span className="text-red-500">
-                {Math.floor(placePrice - totalSales)} XPF
-              </span>
-            </div>
-          )}
-        </div>
         </div>
         <div className="mb-4">
           {cashierDetails &&
@@ -223,14 +223,14 @@ const UserCashierDetailsScreen = () => {
             cashierDetails.sales.map((sale, index) => (
               <div
                 key={index}
-                className="border rounded-md border-primaryColor p-4 mb-4"
+                className="border rounded-md border-primaryColor p-4 mb-4 bg-gray-50"
               >
-                <div className="flex justify-between mb-2">
+                <div className="flex justify-between mb-2 text-gray-700">
                   <div className="text-sm">
-                    <strong className="">Client:</strong> {sale.clientFirstname}{' '}
+                    <strong>Client:</strong> {sale.clientFirstname}{' '}
                     {sale.clientLastname}
                   </div>
-                  <div className="text-sm mb-2">
+                  <div className="text-sm">
                     <strong>Email:</strong> {sale.clientMail}
                   </div>
                   <div className="text-sm">
@@ -245,251 +245,166 @@ const UserCashierDetailsScreen = () => {
                           Nom Produit
                         </th>
                         <th className="px-3 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                          Référence
-                        </th>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                          Prix Unitaire
-                        </th>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                           Quantité
                         </th>
                         <th className="px-3 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                          Sous-total
+                          Prix unitaire (XPF)
+                        </th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                          Total (XPF)
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {sale.products.map((product, prodIndex) => {
-                        const matchedProduct = products.find(
-                          (p) => p.id === product.productId
-                        );
-                        if (!matchedProduct) return null;
-
-                        return (
-                          <tr key={prodIndex}>
-                            <td className="px-3 py-2 whitespace-nowrap">
-                              {matchedProduct.label}
-                            </td>
-                            <td className="px-3 py-2 whitespace-nowrap">
-                              {matchedProduct.ref}
-                            </td>
-                            <td className="px-3 py-2 whitespace-nowrap">
-                              {Math.floor(product.unitPrice)} XPF
-                            </td>
-                            <td className="px-3 py-2 whitespace-nowrap">
-                              {product.quantity}
-                            </td>
-                            <td className="px-3 py-2 whitespace-nowrap">
-                              {Math.floor(product.subTotal)} XPF
-                            </td>
-                          </tr>
-                        );
-                      })}
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {sale.products.map((product, idx) => (
+                        <tr key={idx}>
+                          <td className="px-3 py-2 text-sm text-gray-700">{product.productLabel}</td>
+                          <td className="px-3 py-2 text-sm text-gray-700">{product.quantity}</td>
+                          <td className="px-3 py-2 text-sm text-gray-700">{Math.floor(product.unitPrice)}</td>
+                          <td className="px-3 py-2 text-sm text-gray-700">{Math.floor(product.quantity * product.unitPrice)}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 ) : (
-                  <div className="text-sm text-red-500">
-                    Aucun produit trouvé pour cette vente.
-                  </div>
+                  <p className="text-red-700">Aucun produit dans cette vente</p>
                 )}
-                <div className="flex justify-end mt-2">
-                  <strong className="text-green-500">
-                    Total: {Math.floor(sale.totalPrice)} XPF
-                  </strong>
-                </div>
               </div>
             ))}
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-medium mb-2">Ajouter une vente</h3>
-          <form onSubmit={handleSubmitSale}>
-            <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
-              <div>
-                <label
-                  htmlFor="clientFirstname"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Prénom
-                </label>
-                <input
-                  type="text"
-                  id="clientFirstname"
-                  name="clientFirstname"
-                  value={formData.clientFirstname}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="clientLastname"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Nom
-                </label>
-                <input
-                  type="text"
-                  id="clientLastname"
-                  name="clientLastname"
-                  value={formData.clientLastname}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="clientMail"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="clientMail"
-                  name="clientMail"
-                  value={formData.clientMail}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="clientCity"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Ville
-                </label>
-                <input
-                  type="text"
-                  id="clientCity"
-                  name="clientCity"
-                  value={formData.clientCity}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="clientCountry"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Pays
-                </label>
-                <input
-                  type="text"
-                  id="clientCountry"
-                  name="clientCountry"
-                  value={formData.clientCountry}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="paymentMethod"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Mode de paiment
-                </label>
-                <input
-                  type="text"
-                  id="paymentMethod"
-                  name="paymentMethod"
-                  value={formData.paymentMethod}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-full shadow-sm sm:text-sm rounded-md"
-                />
-              </div>
-              <div className="col-span-2">
-                <label className="flex items-center text-sm font-medium text-gray-700">
-                  <input
-                    id="touriste"
-                    name="touriste"
-                    type="checkbox"
-                    checked={formData.touriste}
-                    onChange={handleChange}
-                    className="mr-2 bg-gray-100 text-primaryColor focus:ring-primaryColor rounded-md"
-                  />
-                  <span className="block">Touriste</span>
-                </label>
-              </div>
+        <form onSubmit={handleSubmitSale} className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-textColor text-sm">Prénom du Client</label>
+              <input
+                type="text"
+                name="clientFirstname"
+                value={formData.clientFirstname}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1 text-sm"
+              />
             </div>
-            <div className="mb-4">
-              <h4 className="text-lg font-medium mb-2">Produits</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
-                {formData.products.map((product, index) => (
-                  <div key={index} className="flex items-center">
-                    <label
-                      htmlFor={`quantity-${product.productId}`}
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      {product.label}
-                    </label>
+            <div>
+              <label className="block text-textColor text-sm">Nom du Client</label>
+              <input
+                type="text"
+                name="clientLastname"
+                value={formData.clientLastname}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-textColor text-sm">Email du Client</label>
+              <input
+                type="email"
+                name="clientMail"
+                value={formData.clientMail}
+                onChange={handleChange}
+                className="w-full p-2 border bg-gray-500 rounded mt-1 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-textColor text-sm">Ville du Client</label>
+              <input
+                type="text"
+                name="clientCity"
+                value={formData.clientCity}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+              />
+            </div>
+            <div>
+              <label className="block text-textColor text-sm">Client Touriste</label>
+              <input
+                type="checkbox"
+                name="touriste"
+                checked={formData.touriste}
+                onChange={handleChange}
+                className="form-checkbox h-5 w-5 text-primaryColor mt-1 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-textColor text-sm">Pays du Client</label>
+              <input
+                type="text"
+                name="clientCountry"
+                value={formData.clientCountry}
+                onChange={handleChange}
+                className="w-full p-2 border border-gray-300 rounded mt-1 text-sm bg-gray-500"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-textColor text-sm">Mode de Paiement</label>
+            <select
+              name="paymentMethod"
+              value={formData.paymentMethod}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded mt-1 bg-gray-500"
+            >
+              <option value="Espèces">Espèces</option>
+              <option value="Carte Bancaire">Carte Bancaire</option>
+              <option value="Virement">Virement</option>
+            </select>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-textColor">Produits</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+              {formData.products.map((product) => (
+                <div key={product.productId} className="border p-4 rounded-md shadow-md">
+                  <h3 className="text-sm font-medium text-textColor mb-2">{product.label}</h3>
+                  <div className="flex justify-between ">
+
+                  <div className="mb-2 w-[50%] mr-2">
+                    <label className="block text-textColor text-sm">Référence</label>
+                    <input
+                      type="text"
+                      value={product.ref}
+                      readOnly
+                      className="w-full p-2 border bg-red-300 rounded mt-1 bg-gray-100 text-sm"
+                      />
+                  </div>
+                  <div className="mb-2 w-[50%]">
+                    <label className="block text-textColor text-sm">Prix unitaire (XPF)</label>
                     <input
                       type="number"
-                      id={`quantity-${product.productId}`}
-                      name={`quantity-${product.productId}`}
-                      value={product.quantity}
-                      onChange={(e) =>
-                        handleProductChange(
-                          product.productId,
-                          product.unitPrice,
-                          parseInt(e.target.value, 10)
-                        )
-                      }
-                      className="mt-1 bg-gray-100 text-gray-800 focus:ring-primaryColor focus:border-primaryColor block w-24 shadow-sm sm:text-sm rounded-md"
-                    />
-                    <span className="ml-2 text-gray-700">
-                      XPF {Math.floor(product.unitPrice)}
-                    </span>
-                    <span className="ml-2 text-gray-700">
-                      Réf: {product.ref}
-                    </span>
+                      value={product.unitPrice}
+                      onChange={(e) => handleProductChange(product.productId, e.target.value, product.quantity)}
+                      className="w-full p-2 border bg-red-300 rounded mt-1 text-sm"
+                      />
                   </div>
-                ))}
-              </div>
+                      </div>
+                  <div className="mb-2">
+                    <label className="block text-textColor">Quantité</label>
+                    <input
+                      type="number"
+                      value={product.quantity}
+                      onChange={(e) => handleProductChange(product.productId, product.unitPrice, parseInt(e.target.value))}
+                      className="w-full p-2 border border-gray-300 rounded mt-1 text-sm"
+                    />
+                  </div>
+                  <div className="mb-2">
+                    <label className="block text-textColor">Total (XPF)</label>
+                    <input
+                      type="number"
+                      value={product.subTotal}
+                      readOnly
+                      className="w-full p-2 border border-gray-300 rounded mt-1 bg-gray-100 text-sm"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="mb-4">
-              <button
-                type="submit"
-                className={`inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white hover:bg-primaryColorFocus focus:outline-none focus:border-primaryColor focus:shadow-outline-primaryColor active:bg-primaryColorActive transition ease-in-out duration-150 ${
-                  addingSale ? 'opacity-50 cursor-not-allowed' : ''
-                } ${progressPercentage >= 100 ? 'bg-primaryColor' : ''}`}
-                disabled={addingSale}
-              >
-                {addingSale ? (
-                  <svg
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V2.83a1 1 0 00-2 0V4a6 6 0 00-6 6h2.83a1 1 0 000-2H4z"
-                    ></path>
-                  </svg>
-                ) : null}
-                {progressPercentage >= 100 ? 'Vente ajoutée' : 'Ajouter une vente'}
-              </button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <button
+            type="submit"
+            disabled={addingSale}
+            className="w-full py-2 px-4 bg-primaryColor text-white font-semibold rounded-md shadow-md hover:bg-primaryColor-dark disabled:opacity-50"
+          >
+            {addingSale ? 'Ajout en cours...' : 'Ajouter la vente'}
+          </button>
+        </form>
       </div>
     </div>
   );
