@@ -20,6 +20,17 @@
   --successColor: #1c9222; /* Couleur de succès, un vert adouci */
 }
 
+/* custom-toast-styles.css */
+.Toastify__toast-body {
+  font-size: 12px;
+  color: var(--textColor);
+  
+}
+
+.Toastify__toast {
+  background-color: var(--backgroundColor);
+}
+
 body{
   @apply text-[20px] text-textColor bg-backgroundColor ;
 }

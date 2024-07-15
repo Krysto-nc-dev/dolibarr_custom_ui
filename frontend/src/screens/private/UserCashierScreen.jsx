@@ -82,6 +82,7 @@ const UserCashierScreen = () => {
         setFormData({
           date: '',
           tierId: '',
+          title: '',
           placePrice: '', // Réinitialiser à une chaîne vide pour le prochain ajout
         });
         toast.success('La caisse est créée avec succès.');
@@ -192,6 +193,19 @@ const UserCashierScreen = () => {
             <h2 className="text-xl font-semibold mb-4">Nouvelle Caisse</h2>
             <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
               <div className="flex flex-col space-y-4">
+                <div className="w-full">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Titre:
+                  </label>
+                  <input
+                    type="text"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    required
+                  />
+                </div>
                 <div className="w-full">
                   <label className="block text-sm font-medium text-gray-700">
                     Date:

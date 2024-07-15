@@ -23,7 +23,7 @@ const UserEventDetailsScreen = () => {
 
   return (
     <div className="h-screen p-6 bg-backgroundColor text-textColor">
-      <div className="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+      <div className=" p-6 rounded-lg shadow-md max-w-9xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">{event.title}</h1>
         <p><strong>Date:</strong> {new Date(event.date).toLocaleString()}</p>
         {event.duration && <p><strong>Durée:</strong> {event.duration} minutes</p>}

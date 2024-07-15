@@ -3,6 +3,7 @@ import { useGetEmailsQuery, useAddEmailMutation, useDeleteEmailMutation } from '
 import Loader from '../../components/shared/Loader';
 import Modal from '../../components/shared/Modal';
 import { CheckCircle, CirclePlus, Edit, Trash, XCircle } from 'lucide-react'; // Import des icônes
+import { toast } from 'react-toastify';
 
 const UserEmailBank = () => {
   const [showModal, setShowModal] = useState(false);
@@ -63,10 +64,11 @@ const [deleteEmail] = useDeleteEmailMutation(); // Utilisation de useDeleteEmail
   const handleDelete = async (emailId) => {
     try {
       await deleteEmail(emailId); // Utilisation de la mutation pour supprimer l'email
-      console.log(`Delete email with ID: ${emailId}`);
+      toast.success("Email supprimé avec succès.");
       refetchEmails(); // Rafraîchir la liste des emails après la suppression
     } catch (error) {
       console.error('Error deleting email:', error);
+      toast.error("Une erreur est survenue lors de l'ajout de l'email.");
       // Handle error state if needed
     }
   };

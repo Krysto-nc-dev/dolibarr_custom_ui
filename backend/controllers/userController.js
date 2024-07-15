@@ -85,7 +85,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 
   // Trouver l'utilisateur par son ID
-  const user = await User.findById(req.user._id).populate('favoriteProducts')
+  const user = await User.findById(req.user._id)
 
   // Vérifier si l'utilisateur existe
   if (user) {

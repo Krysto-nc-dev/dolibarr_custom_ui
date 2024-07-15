@@ -5,7 +5,7 @@ import Cashier from '../models/CashierModel.js'
 // @route   POST /api/cashiers
 // @access  Public
 const createCashier = asyncHandler(async (req, res) => {
-  const { date, tierId, status, placePrice } = req.body
+  const { date, tierId, status, placePrice, title } = req.body
 
   try {
     const existingCashier = await Cashier.findOne({ date })
@@ -17,6 +17,7 @@ const createCashier = asyncHandler(async (req, res) => {
 
     const cashier = new Cashier({
       date,
+      title,
       sales: [],
       totalDaySales: 0,
       totalSales: 0,
@@ -66,7 +67,15 @@ const getCashierById = asyncHandler(async (req, res) => {
 // @route   PUT /api/cashiers/:id
 // @access  Public
 const updateCashier = asyncHandler(async (req, res) => {
-  const { date, sales, totalDaySales, tierId, status, placePrice } = req.body
+  const {
+    date,
+    sales,
+    totalDaySales,
+    tierId,
+    status,
+    placePrice,
+    title,
+  } = req.body
 
   try {
     const cashier = await Cashier.findById(req.params.id)
@@ -78,7 +87,7 @@ const updateCashier = asyncHandler(async (req, res) => {
       cashier.tierId = tierId || cashier.tierId
       cashier.status = status || cashier.status
       cashier.placePrice = placePrice || cashier.placePrice
-
+      cashier.title = title || cashier.title
       const updatedCashier = await cashier.save()
       res.status(200).json(updatedCashier)
     } else {
