@@ -65,13 +65,30 @@ import UserEmailBank from './screens/private/UserEmailBank.jsx'
 import UserCashierScreen from './screens/private/UserCashierScreen.jsx'
 import UserCashierDetailsScreen from './screens/private/UserCashierDetailsScreen.jsx'
 import NewCashierScreen from './screens/private/NewCashierScreen.jsx'
+import ShopScreen from './screens/ShopScreen.jsx'
+import AboutScreen from './screens/AboutScreen.jsx'
+import ContactScreen from './screens/ContactScreen.jsx'
+import DeveloppementsScreen from './screens/DeveloppementsScreen.jsx'
+import InitiationsScreen from './screens/InitiationsScreen.jsx'
+import PublicHeader from './components/publicComponents/layout/PublicHeader.jsx'
+import PublicLayout from './components/publicComponents/layout/PublicLayout.jsx'
+import BlogScreen from './screens/BlogScreen.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       {/* Public Routes */}
-      <Route index={true} path="/" element={<HomeScreen />} />
-      <Route path="/login" element={<LoginScreen />} />
+
+      <Route path="/" element={<PublicLayout />}>
+        <Route index={true} path="/" element={<HomeScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/krysto-shop" element={<ShopScreen />} />
+        <Route path="/a-propos" element={<AboutScreen />} />
+        <Route path="/contacts" element={<ContactScreen />} />
+        <Route path="/krysto-dev" element={<DeveloppementsScreen />} />
+        <Route path="/initiations" element={<InitiationsScreen />} />
+        <Route path="/blog" element={<BlogScreen />} />
+      </Route>
 
       {/* Registered users */}
       <Route path="" element={<PrivateRoute />}>

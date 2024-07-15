@@ -314,6 +314,7 @@ const UserCashierDetailsScreen = () => {
                 key={product.productId}
                 className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-end"
               >
+                
                 <div>
                   <label className="block text-textColor text-sm">
                     Produit
