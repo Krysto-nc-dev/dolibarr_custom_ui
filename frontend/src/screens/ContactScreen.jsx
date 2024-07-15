@@ -2,7 +2,9 @@ import React from 'react'
 
 const ContactScreen = () => {
   return (
-    <div>ContactScreen</div>
+    <div>
+            <h1 className='text-primaryColor text-2xl'>Contactez-nous</h1>
+    </div>
   )
 }
 

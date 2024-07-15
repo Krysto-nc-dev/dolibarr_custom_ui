@@ -20,6 +20,10 @@
   --successColor: #1c9222; /* Couleur de succès, un vert adouci */
 }
 
+
+.btn {
+  @apply w-full  flex justify-center items-center p-3 space-x-3 font-bold text-white  rounded-md  px-5  bg-primaryColor shadow-gray-500 hover:bg-secondaryColor shadow-sm hover:shadow-lg  transition hover:-translate-y-0.5 duration-150
+}
 /* custom-toast-styles.css */
 .Toastify__toast-body {
   font-size: 12px;

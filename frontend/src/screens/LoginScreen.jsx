@@ -55,7 +55,7 @@ const LoginScreen = () => {
           <div className="p-4 md:p-20 ">
             {/* top content */}
             <h2 className="mb-5 text-4xl font-bold ">Connection</h2>
-            <p className="max-w-md mb-12 font-light">
+            <p className="max-w-md mb-8 font-light">
               Connectez-vous à votre compte pour profiter de notre plateforme.
             </p>
             <form onSubmit={submitHandler}>

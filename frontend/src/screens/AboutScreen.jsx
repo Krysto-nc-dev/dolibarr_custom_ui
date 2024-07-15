@@ -2,7 +2,9 @@ import React from 'react'
 
 const AboutScreen = () => {
   return (
-    <div>AboutScreen</div>
+    <div>
+            <h1 className='text-primaryColor text-2xl'>A propos de Krysto</h1>
+    </div>
   )
 }
 
