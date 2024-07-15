@@ -78,10 +78,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       {/* Public Routes */}
+      <Route path="/login" element={<LoginScreen />} />
 
       <Route path="/" element={<PublicLayout />}>
         <Route index={true} path="/" element={<HomeScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
         <Route path="/krysto-shop" element={<ShopScreen />} />
         <Route path="/a-propos" element={<AboutScreen />} />
         <Route path="/contacts" element={<ContactScreen />} />
