@@ -15,6 +15,7 @@ export const EMAILS_URL = `/dolibarr-ui/api/emails`
 export const CASHIERS_URL = `/dolibarr-ui/api/cashiers`
 export const MESSAGE_URL = `/dolibarr-ui/api/messages`
 export const PRESENTATION_URL = `/dolibarr-ui/api/presentations`
+export const UPLOAD_URL = `/dolibarr-ui/api/uploads`
 
 // DOLIBARR
 

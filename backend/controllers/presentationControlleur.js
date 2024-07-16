@@ -19,7 +19,7 @@ const getPresentationById = asyncHandler(async (req, res) => {
     res.status(200).json(presentation)
   } else {
     res.status(404)
-    throw new Error('Presentation not found')
+    throw new Error('Présentation non trouvée')
   }
 })
 
@@ -33,7 +33,6 @@ const createPresentation = asyncHandler(async (req, res) => {
     title,
     description,
     slides,
-    cover,
   })
 
   const createdPresentation = await presentation.save()
@@ -58,7 +57,7 @@ const updatePresentation = asyncHandler(async (req, res) => {
     res.status(200).json(updatedPresentation)
   } else {
     res.status(404)
-    throw new Error('Presentation not found')
+    throw new Error('Présentation non trouvée')
   }
 })
 
@@ -70,10 +69,10 @@ const deletePresentation = asyncHandler(async (req, res) => {
 
   if (presentation) {
     await presentation.deleteOne()
-    res.status(200).json({ message: 'Presentation removed' })
+    res.status(200).json({ message: 'Présentation supprimée' })
   } else {
     res.status(404)
-    throw new Error('Presentation not found')
+    throw new Error('Présentation non trouvée')
   }
 })
 
@@ -82,17 +81,17 @@ const deletePresentation = asyncHandler(async (req, res) => {
 // @access  Public
 const addSlideToPresentation = asyncHandler(async (req, res) => {
   const { presentationId } = req.params
-  const slide = req.body
+  const slideData = req.body
 
   const presentation = await Presentation.findById(presentationId)
 
   if (presentation) {
-    presentation.slides.push(slide)
+    presentation.slides.push(slideData)
     const updatedPresentation = await presentation.save()
     res.status(201).json(updatedPresentation)
   } else {
     res.status(404)
-    throw new Error('Presentation not found')
+    throw new Error('Présentation non trouvée')
   }
 })
 
@@ -101,30 +100,30 @@ const addSlideToPresentation = asyncHandler(async (req, res) => {
 // @access  Public
 const updateSlideOfPresentation = asyncHandler(async (req, res) => {
   const { presentationId, slideId } = req.params
-  const { title, subtitle, image, paragraphs } = req.body
+  const { title, subtitle, image, paragraphs, template, questions } = req.body
 
   const presentation = await Presentation.findById(presentationId)
 
   if (presentation) {
-    const slideToUpdate = presentation.slides.find(
-      (slide) => slide._id == slideId,
-    )
+    const slideToUpdate = presentation.slides.id(slideId)
 
     if (slideToUpdate) {
       slideToUpdate.title = title || slideToUpdate.title
       slideToUpdate.subtitle = subtitle || slideToUpdate.subtitle
       slideToUpdate.image = image || slideToUpdate.image
       slideToUpdate.paragraphs = paragraphs || slideToUpdate.paragraphs
+      slideToUpdate.template = template || slideToUpdate.template
+      slideToUpdate.questions = questions || slideToUpdate.questions
 
       const updatedPresentation = await presentation.save()
       res.status(200).json(updatedPresentation)
     } else {
       res.status(404)
-      throw new Error('Slide not found')
+      throw new Error('Slide non trouvée')
     }
   } else {
     res.status(404)
-    throw new Error('Presentation not found')
+    throw new Error('Présentation non trouvée')
   }
 })
 
@@ -137,14 +136,12 @@ const deleteSlideFromPresentation = asyncHandler(async (req, res) => {
   const presentation = await Presentation.findById(presentationId)
 
   if (presentation) {
-    presentation.slides = presentation.slides.filter(
-      (slide) => slide._id != slideId,
-    )
+    presentation.slides.pull(slideId)
     await presentation.save()
-    res.status(200).json({ message: 'Slide removed from presentation' })
+    res.status(200).json({ message: 'Slide supprimée de la présentation' })
   } else {
     res.status(404)
-    throw new Error('Presentation not found')
+    throw new Error('Présentation non trouvée')
   }
 })
 

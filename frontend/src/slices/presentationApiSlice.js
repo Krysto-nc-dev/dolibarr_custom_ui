@@ -1,5 +1,5 @@
 import { apiSlice } from './apiSlice'
-import { PRESENTATION_URL } from './constants'
+import { PRESENTATION_URL, UPLOAD_URL } from './constants'
 
 export const presentationApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -24,6 +24,13 @@ export const presentationApiSlice = apiSlice.injectEndpoints({
         body: newPresentation,
       }),
       invalidatesTags: ['Presentation'],
+    }),
+    uploadPresentationCover: builder.mutation({
+      query: (data) => ({
+        url: `${UPLOAD_URL}`,
+        method: 'POST',
+        body: data,
+      }),
     }),
     updatePresentation: builder.mutation({
       query: ({ id, updatedPresentation }) => ({
@@ -70,6 +77,7 @@ export const {
   useGetPresentationsQuery,
   useGetPresentationByIdQuery,
   useAddPresentationMutation,
+  useUploadPresentationCoverMutation,
   useUpdatePresentationMutation,
   useDeletePresentationMutation,
   useAddSlideToPresentationMutation,

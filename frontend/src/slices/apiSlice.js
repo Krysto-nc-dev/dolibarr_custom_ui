@@ -13,6 +13,8 @@ const tagTypes = [
   'Email',
   'Message',
   'Cashier',
+  'Presentation',
+  'Image',
 ]
 
 const baseQuery = fetchBaseQuery({ baseUrl: BASE_URL })
