@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useGetRecipesQuery } from '../../slices/recipeApiSlice'
 import { Link } from 'react-router-dom'
+import { Palette } from 'lucide-react'
 
 const UserRecipesScreen = () => {
   const { data: recipes, error, isLoading } = useGetRecipesQuery()
@@ -33,6 +34,7 @@ const UserRecipesScreen = () => {
       <h1 className="text-xl font-bold mb-6 text-primaryColor text-center">
         Recettes de couleurs
       </h1>
+      <Link className='flex justify-center items-center gap-2' to={"/color-calculators"}>Color calculator <Palette/></Link>
 
       <div className="mb-4">
         <label

@@ -1,4 +1,4 @@
-import { LayoutDashboard, Box, Users, Calendar, CreditCard,  DollarSign,  Warehouse, FilePen,  CookingPot, Factory, Eye, RecycleIcon, Truck, Milk, Palette, Projector,  Star, Receipt, Mail, ScanBarcode } from 'lucide-react';
+import { LayoutDashboard, Box, Users, Calendar, CreditCard,  DollarSign,  Warehouse, FilePen,  CookingPot, Factory, Eye, RecycleIcon, Truck, Milk, Palette, Projector,  Star, Receipt, Mail, ScanBarcode, FolderKanbanIcon } from 'lucide-react';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
   {
@@ -94,12 +94,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     icon: <Star />,
     href: '/plastic-stocks',
   },
-  {
-    key:'colorsCalculator',
-    label: 'Calculateur de Couleurs',
-    icon: <Palette />,
-    href: '/color-calculators',
-  },
+
   {
     key:'recipes',
     label: 'Recettes',
@@ -115,8 +110,14 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   {
     key:'PROJET',
     label: 'Projet',
-    icon: <Projector />,
+    icon: <FolderKanbanIcon />,
     href: '/projet',
+  },
+  {
+    key:'Presentations',
+    label: 'Presentations',
+    icon: <Projector />,
+    href: '/presentations',
   },
   {
     key:'veilles',

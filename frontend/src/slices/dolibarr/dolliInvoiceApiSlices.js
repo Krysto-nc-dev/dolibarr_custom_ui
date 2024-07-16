@@ -44,6 +44,26 @@ export const dolliInvoiceApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    createInvoice: builder.mutation({
+      query: (invoiceData) => ({
+        url: `${DOLIBAR_URL}/invoices`,
+        method: 'POST',
+        headers: {
+          DOLAPIKEY: DOLIBARR_API_KEY,
+        },
+        body: invoiceData,
+      }),
+    }),
+    createInvoiceLine: builder.mutation({
+      query: ({ invoiceId, lineData }) => ({
+        url: `${DOLIBAR_URL}/invoices/${invoiceId}/lines`,
+        method: 'POST',
+        headers: {
+          DOLAPIKEY: DOLIBARR_API_KEY,
+        },
+        body: lineData,
+      }),
+    }),
   }),
 })
 
@@ -52,5 +72,7 @@ export const {
   useGetInvoiceDetailsQuery,
   useGetInvoiceLinesQuery,
   useGetInvoicePaimentQuery,
+  useCreateInvoiceMutation,
+  useCreateInvoiceLineMutation,
   // Ajoutez d'autres exports ici pour les autres queries, mutations, etc.
 } = dolliInvoiceApiSlice

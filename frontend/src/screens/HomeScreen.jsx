@@ -1,5 +1,6 @@
 import React from 'react'
 import HomeHero from '../components/HomeHero'
+import { Link } from 'react-router-dom'
 
 const HomeScreen = () => {
   return (
@@ -7,7 +8,7 @@ const HomeScreen = () => {
       {/* <HomeHero/> */}
       <div className="w-[50%]">
         <h1 className="text-6xl">
-          Le <span className="text-primaryColor">Changement</span> commence
+          Le <span className="text-primaryColor font-bold">Changement</span> commence
           localement.
         </h1>
         <p className='mt-3'>
@@ -16,8 +17,8 @@ const HomeScreen = () => {
         </p>
 
         <div className='mt-10 flex items-center gap-9'>
-          <button className='btn btn-primary'>En savoir plus</button>
-          <button className='btn btn-primary'>Découvrir</button>
+          <Link to={'/a-propos'} className='btn btn-primary'>En savoir plus</Link>
+          <Link to={'/krysto-shop'} className='btn btn-primary'>Découvrir</Link>
         </div>
       </div>
     </div>

@@ -73,6 +73,11 @@ import InitiationsScreen from './screens/InitiationsScreen.jsx'
 import PublicHeader from './components/publicComponents/layout/PublicHeader.jsx'
 import PublicLayout from './components/publicComponents/layout/PublicLayout.jsx'
 import BlogScreen from './screens/BlogScreen.jsx'
+import UserPlasticTypeDetails from './screens/private/UserPlasticTypeDetails.jsx'
+import TestSlide from './screens/private/TestSlide.jsx'
+import UserPresentationsScreen from './screens/private/UserPresentationsScreen.jsx'
+import UserPresentationsDetails from './screens/private/UserPresentationsDetails.jsx'
+import SlidePresentation from './screens/private/SlidePresentation.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -92,6 +97,7 @@ const router = createBrowserRouter(
 
       {/* Registered users */}
       <Route path="" element={<PrivateRoute />}>
+        <Route path="/presentation-slide/:id" element={<SlidePresentation />} />
         <Route path="/" element={<DashboardLayout />}>
           <Route path="/dashboard" element={<UserDashboardScreen />} />
           <Route path="user-contacts" element={<UserContactsScreen />} />
@@ -144,11 +150,21 @@ const router = createBrowserRouter(
           <Route path="messages" element={<UserMessagesScreen />} />
           <Route path="entrepots" element={<UserWarehousesScreen />} />
           <Route path="plastics" element={<UserPlasticsScreen />} />
+
           <Route path="plastic-colors" element={<PlasticColorsScreen />} />
           <Route path="plastic-types" element={<PlasticTypesScreen />} />
+          <Route
+            path="plastic-type-details/:id"
+            element={<UserPlasticTypeDetails />}
+          />
           <Route path="veilles" element={<UserVeillesScreen />} />
           <Route path="cashier" element={<UserCashierScreen />} />
           <Route path="new-cashier" element={<NewCashierScreen />} />
+          <Route path="presentations" element={<UserPresentationsScreen />} />
+          <Route
+            path="presentation-details/:id"
+            element={<UserPresentationsDetails />}
+          />
           <Route
             path="cashier-details/:id"
             element={<UserCashierDetailsScreen />}

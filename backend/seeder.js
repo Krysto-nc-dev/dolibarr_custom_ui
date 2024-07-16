@@ -13,6 +13,7 @@ import recyclableProducts from './data/recyclable_products.js'
 import machines from './data/machines.js'
 import projects from './data/projects.js'
 import campagnesCollectes from './data/campagneCollecte.js'
+import presentations from './data/presentations.js'
 
 import User from './models/userModel.js'
 import Event from './models/eventModel.js'
@@ -26,6 +27,7 @@ import Email from './models/EmailModel.js'
 import Project from './models/ProjectModel.js'
 import Cashier from './models/CashierModel.js'
 import CampagneCollecte from './models/CampagneCollecteModel.js'
+import Presentation from './models/PresentationModel.js'
 
 import connectDB from './config/db.js'
 
@@ -46,6 +48,7 @@ const importData = async () => {
     await CampagneCollecte.deleteMany()
     await Email.deleteMany()
     await Cashier.deleteMany()
+    await Presentation.deleteMany()
 
     await Event.insertMany(events)
     await Veille.insertMany(veilles)
@@ -58,6 +61,7 @@ const importData = async () => {
     await Cashier.insertMany(cashiers)
     await CampagneCollecte.insertMany(campagnesCollectes)
     await Email.insertMany(emails)
+    await Presentation.insertMany(presentations)
 
     console.log('Data Imported!'.green.inverse)
     process.exit()
@@ -80,6 +84,7 @@ const destroyData = async () => {
     await CampagneCollecte.deleteMany()
     await Email.deleteMany()
     await Cashier.deleteMany()
+    await Presentation.deleteMany()
 
     console.log('Data Destroyed!'.red.inverse)
     process.exit()

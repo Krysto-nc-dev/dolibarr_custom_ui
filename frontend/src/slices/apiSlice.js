@@ -11,6 +11,7 @@ const tagTypes = [
   'RecyclableProducts',
   'CollecteDetails',
   'Email',
+  'Message',
   'Cashier',
 ]
 

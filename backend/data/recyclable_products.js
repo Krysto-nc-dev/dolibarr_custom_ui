@@ -54,6 +54,17 @@ const recyclableProducts = [
     photo: 'skippy.jpg',
     barCode: '0037600106412',
   },
+  {
+    name: 'lessive X-tra total 4 +1',
+    brand: 'X-tra',
+    plastic_types: ['737a3694e5fc335f796a4946', '737a3694e5fc335f796a4943'], // Remplacez par des IDs valides
+    colors: ['737a3694e5fc335f796a4920', '737a3694e5fc335f796a4925'],
+    weightGr: 7,
+    description: 'Bouteille de lessive X-tra - 2,115 l',
+    recyclingNote: 9,
+    photo: 'xtra_lessive.jpeg',
+    barCode: '3178041357975',
+  },
 ]
 
 export default recyclableProducts
