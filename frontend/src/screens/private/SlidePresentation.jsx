@@ -169,18 +169,18 @@ const SlidePresentation = () => {
             {currentSlide.questions && (
               <div className="mt-4 w-full px-4">
                 {currentSlide.questions.map((question, index) => (
-                  <div key={index} className={`mb-6 ${validation[index] === false ? 'bg-red-200' : ''}`}>
+                  <div key={index} className={`mb-6 ${validation[index] === false ? 'bg-gray-800 rounded-md' : ''}`}>
                     <p className="text-lg font-semibold mb-2">{question.questionText}</p>
                     {question.type === 'qcm' ? (
-                      <ul className="list-disc list-inside">
+                      <ul className="list-inside">
                         {question.options.map((option, optionIndex) => (
-                          <li key={optionIndex} className="text-left">
+                          <li key={optionIndex} className="text-center">
                             <label>
                               <input
                                 type="radio"
                                 name={`question-${index}`}
                                 value={optionIndex}
-                                className="mr-2"
+                                className="m-5"
                                 onChange={() => handleAnswerChange(index, optionIndex)}
                               />
                               {option}
