@@ -78,6 +78,7 @@ import TestSlide from './screens/private/TestSlide.jsx'
 import UserPresentationsScreen from './screens/private/UserPresentationsScreen.jsx'
 import UserPresentationsDetails from './screens/private/UserPresentationsDetails.jsx'
 import SlidePresentation from './screens/private/SlidePresentation.jsx'
+import UserEditPresentation from './screens/private/UserEditPresentation.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -99,6 +100,10 @@ const router = createBrowserRouter(
       <Route path="" element={<PrivateRoute />}>
         <Route path="/presentation-slide/:id" element={<SlidePresentation />} />
         <Route path="/" element={<DashboardLayout />}>
+          <Route
+            path="/presentation-edit/:id"
+            element={<UserEditPresentation />}
+          />
           <Route path="/dashboard" element={<UserDashboardScreen />} />
           <Route path="user-contacts" element={<UserContactsScreen />} />
           <Route path="user-products" element={<UserProductScreen />} />

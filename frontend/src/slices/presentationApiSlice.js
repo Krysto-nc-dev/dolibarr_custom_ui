@@ -18,10 +18,9 @@ export const presentationApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
     addPresentation: builder.mutation({
-      query: (newPresentation) => ({
+      query: () => ({
         url: `${PRESENTATION_URL}`,
         method: 'POST',
-        body: newPresentation,
       }),
       invalidatesTags: ['Presentation'],
     }),

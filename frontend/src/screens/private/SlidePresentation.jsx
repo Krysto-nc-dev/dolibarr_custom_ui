@@ -164,12 +164,13 @@ const SlidePresentation = () => {
       case 'quiz':
         slideContent = (
           <div className="slide-content flex-grow flex flex-col justify-center items-center text-center">
+             {/* <img src={endSlide} alt="End Slide" className="absolute w-full h-full object-cover opacity-10" /> */}
             <h1 className="text-4xl mb-4">{currentSlide.title}</h1>
             <p className="text-xl">{currentSlide.subtitle}</p>
             {currentSlide.questions && (
               <div className="mt-4 w-full px-4">
                 {currentSlide.questions.map((question, index) => (
-                  <div key={index} className={`mb-6 ${validation[index] === false ? 'bg-gray-800 rounded-md' : ''}`}>
+                  <div key={index} className={`mb-6 ${validation[index] === false ? 'bg-gray-500 rounded-md' : ''}`}>
                     <p className="text-lg font-semibold mb-2">{question.questionText}</p>
                     {question.type === 'qcm' ? (
                       <ul className="list-inside">
@@ -235,19 +236,19 @@ const SlidePresentation = () => {
       {slideContent}
       <div className="slider-controls absolute bottom-8 w-full flex justify-between px-8">
         <button onClick={goToPreviousSlide} disabled={currentSlideIndex === 0} className="flex items-center px-4 py-2 bg-gray-800 text-white rounded disabled:opacity-50">
-          <MoveLeftIcon /> Précédent
+          <MoveLeftIcon /> 
         </button>
         <div className="flex items-center">
           <button onClick={toggleFullScreen} className="flex items-center px-4 py-2 bg-gray-800 text-white rounded mr-4">
-            <FullscreenIcon /> Plein Écran
+            <FullscreenIcon /> 
           </button>
           <button onClick={handleNextSlide} className="flex items-center px-4 py-2 bg-gray-800 text-white rounded">
-            Suivant <MoveRightIcon />
+            <MoveRightIcon />
           </button>
         </div>
       </div>
       {message && (
-        <div className={`absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-${message.includes('passer à la suite') ? 'green' : 'red'}-500 text-white py-2 px-4 rounded-md shadow-md`}>
+        <div className={`absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-${message.includes('passer à la suite') ? 'green' : 'red'}-500 text-white py-2 px-4 rounded-md shadow-md text-sm`}>
           {message}
         </div>
       )}

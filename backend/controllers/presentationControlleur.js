@@ -27,13 +27,20 @@ const getPresentationById = asyncHandler(async (req, res) => {
 // @route   POST /api/presentations
 // @access  Public
 const createPresentation = asyncHandler(async (req, res) => {
-  const { title, description, slides } = req.body
-
   const presentation = new Presentation({
-    title,
-    description,
-    slides,
+    title: 'Sample title',
+    description: 'Sample description',
+    cover: '/images/no-photo.png',
+    slides: [],
   })
+
+  // const { title, description, slides } = req.body
+
+  // const presentation = new Presentation({
+  //   title,
+  //   description,
+  //   slides,
+  // })
 
   const createdPresentation = await presentation.save()
   res.status(201).json(createdPresentation)
